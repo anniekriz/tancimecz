@@ -1,0 +1,103 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #cff2f6; /* Light cyan background */
+    color: #333; /* Dark grey text color */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Headings */
+h1, h2 {
+    text-align: center;
+    color: #00796b; /* Teal color for headings */
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(255, 77, 136);
+    background-color: #e0f7fa;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #ffffff; /* White background for text */
+    padding: 5px 15px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Paragraphs */
+p {
+    margin: 20px auto;
+    max-width: 600px; /* Limit width for better readability */
+    padding: 0 15px;
+}
+
+/* Links */
+a {
+    color: #00796b; /* Red color for links */
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid #00796b;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+a:hover {
+    color: #ff5252;
+    border-bottom-color: #ff5252;
+}
+
+.lector {
+    background-color: #e0f7fa; 
+}
+
+.event {
+    background-color: #e0f7fa; 
+}
+
+.search-container {
+    background-color: #cff2f6; 
+    border: none;
+    text-align: center;
+    margin: 10px 20px; 
+    padding: 10px; 
+    border-radius: 10px;
+}
+
+.search-container input[type="text"] {
+    padding: 10px; 
+    background-color: #ffffff; /* Background color */
+    color: #434343; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 1em; /* Adjust font size as needed */
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Maximum width */
+    margin-right: 10px; /* Space between input and button */
+    outline: 1px solid #00796b /* Remove default outline */
+}
+
+.search-container button {
+    padding: 10px 20px; 
+    background-color: #ffffff; 
+    color: #00796b; 
+    border: none; 
+    border-radius: 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.search-container button:hover {
+    background-color: #00796b; 
+    color: #ffffff; 
+}
