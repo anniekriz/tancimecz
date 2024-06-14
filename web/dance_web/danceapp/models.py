@@ -11,31 +11,36 @@ class Location(models.Model):
     town = models.CharField(max_length=50)
     adress = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Event(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
-    link = models.CharField(max_length=256)
+    link = models.CharField(max_length=256, null=True, blank=True)
     start = models.DateTimeField("DateTime", default=datetime.datetime.now)
     end = models.DateTimeField("DateTime", default=datetime.datetime.now)
     lector = models.CharField(max_length=100)
     contact = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField()
-    price = models.CharField(max_length=50)
+    image = models.ImageField(null=True, blank=True)
+    price = models.CharField(max_length=50, null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.PROTECT)
-    type = EventType.choices
+    type = models.IntegerField(choices=EventType.choices, default=None)
 
     def __str__(self):
         return self.title
     
 class Lector(models.Model):
     firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
-    image = models.ImageField()
+    lastName = models.CharField(max_length=50, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
     description = models.TextField()
-    phone = models.CharField(max_length=50)
-    email = models.EmailField()
-    link = models.CharField(max_length=256)
+    phone = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    link = models.CharField(max_length=256, null=True, blank=True)
+    def __str__(self):
+        return self.firstName
 
 class EventLector(models.Model):
     eventId = models.ForeignKey(Event, on_delete=models.CASCADE)

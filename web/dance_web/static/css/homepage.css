@@ -59,33 +59,77 @@ a:hover {
     background-color: #e0f7fa; 
 }
 
+/* General styles for the events container */
+.events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Styles for each event card */
 .event {
-    background-color: #e0f7fa; 
-}
-
-.search-container {
-    background-color: #cff2f6; 
-    border: none;
-    text-align: center;
-    margin: 10px 20px; 
-    padding: 10px; 
+    background-color: #e0f7fa;
+    border: 1px solid #00796b;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    width: 300px; /* Adjust width as needed */
+    box-sizing: border-box;
+    text-align: center;
 }
 
-.search-container input[type="text"] {
-    padding: 10px; 
-    background-color: #ffffff; /* Background color */
-    color: #434343; /* Text color */
-    border: none; /* Remove default border */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 1em; /* Adjust font size as needed */
-    width: 80%; /* Adjust width as needed */
-    max-width: 400px; /* Maximum width */
-    margin-right: 10px; /* Space between input and button */
-    outline: 1px solid #00796b /* Remove default outline */
+/* Specific styles for h2 within event class */
+.event h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.search-container button {
+/* Styles for event details */
+.event-details {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Specific styles for details within event */
+.event-details p {
+    margin: 10px 0;
+}
+
+/* Hidden description */
+.description {
+    overflow: hidden;
+    height: 40px;
+    transition: height 0.3s ease;
+}
+
+/* Toggle button */
+.toggle-description {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #00796b;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for event cards */
+.event:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+.button {
     padding: 10px 20px; 
     background-color: #ffffff; 
     color: #00796b; 
@@ -95,9 +139,10 @@ a:hover {
     font-weight: bold; 
     cursor: pointer; 
     transition: background-color 0.3s ease, color 0.3s ease; 
+    margin-top: 20px;
 }
 
-.search-container button:hover {
-    background-color: #00796b; 
-    color: #ffffff; 
+.button:hover {
+    background-color: #00796b;
+    color: #ffffff;
 }
