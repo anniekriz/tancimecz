@@ -20,7 +20,7 @@
     </div>
     <div class="kde_tancime">
         <h2>Kde tančíme:</h2>
-        <p>mapa</p>
+        <br><img src="media/mapa.jpg" alt="mapa" style="height:300px;">
     </div>
     <div class="workshops">
         <h2>WORKSHOPY</h2>
@@ -29,7 +29,7 @@
     </div>
     <h2>Večerní akce</h2>
     <div class="events">
-        {% for event in events %}
+        {% for event in events|slice:":2" %}
             <div class="event">
                 <h2>{{ event.title }}</h2>
                 <div class="event-details">
