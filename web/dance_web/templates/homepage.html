@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +58,18 @@
             <button type="submit" class="button">Všechny</button>
         </form>
     </div>
+    <h2>Naši lektoři:</h2>
     <div class="lectors">
-        <h2>Lektoři:</h2>
-        <p>letoři</p>
+        {% for lector in lectors %}
+        <div class="lector">
+            <a href="{% url 'lector_page' slug=lector.slug %}">
+                <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
+            </a>
+        </div>
+        {% endfor %}
+        {% if not lectors %}
+            <p>No lectors available.</p>
+        {% endif %}
     </div>
     <div class="o_nas">
         <h2>O nás</h2>

@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
+</head>
+<body>
+    <div class="lector-page"> 
+        <div class="lector">
+            <img src={{lector.image.url}} alt={{lector.image}} style="width:300px;height:300px;">
+            <br><h2>{{lector.firstName}}</h2>
+            <p>{{lector.description}}</p>
+            <p>Kontakt: {{lector.email}}</p>
+        </div>
+    </div>
+</body>
+</html>

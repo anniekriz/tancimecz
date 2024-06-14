@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectors</title>
+</head>
+<body>
+    <h2>Naši lektoři:</h2>
+    <div class="lectors">
+        {%for lector in lectors%}
+        <div class="lector">
+            <img src={{lector.image.url}} alt={{lector.firstName}}>
+        <p>{{lector.firstName}}</p>
+        <p><u>{{lector.email}}</u></p>
+        </div>
+        {%endfor%}
+    </div>
+</body>
+</html>

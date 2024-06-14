@@ -55,15 +55,34 @@ a:hover {
     border-bottom-color: #ff5252;
 }
 
+.lectors {
+    display: flex; 
+    flex-wrap: nowrap; 
+    justify-content: space-between; 
+    padding: 0 40px; 
+    overflow-x: auto;
+}
+
 .lector {
-    background-color: #e0f7fa; 
+    margin: 0px; 
+    width: 200px; 
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+.lector img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    width: auto;
 }
 
 /* General styles for the events container */
 .events {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
 /* Styles for each event card */
@@ -74,7 +93,7 @@ a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 20px;
     padding: 20px;
-    width: 300px; /* Adjust width as needed */
+    width: 400px; 
     box-sizing: border-box;
     text-align: center;
 }
