@@ -54,8 +54,85 @@ a:hover {
     border-bottom-color: #ff5252;
 }
 
+/* General styles for the events container */
+.events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Styles for each event card */
 .event {
-    background-color: #e0f7fa; 
+    background-color: #e0f7fa;
+    border: 1px solid #00796b;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    width: 300px; /* Adjust width as needed */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Specific styles for h2 within event class */
+.event h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for event details */
+.event-details {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Specific styles for details within event */
+.event-details p {
+    margin: 10px 0;
+}
+
+.event-details a {
+    word-wrap: break-word; 
+    color: #00796b; 
+    text-decoration: none;
+}
+
+.event-details a:hover {
+    color: rgb(255, 77, 136);
+    text-decoration: underline;
+}
+
+/* Hidden description */
+.description {
+    overflow: hidden;
+    height: 40px;
+    transition: height 0.3s ease;
+}
+
+/* Toggle button */
+.toggle-description {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: rgb(255, 77, 136);
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for event cards */
+.event:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
 }
 
 .search-container {
@@ -96,3 +173,11 @@ a:hover {
     background-color: #00796b; 
     color: #ffffff; 
 }
+
+.event img {
+    max-width: 100%;  
+    height: auto;  
+    border-radius: 5px;  /* Optional: rounded corners for images */
+    max-height: 200px; 
+}
+

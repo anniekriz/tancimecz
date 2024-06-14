@@ -31,6 +31,9 @@ class Event(models.Model):
     def __str__(self):
         return self.title
     
+    def beginning(self):
+        return self.link[:50] + "..."
+    
 class Lector(models.Model):
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50, null=True, blank=True)

@@ -104,6 +104,17 @@ a:hover {
     margin: 10px 0;
 }
 
+.event-details a {
+    word-wrap: break-word; 
+    color: #00796b; 
+    text-decoration: none;
+}
+
+.event-details a:hover {
+    color: rgb(255, 77, 136);
+    text-decoration: underline;
+}
+
 /* Hidden description */
 .description {
     overflow: hidden;
@@ -117,7 +128,7 @@ a:hover {
     margin-top: 10px;
     padding: 5px 10px;
     border: none;
-    background-color: #00796b;
+    background-color: rgb(255, 77, 136);
     color: #ffffff;
     border-radius: 5px;
     cursor: pointer;
