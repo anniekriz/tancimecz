@@ -10,6 +10,10 @@
     <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
+    <div class="kde_tancime">
+        <h2>Kde tančíme:</h2>
+        <br><img src="/media/images/mapa.jpg" alt="mapa" style="height:300px;">
+    </div>
     <div><h1>Budoucí akce:</h1></div>
     <div class="search-container">
         <form method="get" action="{% url 'search' %}">
@@ -30,7 +34,10 @@
                     {% endif %}
                     <p><strong>Od: </strong>{{ event.start|date }} v {{ event.start|time }}</p>
                     <p><strong>Do: </strong>{{ event.end|date }} v {{ event.end|time }}</p>
-                    <p><strong>Kde: </strong>{{ event.location }}</p>
+                    <p><strong>Kde: </strong>{{ event.location.town }}, {{ event.location.adress }}</p>
+                    {% if event.location.description %}
+                        <p>{{ event.location.description }}</p>
+                    {% endif %}
                     <p><strong>S kým: </strong><u>{{ event.lector }}</u></p>
                     {% if event.price %}
                         <p><strong>Cena: </strong>{{ event.price }}</p>

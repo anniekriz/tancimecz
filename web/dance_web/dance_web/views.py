@@ -29,7 +29,8 @@ def search_result(request):
             query = form.cleaned_data.get('query')
             events = Event.objects.filter(
                 Q(title__icontains=query) |
-                Q(lector__icontains=query) |
+                Q(lector__firstName__icontains=query) |
+                Q(lector__lastName__icontains=query) |
                 Q(description__icontains=query) |
                 Q(location__town__icontains=query)
             )

@@ -11,8 +11,15 @@
         {%for lector in lectors%}
         <div class="lector">
             <img src={{lector.image.url}} alt={{lector.firstName}}>
-        <p>{{lector.firstName}}</p>
-        <p><u>{{lector.email}}</u></p>
+        <p>{{lector.firstName}} {{lector.lastName}}</p>
+        <p>{{lector.description}}</p>
+        <div>
+            {%if lector.email or lector.phone%}
+            <p>Kontakt:</p>
+            <p><u>E-mail:{{lector.email}}</u></p>
+            <p><u>Telefon::{{lector.phone}}</u></p>
+            {%end if%}
+        </div>
         </div>
         {%endfor%}
     </div>

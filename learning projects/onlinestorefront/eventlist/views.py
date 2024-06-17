@@ -24,3 +24,6 @@ def search_result(request):
             )
 
     return render(request, 'search_result.html', {'form': form, 'events': events})
+
+
+ 

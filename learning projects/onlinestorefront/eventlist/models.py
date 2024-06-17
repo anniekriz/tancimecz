@@ -23,3 +23,4 @@ class Event(models.Model):
   def __str__(self):
     return self.title
     # = string version of that event
+

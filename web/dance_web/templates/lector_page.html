@@ -6,15 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lector page</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lector_page.css' %}">
+
 </head>
 <body>
     <div class="lector-page"> 
         <div class="lector">
-            <img src={{lector.image.url}} alt={{lector.image}} style="width:300px;height:300px;">
-            <br><h2>{{lector.firstName}}</h2>
-            <p>{{lector.description}}</p>
-            <p>Kontakt: {{lector.email}}</p>
+            <img src={{lector.image.url}} alt={{lector.image}}>
+            <br><h2>{{lector.firstName}} {%if lector.lastName%} {{lector.lastName}} {%endif%}</h2>
+            <div class="description">{{lector.description}}</p></div><p>
+            <br><div class="contact">
+                {%if lector.email or lector.phone%}
+                <p><u>Kontakt:</u></p>
+                {%endif%}
+                {%if lector.email%}
+                <p>E-mail: {{lector.email}}</p>
+                {%endif%}
+                {%if lector.phone%}
+                <p>Telefon: {{lector.phone}}</p>
+                {%endif%}
+            </div>
         </div>
     </div>
 </body>
