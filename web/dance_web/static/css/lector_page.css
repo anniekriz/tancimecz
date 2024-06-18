@@ -39,3 +39,7 @@ h2 {
 .lector img {
     height: 300px;
 }
+
+.lector:hover {
+    transform: scale(1.05);
+}
