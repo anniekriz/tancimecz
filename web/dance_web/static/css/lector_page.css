@@ -2,6 +2,8 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #cff2f6;
     text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 h1, h2 {
@@ -24,9 +26,13 @@ h2 {
 }
 
 .description {
+    text-align: center;
+}
+
+.text {
     text-align: justify;
-    padding: 0px 50px;
     max-width: 800px;
+    display: inline-block;
 }
 
 .contact {
@@ -40,6 +46,3 @@ h2 {
     height: 300px;
 }
 
-.lector:hover {
-    transform: scale(1.05);
-}

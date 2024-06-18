@@ -27,7 +27,7 @@ h2 {
     font-size: 1.8em;
     font-weight: bold;
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: inline-block;
     background-color: #ffffff; /* White background for text */
     padding: 5px 15px; /* Padding around the text */
@@ -48,7 +48,7 @@ a {
     color: #00796b; /* Red color for links */
     text-decoration: none;
     font-weight: bold;
-    border-bottom: 2px solid #00796b;
+    border-bottom: none;
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
@@ -99,7 +99,9 @@ a:hover {
     border: 1px solid #00796b;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 20px;
     width: 400px; 
     height: auto;
@@ -136,7 +138,7 @@ a:hover {
 .event-details a {
     word-wrap: break-word; 
     color: #00796b; 
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .event-details a:hover {

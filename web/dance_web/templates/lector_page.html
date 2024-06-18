@@ -14,7 +14,9 @@
         <div class="lector">
             <img src={{lector.image.url}} alt={{lector.image}}>
             <br><h2>{{lector.firstName}} {%if lector.lastName%} {{lector.lastName}} {%endif%}</h2>
-            <div class="description">{{lector.description}}</p></div><p>
+            <div class="description">
+                <div class="text">{{lector.description}}</div>
+            </div>
             <br><div class="contact">
                 {%if lector.email or lector.phone%}
                 <p><u>Kontakt:</u></p>
