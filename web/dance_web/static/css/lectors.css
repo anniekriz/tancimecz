@@ -22,7 +22,6 @@ h2 {
 .lector {
     padding: 10px;
     transition: transform 0.3s;
-    border-bottom: none;
 }
 
 .lector:hover {
@@ -48,7 +47,6 @@ h2 {
 
 .name a {
     border-bottom: none;
-    text-decoration: none;
 }
 
 .search-container {

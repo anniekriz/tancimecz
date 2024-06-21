@@ -1,5 +1,7 @@
 from django.db import models
 import datetime
+from django.contrib.auth.models import User
+
 
 class EventType(models.IntegerChoices):
         EVENT = 1, 'Večerní akce'
@@ -16,6 +18,7 @@ class Location(models.Model):
         return self.name
 
 class Lector(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50, null=True, blank=True)
     slug = models.SlugField(max_length=100, unique=True)
@@ -52,4 +55,6 @@ class EventLector(models.Model):
     class Meta:
      constraints = [
           models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector')
-     ]
+    ]
+     
+
