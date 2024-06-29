@@ -42,7 +42,7 @@ class Event(models.Model):
     lector = models.ForeignKey(Lector, on_delete=models.PROTECT)
     contact = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/')
     price = models.CharField(max_length=50, null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.PROTECT)
     type = models.IntegerField(choices=EventType.choices, default=None)

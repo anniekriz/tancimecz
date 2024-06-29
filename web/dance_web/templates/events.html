@@ -15,6 +15,13 @@
         <br><img src="/static/images/mapa.jpg" alt="mapa" style="height:300px;">
     </div>
     <div><h1>Budoucí akce:</h1></div>
+    <div class="filter">
+        <form method="get" action="{% url 'events' %}">
+            <button type="submit" name="type" value="ALL" class="button {% if selected_type == 'ALL' %}active{% endif %}">Všechny</button>
+            <button type="submit" name="type" value="WORKSHOP" class="button {% if selected_type == 'WORKSHOP' %}active{% endif %}">Workshopy</button>
+            <button type="submit" name="type" value="EVENT" class="button {% if selected_type == 'EVENT' %}active{% endif %}">Večerní akce</button>
+        </form>
+    </div>
     <div class="search-container">
         <form method="get" action="{% url 'search' %}">
             <input type="text" name="query" placeholder="Hledat..." value="{{ request.GET.query }}">

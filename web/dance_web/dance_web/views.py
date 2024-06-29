@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from danceapp.models import Event, Lector
+from danceapp.models import Event, Lector, EventType
 from danceapp.forms import Search, Search_lectors
 from django.db.models import Q
 
@@ -13,8 +13,22 @@ def homepage(request):
     return render(request, 'homepage.html', context)
 
 def event_list(request):
-    events = Event.objects.all().order_by('start')
-    return render(request, 'events.html', {'events': events})
+    event_type = request.GET.get('type', 'ALL')
+    if event_type == 'ALL':
+        events = Event.objects.all().order_by('start')
+    elif event_type == 'EVENT':
+        events = Event.objects.filter(type=EventType.EVENT).order_by('start')
+    elif event_type == 'WORKSHOP':
+        events = Event.objects.filter(type=EventType.WORKSHOP).order_by('start')
+    else:
+        events = Event.objects.all().order_by('start')
+
+    context = {
+        'events': events,
+        'EventType': EventType,
+        'selected_type': event_type,  
+    }
+    return render(request, 'events.html', context)
 
 def lector_list(request):
     lectors = Lector.objects.all().order_by()
