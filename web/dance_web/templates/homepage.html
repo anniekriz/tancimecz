@@ -12,6 +12,15 @@
     <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'homepage' %}">DANCES</a></li>
+                <li><a href="{% url 'events' %}">Akce</a></li>
+                <li><a href="{% url 'lectors' %}">Lektoři</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="title">
         <h1>TANCE UNIVERZÁLNÍHO MÍRU</h1>
     </div>

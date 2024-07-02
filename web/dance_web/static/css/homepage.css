@@ -12,7 +12,7 @@ body {
 /* Headings */
 h1, h2 {
     text-align: center;
-    color: #00796b; /* Teal color for headings */
+    color: #00796b; 
 }
 
 h1 {
@@ -52,9 +52,31 @@ a {
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
-a:hover {
-    color: #ff5252;
-    border-bottom-color: #ff5252;
+header {
+    background-color: #00796b;
+    padding: 10px 0;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: rgb(255, 77, 136);
 }
 
 .lectors {

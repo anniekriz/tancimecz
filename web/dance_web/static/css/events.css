@@ -118,6 +118,13 @@ a:hover {
     transition: height 0.3s ease;
 }
 
+.event img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    max-height: 200px;
+}
+
 /* Toggle button */
 .toggle-description {
     display: inline-block;
@@ -175,12 +182,6 @@ a:hover {
     color: #ffffff; 
 }
 
-.event img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    max-height: 200px;
-}
 
 .button {
     padding: 10px 20px; 
@@ -203,4 +204,31 @@ a:hover {
 .button.active {
     background-color: #00796b;
     color: #ffffff;
+}
+
+header {
+    background-color: #00796b;
+    padding: 10px 0;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: rgb(255, 77, 136);
 }
