@@ -36,7 +36,12 @@ def lector_list(request):
 
 def lector_page(request, slug):
     lector = Lector.objects.get(slug=slug)
-    return render(request, 'lector_page.html', {'lector': lector})
+    events = Event.objects.filter(lector=lector).order_by('start')
+    context = {
+        'events': events,
+        'lector': lector
+    }
+    return render(request, 'lector_page.html', context)
 
 def search_result(request):
     form = Search(request.GET)
