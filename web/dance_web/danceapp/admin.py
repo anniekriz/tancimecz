@@ -29,27 +29,6 @@ class EventAdmin(admin.ModelAdmin):
 
 admin.site.register(Event, EventAdmin)
 
-class LocationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'address', 'lector')
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        if request.user.is_superuser:
-            return qs
-        try:
-            lector = Lector.objects.get(user=request.user)
-            return qs.filter(lector=lector)
-        except Lector.DoesNotExist:
-            return qs.none()
-
-    def save_model(self, request, obj, form, change):
-        if not obj.pk:  # Only set the lector during the first save.
-            try:
-                obj.lector = Lector.objects.get(user=request.user)
-            except Lector.DoesNotExist:
-                pass  # Handle the case where the user does not have a corresponding Lector
-        super().save_model(request, obj, form, change)
-
-admin.site.register(Location, LocationAdmin)
 
 

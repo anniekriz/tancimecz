@@ -23,6 +23,7 @@ class Lector(models.Model):
         return f"{self.firstName} {self.lastName or ''}".strip()
     
 class Location(models.Model):
+    coordinates = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     town = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
