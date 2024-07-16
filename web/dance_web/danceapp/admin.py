@@ -6,26 +6,31 @@ from .models import Event, Lector, Location
 admin.site.register(Location)
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'start', 'end', 'lector')
+    list_display = ('title', 'start', 'end', 'display_lectors')
+    filter_horizontal = ('lector',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         if request.user.is_superuser:
             return qs
         try:
-            # Assuming each User has a corresponding Lector profile
             lector = Lector.objects.get(user=request.user)
             return qs.filter(lector=lector)
         except Lector.DoesNotExist:
             return qs.none()
 
     def save_model(self, request, obj, form, change):
-        if not obj.pk:  # Only set the lector during the first save.
-            try:
-                obj.lector = Lector.objects.get(user=request.user)
-            except Lector.DoesNotExist:
-                pass  # Handle the case where the user does not have a corresponding Lector
         super().save_model(request, obj, form, change)
+        if not change:  # Only modify on creation
+            try:
+                lector = Lector.objects.get(user=request.user)
+                obj.lector.add(lector)
+            except Lector.DoesNotExist:
+                pass
+
+    def display_lectors(self, obj):
+        return ", ".join([f"{lector.firstName} {lector.lastName}" for lector in obj.lector.all()])
+    display_lectors.short_description = 'Lectors'
 
 admin.site.register(Event, EventAdmin)
 
@@ -42,16 +47,7 @@ class LectorAdmin(admin.ModelAdmin):
         except Lector.DoesNotExist:
             return qs.none()
 
-    def save_model(self, request, obj, form, change):
-        if not obj.pk:  # Only set the lector during the first save.
-            try:
-                obj.lector = Lector.objects.get(user=request.user)
-            except Lector.DoesNotExist:
-                pass  # Handle the case where the user does not have an associated Lector.
-        super().save_model(request, obj, form, change)
-
 admin.site.register(Lector, LectorAdmin)
-
 
 
 

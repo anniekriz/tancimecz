@@ -19,6 +19,9 @@ class Lector(models.Model):
     email = models.EmailField(null=True, blank=True)
     link = models.CharField(max_length=256, null=True, blank=True)
 
+    class Meta:
+        ordering = ['firstName'] #řazení lektorů podle abecedy
+
     def __str__(self):
         return f"{self.firstName} {self.lastName or ''}".strip()
     
@@ -40,7 +43,7 @@ class Event(models.Model):
     link = models.CharField(max_length=256, null=True, blank=True)
     start = models.DateTimeField("DateTime", default=datetime.datetime.now)
     end = models.DateTimeField("DateTime", default=datetime.datetime.now)
-    lector = models.ForeignKey(Lector, on_delete=models.PROTECT)
+    lector = models.ManyToManyField(Lector)
     contact = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='images/')
