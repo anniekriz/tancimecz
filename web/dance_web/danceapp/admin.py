@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 from .models import Event, Lector, Location
 
 #admin.site.register(Event)
@@ -7,8 +8,13 @@ admin.site.register(Location)
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'start', 'end', 'display_lectors')
-    filter_horizontal = ('lector',)
     change_form_template = 'admin/change_form.html'
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(EventAdmin, self).get_form(request, obj, **kwargs)
+        if not request.user.is_superuser: 
+            form.base_fields['slug'].widget = forms.HiddenInput()
+        return form
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -38,6 +44,13 @@ admin.site.register(Event, EventAdmin)
 class LectorAdmin(admin.ModelAdmin):
     list_display = ('firstName', 'lastName')
     change_form_template = 'admin/change_form.html'
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(LectorAdmin, self).get_form(request, obj, **kwargs)
+        if not request.user.is_superuser: 
+            form.base_fields['user'].widget = forms.HiddenInput()
+            form.base_fields['slug'].widget = forms.HiddenInput()
+        return form
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
