@@ -8,6 +8,7 @@ admin.site.register(Location)
 class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'start', 'end', 'display_lectors')
     filter_horizontal = ('lector',)
+    change_form_template = 'admin/change_form.html'
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -36,6 +37,7 @@ admin.site.register(Event, EventAdmin)
 
 class LectorAdmin(admin.ModelAdmin):
     list_display = ('firstName', 'lastName')
+    change_form_template = 'admin/change_form.html'
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
