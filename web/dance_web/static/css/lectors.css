@@ -95,7 +95,11 @@ h2 {
 
 header {
     background-color: #00796b;
-    padding: 15px 0;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 .menu {
@@ -103,11 +107,11 @@ header {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: left;
 }
 
 .menu li {
     margin: 0 15px;
+    display: inline;
 }
 
 .menu a {
@@ -118,4 +122,21 @@ header {
 
 .menu a:hover {
     color: rgb(255, 77, 136);
+}
+
+.log_in {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #00796b;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: right;
+}
+
+.log_in:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
 }
