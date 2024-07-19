@@ -36,7 +36,7 @@ class EventAdmin(admin.ModelAdmin):
                 pass
 
     def display_lectors(self, obj):
-        return ", ".join([f"{lector.firstName} {lector.lastName}" for lector in obj.lector.all()])
+        return ", ".join([f"{lector.firstName} {lector.lastName or ''}" for lector in obj.lector.all()])
     display_lectors.short_description = 'Lectors'
 
 admin.site.register(Event, EventAdmin)
