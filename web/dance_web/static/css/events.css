@@ -54,35 +54,6 @@ a:hover {
     border-bottom-color: #ff5252;
 }
 
-header {
-    background-color: #00796b;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.menu li {
-    margin: 0 15px;
-    display: inline;
-}
-
-.menu a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-.menu a:hover {
-    color: rgb(255, 77, 136);
-}
 /* General styles for the events container */
 .events {
     display: flex;

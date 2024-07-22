@@ -71,8 +71,8 @@
                     </div>
                 </div>
             {% endfor %}
-            {% if not events %}
-                <p>No results found.</p>
+            {% if not eventsevents|filter_by_type:2|filter_past_events %}
+                <p>Momentálně nejsou žádné workshopy.</p>
             {% endif %}
             </div>
             <div class="all">
@@ -135,8 +135,8 @@
                     </div>
                 </div>
             {% endfor %}
-            {% if not events %}
-                <p>No results found.</p>
+            {% if not eventsevents|filter_by_type:2|filter_past_events %}
+                <p>Momentálně nejsou žádné večerní tance.</p>
             {% endif %}
             </div>
             <div class="all">

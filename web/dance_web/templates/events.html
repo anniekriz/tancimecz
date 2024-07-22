@@ -66,8 +66,8 @@
                 </div>
             </div>
         {% endfor %}
-        {% if not events %}
-            <p>No results found.</p>
+        {% if not events|filter_past_events %}
+            <p>Momentálně nejsou žádné události.</p>
         {% endif %}
     </div>
     {% endblock %}
