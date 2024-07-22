@@ -4,6 +4,10 @@
 
 {% block title %}Homepage{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="title">
         <h1>TANCE UNIVERZÁLNÍHO MÍRU</h1>
@@ -27,7 +31,7 @@
                     <div class="event-details">
                         <div class="event-link">
                             {% if event.link %}
-                            <p><a href="{{ event.link }}">{{ event.link }}</a></p>
+                            <p><a href="{{ event.link }}" target="_blank">{{ event.link }}</a></p>
                             {% endif %}
                         </div>
                         <div class="event-date">
@@ -91,7 +95,7 @@
                     <div class="event-details">
                         <div class="event-link">
                             {% if event.link %}
-                            <p><a href="{{ event.link }}">{{ event.link }}</a></p>
+                            <p><a href="{{ event.link }}" target="_blank">{{ event.link }}</a></p>
                             {% endif %}
                         </div>
                         <div class="event-date">

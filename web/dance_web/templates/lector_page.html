@@ -2,7 +2,11 @@
 {% load custom_filters %}
 {% load static %}
 
-{% block title %}Lector page{% endblock %}
+{% block title %}Events{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lector_page.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class="lector-page"> 
@@ -34,7 +38,7 @@
                 </div>
                 <div class="event-details">
                     {% if event.link %}
-                        <p><a href="{{ event.link }}">{{ event.link }}</a></p>
+                        <p><a href="{{ event.link }}" target="_blank">{{ event.link }}</a></p>
                     {% endif %}
                     {% with event|date_format as date %}
                         <p>{{ date.day }} {{ date.date }} <br>{% if date.time %} {{ date.time }} {% endif %}</p>
