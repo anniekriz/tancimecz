@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Homepage{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'homepage' %}">Úvod</a></li>
+                <li><a href="{% url 'events' %}">Události</a></li>
+                <li><a href="{% url 'lectors' %}">Lektoři</a></li>
+                <li><a href="{% url 'o_tancich' %}">O tancích</a></li>
+                <li><a href="{% url 'o_nas' %}">O nás</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,212 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #cff2f6;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #00796b; /* Teal color for headings */
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(255, 77, 136);
+    background-color: #e0f7fa;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: rgb(255, 77, 136);
+    display: inline-block;
+}
+
+.lector-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.lector {
+    background-color: #e0f7fa;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+}
+
+.lector img {
+    height: 300px;
+}
+
+.description {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text {
+    text-align: justify;
+    max-width: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact {
+    color: #00796b;
+    text-align: center;
+    vertical-align: bottom;
+    margin-top: 20px;
+}
+
+.lector-events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+/* Styles for each event card */
+.event {
+    background-color: #e0f7fa;
+    border: 1px solid #00796b;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px;
+    width: 350px; 
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Specific styles for h2 within event class */
+.event h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for event details */
+.event-details {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Specific styles for details within event */
+.event-details p {
+    margin: 5px 0;
+}
+
+.event-details a {
+    word-wrap: break-word; 
+    color: #00796b; 
+    text-decoration: none;
+}
+
+.event-details a:hover {
+    color: rgb(255, 77, 136);
+    text-decoration: underline;
+}
+
+.event-description {
+    overflow: hidden;
+    height: 40px;
+    transition: height 0.3s ease;
+}
+
+.event img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    max-height: 200px;
+}
+
+/* Toggle button */
+.toggle-description {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: rgb(255, 77, 136);
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for event cards */
+.event:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+header {
+    background-color: #00796b;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu li {
+    margin: 0 15px;
+    display: inline;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: rgb(255, 77, 136);
+}
+
+.log_in {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #00796b;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: right;
+}
+
+.log_in:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}

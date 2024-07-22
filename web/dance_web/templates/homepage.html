@@ -1,29 +1,10 @@
-{% load static %}
+{% extends "base.html" %}
 {% load custom_filters %}
+{% load static %}
 
+{% block title %}Homepage{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
-    <script src="{% static 'js/script.js' %}" defer></script>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="{% url 'homepage' %}">HOME</a></li>
-                <li><a href="{% url 'events' %}">Události</a></li>
-                <li><a href="{% url 'lectors' %}">Lektoři</a></li>
-                <li><a href="{% url 'o_tancich' %}">O tancích</a></li>
-                <li><a href="{% url 'o_nas' %}">O nás</a></li>
-                <li><a href="https://www.dancecamp.cz/odkazy/">Podobné spolky v zahraničí</a></li>
-            </ul>
-        </nav>
-    </header>
+{% block content %}
     <div class="title">
         <h1>TANCE UNIVERZÁLNÍHO MÍRU</h1>
     </div>
@@ -206,5 +187,4 @@
         <h2>Organizace:</h2>
         <p>loga</p>
     </div>
-</body>
-</html>
+    {% endblock %}

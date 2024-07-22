@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About dances</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load custom_filters %}
+{% load static %}
+
+{% block title %}About dances{% endblock %}
+
+{% block content %}
 <h1>O tancích</h1>
 <p>
     Od začátku času přiváděl posvátný pohyb, písně a vyprávění lidi dohromady. V dobách sezonních oslav a ceremonií byl tanec a zpěv součástí každodenního života a životních přechodů, denních meditací a modliteb. Tance univerzálního míru (u nás jim někdy pro větší srozumitelnost říkáme mantrické tance dávných tradic) jsou součástí této bezčasé tradice posvátných tanců.  Jednoduchá melodie, slova a pohyby dovolují dotknout se spirituální esence uvnitř nás a v druhých. Není k nim třeba žádná hudební ani taneční zkušenost, každý je vítán.
@@ -27,5 +26,4 @@ Za třetí jde o ovlivnění mysli pomalejším, hlubším rytmem uvědomování
 
 Tance Univerzálního míru se vyvinuly a rozšířily v praktické aplikaci naplňování hlubokých potřeb dneška pro znovuobjevení pokory, tvořivosti a tělesném spojení s přírodním světem. Učitelé sdílejí tance ve školách, terapeutických skupinách, vězeních, hospicích, v centrech léčení z drogových závislostí, domovech pro postižené, domovech důchodců , holistických zdravotních centrech a ekumenických bohoslužbách. Tancují se na celém světě zejména pro radost a na oslavu. V Německu je např. soukromá porodní klinika, kde sestry s maminkami oslavují těmito tanci narození každého dítěte. Některé německé a švýcarské učitelky je odvážně jezdí učit do krajů, které jsou znesvářené kvůli různým náboženstvím (např. v době války i nyní jezdí do Bosny) a spojují je s terapeutickou prací s lidmi, kteří ztratili ve válce svoje blízké i svůj majetek.
 </p>
-</body>
-</html>
+{% endblock %}

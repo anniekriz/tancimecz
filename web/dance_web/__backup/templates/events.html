@@ -1,22 +1,20 @@
-{% extends "base.html" %}
-{% load custom_filters %}
 {% load static %}
 
-{% block title %}Events{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
     <div class="kde_tancime">
         <h2>Kde tančíme:</h2>
         <br><img src="/static/images/mapa.jpg" alt="mapa" style="height:300px;">
     </div>
     <div><h1>Budoucí akce:</h1></div>
-    <div class="filter">
-        <form method="get" action="{% url 'events' %}">
-            <button type="submit" name="type" value="ALL" class="button {% if selected_type == 'ALL' %}active{% endif %}">Všechny</button>
-            <button type="submit" name="type" value="WORKSHOP" class="button {% if selected_type == 'WORKSHOP' %}active{% endif %}">Workshopy</button>
-            <button type="submit" name="type" value="EVENT" class="button {% if selected_type == 'EVENT' %}active{% endif %}">Večerní akce</button>
-        </form>
-    </div>
     <div class="search-container">
         <form method="get" action="{% url 'search' %}">
             <input type="text" name="query" placeholder="Hledat..." value="{{ request.GET.query }}">
@@ -34,20 +32,13 @@
                     {% if event.link %}
                         <p><a href="{{ event.link }}">{{ event.link }}</a></p>
                     {% endif %}
-                    {% with event|date_format as date %}
-                        <p>{{ date.day }} {{ date.date }} <br>{% if date.time %} {{ date.time }} {% endif %}</p>
-                    {% endwith %}
-                    <p><strong>Kde: </strong>{{ event.location.town }}, {{ event.location.address }}</p>
+                    <p><strong>Od: </strong>{{ event.start|date }} v {{ event.start|time }}</p>
+                    <p><strong>Do: </strong>{{ event.end|date }} v {{ event.end|time }}</p>
+                    <p><strong>Kde: </strong>{{ event.location.town }}, {{ event.location.adress }}</p>
                     {% if event.location.description %}
                         <p>{{ event.location.description }}</p>
                     {% endif %}
-                    <p><strong>S kým: </strong>
-                        {% for lector in event.lector.all %}
-                            <a href="{% url 'lector_page' slug=lector.slug %}">
-                                {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
-                            </a>
-                        {% endfor %}
-                    </p>
+                    <p><strong>S kým: </strong><u>{{ event.lector }}</u></p>
                     {% if event.price %}
                         <p><strong>Cena: </strong>{{ event.price }}</p>
                     {% endif %}
@@ -61,4 +52,5 @@
             <p>No results found.</p>
         {% endif %}
     </div>
-    {% endblock %}
+</body>
+</html>

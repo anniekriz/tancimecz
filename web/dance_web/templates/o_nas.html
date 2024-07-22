@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About us</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load custom_filters %}
+{% load static %}
+
+{% block title %}About us{% endblock %}
+
+{% block content %}
 <h1>O nás</h1>
 <p>
         Jsme skupina lidí, které spojuje společný tanec a zpívání v kruhu.
@@ -24,5 +23,4 @@ Ze statutu sdružení -  Občanské sdružení Tančíme.cz je dobrovolným sdru
 
 Kruhy jsou otevřené každému v jakémkoliv věku. Není potřeba žádná předchozí zkušenost.
 </p>
-</body>
-</html>
+{% endblock %}
