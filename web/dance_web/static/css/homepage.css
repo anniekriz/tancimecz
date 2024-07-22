@@ -180,6 +180,20 @@ header {
     text-decoration: underline;
 }
 
+.event-lector a {
+    text-decoration: none;
+    color: #00796b;
+}
+
+.event-lector a:hover {
+    color: rgb(255, 77, 136);
+    text-decoration: underline;
+}
+
+.event-date {
+    font-size: 1.4em;
+}
+
 /* Hidden description */
 .description {
     overflow: hidden;

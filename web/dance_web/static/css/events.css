@@ -12,7 +12,7 @@ body {
 h1, h2 {
     text-align: center;
     color: #00796b; /* Teal color for headings */
-    }
+}
     
 h1 {
     margin-top: 20px;
@@ -20,7 +20,7 @@ h1 {
     font-weight: bold;
     color: rgb(255, 77, 136);
     background-color: #e0f7fa;
-    }
+}
     
 h2 {
     font-size: 1.8em;
@@ -45,7 +45,6 @@ a {
     color: #00796b; /* Red color for links */
     text-decoration: none;
     font-weight: bold;
-    border-bottom: 2px solid #00796b;
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
@@ -60,7 +59,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .menu {
@@ -133,12 +131,24 @@ header {
 .event-details a {
     word-wrap: break-word; 
     color: #00796b; 
-    text-decoration: none;
+    text-decoration: none; /* Ensure links are not underlined */
 }
 
 .event-details a:hover {
     color: rgb(255, 77, 136);
     text-decoration: underline;
+}
+
+/* Ensure that links within the event-lector class are not underlined */
+.event-lector a {
+    text-decoration: none;
+    border-bottom: none; /* Remove bottom border */
+}
+
+/* Override specific underline and border styles for links within event-lector */
+.event-lector a {
+    text-decoration: none !important;
+    border-bottom: none !important; 
 }
 
 /* Hidden description */
@@ -251,4 +261,3 @@ header {
     transform: scale(1.02);
     transition: transform 0.3s ease;
 }
-

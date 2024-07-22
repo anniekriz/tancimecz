@@ -14,8 +14,8 @@
     <header>
         <nav>
             <ul class="menu">
-                <li><a href="{% url 'homepage' %}">DANCES</a></li>
-                <li><a href="{% url 'events' %}">Akce</a></li>
+                <li><a href="{% url 'homepage' %}">HOME</a></li>
+                <li><a href="{% url 'events' %}">Události</a></li>
                 <li><a href="{% url 'lectors' %}">Lektoři</a></li>
                 <li><a href="{% url 'o_tancich' %}">O tancích</a></li>
                 <li><a href="{% url 'o_nas' %}">O nás</a></li>
@@ -55,17 +55,17 @@
                         <p><a href="{{ event.link }}">{{ event.link }}</a></p>
                     {% endif %}
                     {% with event|date_format as date %}
-                        <p><strong>Kdy: </strong>{% if date.time %} {{ date.time }} {% endif %} {{ date.day }} {{ date.date }}</p>
+                        <p>{{ date.day }} {{ date.date }} <br>{% if date.time %} {{ date.time }} {% endif %}</p>
                     {% endwith %}
                     <p><strong>Kde: </strong>{{ event.location.town }}, {{ event.location.adress }}</p>
                     {% if event.location.description %}
                         <p>{{ event.location.description }}</p>
                     {% endif %}
-                    <p><strong>S kým: </strong><u>
+                    <p><strong>S kým: </strong>
                         {% for lector in event.lector.all %}
                             {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
                         {% endfor %}
-                    </u></p>
+                    </p>
                     {% if event.price %}
                         <p><strong>Cena: </strong>{{ event.price }}</p>
                     {% endif %}

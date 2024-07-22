@@ -16,7 +16,7 @@
         <nav>
             <ul class="menu">
                 <li><a href="{% url 'homepage' %}">HOME</a></li>
-                <li><a href="{% url 'events' %}">Akce</a></li>
+                <li><a href="{% url 'events' %}">Události</a></li>
                 <li><a href="{% url 'lectors' %}">Lektoři</a></li>
                 <li><a href="{% url 'o_tancich' %}">O tancích</a></li>
                 <li><a href="{% url 'o_nas' %}">O nás</a></li>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="event-date">
                             {% with event|date_format as date %}
-                                <p><strong>Kdy: </strong>{% if date.time %} {{ date.time }} {% endif %} {{ date.day }} {{ date.date }}</p>
+                                <p>{{ date.day }} {{ date.date }} <br>{% if date.time %} {{ date.time }} {% endif %}</p>
                             {% endwith %}
                         </div>
                         <div class="event-location">
@@ -63,11 +63,13 @@
                             </div> 
                         </div>
                         <div class="event-lector">
-                            <p><strong>S kým: </strong><u>
-                            {% for lector in event.lector.all %}
-                                {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                            </u></p>
+                            <p><strong>S kým: </strong>
+                                {% for lector in event.lector.all %}
+                                    <a href="{% url 'lector_page' slug=lector.slug %}">
+                                        {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </p>
                         </div>
                         <div class="event-price">
                             {% if event.price %}
@@ -113,7 +115,7 @@
                         </div>
                         <div class="event-date">
                             {% with event|date_format as date %}
-                                <p><strong>Kdy: </strong>{% if date.time %} {{ date.time }} {% endif %} {{ date.day }} {{ date.date }}</p>
+                                <p>{{ date.day }} {{ date.date }} <br>{% if date.time %} {{ date.time }} {% endif %}</p>
                             {% endwith %}
                         </div>
                         <div class="event-location">
@@ -125,11 +127,13 @@
                             </div> 
                         </div>
                         <div class="event-lector">
-                            <p><strong>S kým: </strong><u>
-                            {% for lector in event.lector.all %}
-                                {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                            </u></p>
+                            <p><strong>S kým: </strong>
+                                {% for lector in event.lector.all %}
+                                    <a href="{% url 'lector_page' slug=lector.slug %}">
+                                        {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </p>
                         </div>
                         <div class="event-price">
                             {% if event.price %}
@@ -163,6 +167,11 @@
         <p>Donec at risus ac leo luctus tincidunt id eu mauris. Aenean bibendum ex sit amet nisl hendrerit sollicitudin. Vivamus malesuada enim at est sagittis pellentesque. Phasellus id mollis nisl. Pellentesque aliquet magna ut sapien scelerisque tincidunt. Sed dui sapien, condimentum quis lacinia mattis, bibendum eu ante. Sed eget est sed augue varius euismod at et lectus. Nam sed lectus et felis aliquam interdum. Etiam risus lacus, tristique sit amet nisi id, pharetra consequat dui. Pellentesque eleifend convallis sapien, a sagittis ipsum suscipit vel. Etiam tincidunt facilisis neque, nec vehicula enim consectetur vel. Vivamus pulvinar suscipit eros, eget cursus nisi aliquet non.
 
         <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris et faucibus metus. Nunc malesuada diam et felis dictum, in iaculis dolor mollis. Maecenas velit nibh, ultrices et pulvinar sit amet, tincidunt nec massa. Sed quis consectetur odio. Aenean dictum laoreet eros eu commodo. Duis pellentesque dictum tempus. Quisque nibh ex, posuere ac facilisis ut, viverra quis ante. Duis sodales tempus urna, eget dignissim massa egestas nec. Suspendisse sollicitudin sem in molestie maximus. Proin ac nibh ligula.</p></p>
+    </div>
+    <div class="all">
+        <form method="get" action="{% url 'o_tancich' %}">
+            <button type="submit" class="button">Vše o tancich</button>
+            </form>
     </div>
     <h2>Naši lektoři:</h2>
     <div class="lectors">
