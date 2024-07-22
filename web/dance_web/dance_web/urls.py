@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='homepage'),
     path('events/', views.event_list, name='events'),
+    path('past-events/', views.past_events, name='past_events'),
     path('lectors/', views.lector_list, name='lectors'),
     path('search/', views.search_result, name="search"),
     path('o-tancich/', views.o_tancich, name="o_tancich"),

@@ -20,7 +20,7 @@
     <div class="workshops">
         <h2>WORKSHOPY</h2>
         <div class="events">
-            {% for event in events|filter_by_type:2|slice:":2" %}
+            {% for event in events|filter_by_type:2|filter_past_events|slice:":2" %}
                 <div class="event">
                     <div class="event-title">
                         {{ event.title }}
@@ -78,13 +78,13 @@
             <div class="all">
                 <form method="get" action="{% url 'events' %}">
                     <button type="submit" class="button">Všechny</button>
-                    </form>
+                </form>
             </div>
     </div>
     <div class="vecerni-akce">
         <h2>Večerní akce</h2>
         <div class="events">
-            {% for event in events|filter_by_type:1|slice:":2" %}
+            {% for event in events|filter_by_type:1|filter_past_events|slice:":2" %}
                 <div class="event">
                     <div class="event-title">
                         {{ event.title }}

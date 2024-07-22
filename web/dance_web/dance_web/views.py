@@ -2,6 +2,7 @@ from django.shortcuts import render
 from danceapp.models import Event, Lector, EventType
 from danceapp.forms import Search, Search_lectors
 from django.db.models import Q
+from django.utils import timezone
 
 def homepage(request):
     events = Event.objects.all().order_by('start')
@@ -29,6 +30,11 @@ def event_list(request):
         'selected_type': event_type,  
     }
     return render(request, 'events.html', context)
+
+def past_events(request):
+    now = timezone.now()
+    past_events = Event.objects.filter(end__lt=now).order_by('-end')
+    return render(request, 'past_events.html', {'events': past_events, 'selected_type': 'PAST'})
 
 def lector_list(request):
     lectors = Lector.objects.all().order_by()

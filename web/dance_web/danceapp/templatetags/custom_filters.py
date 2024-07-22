@@ -1,4 +1,6 @@
 from django import template
+from django.utils import timezone
+import datetime
 
 register = template.Library()
 
@@ -10,8 +12,8 @@ DAYS_SHORT = ['po', 'út', 'st', 'čt', 'pá', 'so', 'ne']
 
 @register.filter
 def date_format(event):
-    start = event.start
-    end = event.end
+    start = timezone.localtime(event.start)
+    end = timezone.localtime(event.end)
 
     # zajistí, že místo 07:00 bude 7:00
     def format_time(t):
@@ -33,3 +35,8 @@ def date_format(event):
         time = None
 
     return {'date': date, 'day': day, 'time': time}
+
+@register.filter
+def filter_past_events(events):
+    now = timezone.now()
+    return [event for event in events if timezone.localtime(event.end) >= now]
