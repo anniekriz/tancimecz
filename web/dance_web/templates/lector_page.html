@@ -53,13 +53,18 @@
                     {% if event.link %}
                         <p><a href="{{ event.link }}">{{ event.link }}</a></p>
                     {% endif %}
-                    <p><strong>Od: </strong>{{ event.start|date }} v {{ event.start|time }}</p>
-                    <p><strong>Do: </strong>{{ event.end|date }} v {{ event.end|time }}</p>
+                    {% with event|date_format as date %}
+                        <p><strong>Kdy: </strong>{% if date.time %} {{ date.time }} {% endif %} {{ date.day }} {{ date.date }}</p>
+                    {% endwith %}
                     <p><strong>Kde: </strong>{{ event.location.town }}, {{ event.location.adress }}</p>
                     {% if event.location.description %}
                         <p>{{ event.location.description }}</p>
                     {% endif %}
-                    <p><strong>S kým: </strong><u>{{ event.lector }}</u></p>
+                    <p><strong>S kým: </strong><u>
+                        {% for lector in event.lector.all %}
+                            {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </u></p>
                     {% if event.price %}
                         <p><strong>Cena: </strong>{{ event.price }}</p>
                     {% endif %}

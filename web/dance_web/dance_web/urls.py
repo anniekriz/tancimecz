@@ -26,6 +26,8 @@ urlpatterns = [
     path('events/', views.event_list, name='events'),
     path('lectors/', views.lector_list, name='lectors'),
     path('search/', views.search_result, name="search"),
+    path('o-tancich/', views.o_tancich, name="o_tancich"),
+    path('o-nas/', views.o_nas, name="o_nas"),
     path('search_lectors/', views.search_result_lectors, name="search_lectors"),
     path('lector/<slug:slug>/', views.lector_page, name='lector_page'),
 ] 

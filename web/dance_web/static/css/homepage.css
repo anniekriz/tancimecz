@@ -135,16 +135,24 @@ header {
     text-align: center;
 }
 
-/* Specific styles for h2 within event class */
-.event h2 {
+/* Specific styles for event-title within event class */
+.event-title {
     font-size: 1.5em;
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 15px;
+    color:rgb(255, 77, 136);
     background-color: #ffffff;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.event img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    max-height: 200px;
 }
 
 /* Styles for event details */
@@ -161,13 +169,13 @@ header {
     margin: 10px 0;
 }
 
-.event-details a {
+.event-link a {
     word-wrap: break-word; 
     color: #00796b; 
     text-decoration: underline;
 }
 
-.event-details a:hover {
+.event-link a:hover {
     color: rgb(255, 77, 136);
     text-decoration: underline;
 }
@@ -185,7 +193,7 @@ header {
     margin-top: 10px;
     padding: 5px 10px;
     border: none;
-    background-color: rgb(255, 77, 136);
+    background-color: #00796b;
     color: #ffffff;
     border-radius: 5px;
     cursor: pointer;
@@ -215,19 +223,3 @@ header {
     color: #ffffff;
 }
 
-.log_in {
-    padding: 10px 20px;
-    background-color: #ffffff;
-    color: #00796b;
-    border: none;
-    border-radius: 20px;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: right;
-}
-
-.log_in:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
-}

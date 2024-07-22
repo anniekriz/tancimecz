@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,8 +52,9 @@
                     {% if event.link %}
                         <p><a href="{{ event.link }}">{{ event.link }}</a></p>
                     {% endif %}
-                    <p><strong>Od: </strong>{{ event.start|date }} v {{ event.start|time }}</p>
-                    <p><strong>Do: </strong>{{ event.end|date }} v {{ event.end|time }}</p>
+                    {% with event|date_format as date %}
+                        <p><strong>Kdy: </strong>{% if date.time %} {{ date.time }} {% endif %} {{ date.day }} {{ date.date }}</p>
+                    {% endwith %}
                     <p><strong>Kde: </strong>{{ event.location.town }}, {{ event.location.address }}</p>
                     {% if event.location.description %}
                         <p>{{ event.location.description }}</p>

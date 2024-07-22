@@ -74,3 +74,9 @@ def search_result_lectors(request):
             )
 
     return render(request, 'lectors.html', {'form': form, 'lectors': lectors})
+
+def o_tancich(request):
+    return render(request,'o_tancich.html')
+
+def o_nas(request):
+    return render(request,'o_nas.html')
