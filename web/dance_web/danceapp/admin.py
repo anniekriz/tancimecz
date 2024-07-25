@@ -1,13 +1,15 @@
 from django.contrib import admin
 from django import forms
-from .models import Event, Lector, Location
+from .models import Event, Lector, Location, EventGroup, Workshop
 
 #admin.site.register(Event)
 #admin.site.register(Lector)
 admin.site.register(Location)
+admin.site.register(EventGroup)
+admin.site.register(Workshop)
+
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'start', 'end', 'display_lectors')
     change_form_template = 'admin/change_form.html'
 
     def get_form(self, request, obj=None, **kwargs):

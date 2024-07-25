@@ -36,20 +36,34 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
+class EventGroup(models.Model):
+    lector = models.ManyToManyField(Lector)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT)
+    time = models.TimeField(default='18:00')
+    description = models.TextField()
+    image = models.ImageField(upload_to='images/')
         
 class Event(models.Model):
+    type = models.IntegerField(choices=EventType.choices, default=1)
+    date = models.DateField(default='2024-01-01')
+    description = models.TextField()
+    parent = models.ForeignKey(EventGroup, on_delete=models.PROTECT, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.parent.location.town} {self.date} {self.parent.time}"
+    
+class Workshop(models.Model):
+    type = models.IntegerField(choices=EventType.choices, default=2)
     title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
     link = models.CharField(max_length=256, null=True, blank=True)
-    start = models.DateTimeField("DateTime", default=datetime.datetime.now)
-    end = models.DateTimeField("DateTime", default=datetime.datetime.now)
+    start = models.DateTimeField("Začátek", default=datetime.datetime.now)
+    end = models.DateTimeField("Konec", default=datetime.datetime.now)
     lector = models.ManyToManyField(Lector)
     contact = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='images/')
     price = models.CharField(max_length=50, null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.PROTECT)
-    type = models.IntegerField(choices=EventType.choices, default=None)
 
     def __str__(self):
         return self.title
