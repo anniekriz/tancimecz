@@ -2,12 +2,6 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 
-
-class EventType(models.IntegerChoices):
-        EVENT = 1, 'Večerní akce'
-        WORKSHOP = 2, 'Workshop'
-        SPECIAL = 3, 'Speciální akce' 
-
 class Lector(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     firstName = models.CharField(max_length=50)
@@ -34,24 +28,23 @@ class Location(models.Model):
     lector = models.ForeignKey(Lector, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.town
+        return f"{self.town}, {self.address}"
 
 class EventGroup(models.Model):
-    lector = models.ManyToManyField(Lector)
-    location = models.ForeignKey(Location, on_delete=models.PROTECT)
-    time = models.TimeField(default='18:00')
-    description = models.TextField()
-    image = models.ImageField(upload_to='images/')
+    lector = models.ManyToManyField(Lector, verbose_name="Lektor")
+    location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
+    time = models.TimeField(verbose_name="Čas", default='18:00')
+    description = models.TextField(verbose_name="Popis")
+    image = models.ImageField(verbose_name="Obrázek", upload_to='images/')
 
     def __str__(self):
         time = self.time.strftime('%H:%M')
         return f"{self.location.town} {time}"
 
-        
 class Event(models.Model):
-    parent = models.ForeignKey(EventGroup, on_delete=models.PROTECT)
-    date = models.DateField(default='2024-01-01')
-    description = models.TextField()
+    parent = models.ForeignKey(EventGroup, verbose_name="Event Group", on_delete=models.PROTECT)
+    date = models.DateField(verbose_name="Datum", default=datetime.date.today)
+    description = models.TextField(verbose_name="Dodatečný popis", null=True, blank=True)
 
     def __str__(self):
         time = self.parent.time.strftime('%H:%M')
@@ -59,22 +52,21 @@ class Event(models.Model):
         if self.parent:
             return f"{self.parent.location.town} {date} {time}"
         return f"{date}"
-    
+
 class Workshop(models.Model):
-    title = models.CharField(max_length=100)
-    link = models.CharField(max_length=256, null=True, blank=True)
-    start = models.DateTimeField("Začátek", default=datetime.datetime.now)
-    end = models.DateTimeField("Konec", default=datetime.datetime.now)
-    lector = models.ManyToManyField(Lector)
-    contact = models.CharField(max_length=100)
-    description = models.TextField()
-    image = models.ImageField(upload_to='images/')
-    price = models.CharField(max_length=50, null=True, blank=True)
-    location = models.ForeignKey(Location, on_delete=models.PROTECT)
+    title = models.CharField(verbose_name="Název", max_length=101)
+    link = models.CharField(verbose_name="Odkaz (nepovinné)", max_length=256, null=True, blank=True)
+    location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
+    start = models.DateField(verbose_name="Začátek", default=datetime.date.today)
+    end = models.DateField(verbose_name="Konec", default=datetime.date.today)
+    lector = models.ManyToManyField(Lector, verbose_name="Lektor/Lektoři")
+    contact = models.CharField(verbose_name="Kontakt", max_length=100)
+    description = models.TextField(verbose_name="Popis")
+    image = models.ImageField(verbose_name="Obrázek", upload_to='images/')
+    price = models.CharField(verbose_name="Cena (nepovinné)", max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.title
-    
 
 class EventLector(models.Model):
     eventId = models.ForeignKey(Event, on_delete=models.CASCADE)

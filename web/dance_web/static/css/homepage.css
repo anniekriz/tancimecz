@@ -79,8 +79,8 @@ a {
     border-bottom: none;
 }
 
-/* General styles for the events container */
-.events {
+/* General styles for the events and workshops container */
+.events, .workshops {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -88,8 +88,8 @@ a {
     justify-items: center;
 }
 
-/* Styles for each event card */
-.event {
+/* Styles for each event and workshop card */
+.event, .workshop {
     background-color: #e0f7fa;
     border: 1px solid #00796b;
     border-radius: 10px;
@@ -104,8 +104,8 @@ a {
     text-align: center;
 }
 
-/* Specific styles for event-title within event class */
-.event-title {
+/* Specific styles for event-title and workshop-title within event and workshop class */
+.event-title, .workshop-title {
     font-size: 1.5em;
     font-weight: bold;
     margin-top: 0px;
@@ -117,15 +117,15 @@ a {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.event img {
+.event img, .workshop img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
     max-height: 200px;
 }
 
-/* Styles for event details */
-.event-details {
+/* Styles for event details and workshop details */
+.event-details, .workshop-details {
     background-color: #ffffff;
     padding: 15px;
     border-radius: 5px;
@@ -133,38 +133,38 @@ a {
     text-align: left;
 }
 
-/* Specific styles for details within event */
-.event-details p {
+/* Specific styles for details within event and workshop */
+.event-details p, .workshop-details p {
     margin: 10px 0;
 }
 
-.event-link a {
+.event-link a, .workshop-link a {
     word-wrap: break-word; 
     color: #00796b; 
     text-decoration: underline;
 }
 
-.event-link a:hover {
+.event-link a:hover, .workshop-link a:hover {
     color: rgb(255, 77, 136);
     text-decoration: underline;
 }
 
-.event-lector a {
+.event-lector a, .workshop-lector a {
     text-decoration: none;
     color: #00796b;
 }
 
-.event-lector a:hover {
+.event-lector a:hover, .workshop-lector a:hover {
     color: rgb(255, 77, 136);
     text-decoration: underline;
 }
 
-.event-date {
+.event-date, .workshop-date {
     font-size: 1.2em;
 }
 
 /* Hidden description */
-.description {
+.description, .workshop-description {
     overflow: hidden;
     height: 40px;
     transition: height 0.3s ease;
@@ -182,8 +182,8 @@ a {
     cursor: pointer;
 }
 
-/* Hover effect for event cards */
-.event:hover {
+/* Hover effect for event and workshop cards */
+.event:hover, .workshop:hover {
     transform: scale(1.02);
     transition: transform 0.3s ease;
 }
@@ -205,4 +205,3 @@ a {
     background-color: #00796b;
     color: #ffffff;
 }
-

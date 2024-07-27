@@ -1,40 +1,58 @@
 from django.shortcuts import render
-from danceapp.models import Event, Lector, EventType
+from danceapp.models import Event, Lector, Workshop
 from danceapp.forms import Search, Search_lectors
 from django.db.models import Q
 from django.utils import timezone
+from itertools import chain
 
 def homepage(request):
-    events = Event.objects.all().order_by('start')
+    events = Event.objects.all().order_by('date')
+    workshops = Workshop.objects.all().order_by('start')
     lectors = Lector.objects.all()
+    
     context = {
         'events': events,
-        'lectors': lectors
+        'lectors': lectors,
+        'workshops': workshops, 
     }
     return render(request, 'homepage.html', context)
 
 def event_list(request):
-    event_type = request.GET.get('type', 'ALL')
-    if event_type == 'ALL':
-        events = Event.objects.all().order_by('start')
-    elif event_type == 'EVENT':
-        events = Event.objects.filter(type=EventType.EVENT).order_by('start')
-    elif event_type == 'WORKSHOP':
-        events = Event.objects.filter(type=EventType.WORKSHOP).order_by('start')
+    if request.GET.get('type') == 'WORKSHOP':
+        workshops = Workshop.objects.all().order_by('start')
+        context = {
+            'workshops': workshops,
+            'events': []
+        }
+    elif request.GET.get('type') == 'EVENT':
+        events = Event.objects.all().order_by('date')
+        context = {
+            'workshops': [],
+            'events': events
+        }
     else:
-        events = Event.objects.all().order_by('start')
+        events = Event.objects.all().order_by('date')
+        workshops = Workshop.objects.all().order_by('start')
+        combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x.start)
+        context = {
+            'workshops': workshops,
+            'events': events,
+            'combined': combined
+        }
 
-    context = {
-        'events': events,
-        'EventType': EventType,
-        'selected_type': event_type,  
-    }
     return render(request, 'events.html', context)
 
 def past_events(request):
     now = timezone.now()
-    past_events = Event.objects.filter(end__lt=now).order_by('-end')
-    return render(request, 'past_events.html', {'events': past_events, 'selected_type': 'PAST'})
+    past_events_events = Event.objects.filter(date__lt=now.date()).order_by('-date')
+    past_workshops = Workshop.objects.filter(end__lt=now).order_by('-end')
+    
+    context = {
+        'past_events': past_events_events,
+        'past_workshops': past_workshops,
+        'selected_type': 'PAST'
+    }
+    return render(request, 'past_events.html', context)
 
 def lector_list(request):
     lectors = Lector.objects.all().order_by()
@@ -42,7 +60,7 @@ def lector_list(request):
 
 def lector_page(request, slug):
     lector = Lector.objects.get(slug=slug)
-    events = Event.objects.filter(lector=lector).order_by('start')
+    events = Event.objects.filter(lector=lector).order_by('date')
     context = {
         'events': events,
         'lector': lector
@@ -75,8 +93,8 @@ def search_result_lectors(request):
             query = form.cleaned_data.get('query')
             lectors = Lector.objects.filter(
                 Q(firstName__icontains=query) |
-                Q(firstName__icontains=query) |
-                Q(description__icontains=query) 
+                Q(lastName__icontains=query) |
+                Q(description__icontains=query)
             )
 
     return render(request, 'lectors.html', {'form': form, 'lectors': lectors})
