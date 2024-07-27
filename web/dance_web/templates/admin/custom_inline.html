@@ -1,0 +1,25 @@
+{% load i18n static %}
+<table class="tabular">
+  {% if inline_admin_formset.formset.non_form_errors %}
+  <tr>
+    <td colspan="3">{{ inline_admin_formset.formset.non_form_errors }}</td>
+  </tr>
+  {% endif %}
+  {{ inline_admin_formset.formset.management_form }}
+  {% for form in inline_admin_formset %}
+  <tr class="form-row {% cycle 'row1' 'row2' %}">
+    {% for field in form.visible_fields %}
+    <td class="{{ field.field.name }}">
+      {{ field.errors.as_ul }}
+      {{ field }}
+    </td>
+    {% endfor %}
+    <td class="delete">
+      {% if form.instance.pk %}
+      {{ form.DELETE }}
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a class="add-row" href="javascript:void(0);" onclick="addInlineFormset(this, '{{ inline_admin_formset.opts.verbose_name|escapejs }}', '{{ inline_admin_formset.formset.prefix }}');">{{ inline_admin_formset.opts.add_text }}</a>
