@@ -13,21 +13,17 @@ body {
 
 h1, h2 {
     text-align: center;
-    color: #00796b; /* Teal color for headings */
+    color: rgb(255, 77, 136);
 }
 
 h1 {
     font-size: 3em;
     font-weight: bold;
-    color: rgb(255, 77, 136);
-    background-color: #e0f7fa;
 }
 
 h2 {
     font-size: 1.8em;
     font-weight: bold;
-    color: rgb(255, 77, 136);
-    display: inline-block;
 }
 
 .lector-page {
@@ -83,8 +79,7 @@ h2 {
     padding: 0 5px;
 }
 
-/* Styles for each event card */
-.event {
+.event, .workshop {
     background-color: #e0f7fa;
     border: 1px solid #00796b;
     border-radius: 10px;
@@ -96,8 +91,7 @@ h2 {
     text-align: center;
 }
 
-/* Specific styles for h2 within event class */
-.event h2 {
+.event-title, .workshop-title {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
@@ -107,7 +101,6 @@ h2 {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Styles for event details */
 .event-details {
     background-color: #ffffff;
     padding: 10px;
@@ -116,7 +109,6 @@ h2 {
     text-align: left;
 }
 
-/* Specific styles for details within event */
 .event-details p {
     margin: 5px 0;
 }
@@ -138,14 +130,13 @@ h2 {
     transition: height 0.3s ease;
 }
 
-.event img {
+.event img, .workshop img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
     max-height: 200px;
 }
 
-/* Toggle button */
 .toggle-description {
     display: inline-block;
     margin-top: 5px;
@@ -157,8 +148,7 @@ h2 {
     cursor: pointer;
 }
 
-/* Hover effect for event cards */
-.event:hover {
+.event:hover, .workshop:hover {
     transform: scale(1.02);
     transition: transform 0.3s ease;
 }

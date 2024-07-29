@@ -18,17 +18,20 @@ def homepage(request):
     return render(request, 'homepage.html', context)
 
 def event_list(request):
-    if request.GET.get('type') == 'WORKSHOP':
+    selected_filter = request.GET.get('filter', 'ALL')
+    if selected_filter == 'WORKSHOP':
         workshops = Workshop.objects.all().order_by('start')
         context = {
             'workshops': workshops,
-            'events': []
+            'events': [],
+            'selected_filter': selected_filter
         }
-    elif request.GET.get('type') == 'EVENT':
+    elif selected_filter == 'EVENT':
         events = Event.objects.all().order_by('date')
         context = {
             'workshops': [],
-            'events': events
+            'events': events,
+            'selected_filter': selected_filter
         }
     else:
         events = Event.objects.all().order_by('date')
@@ -37,7 +40,8 @@ def event_list(request):
         context = {
             'workshops': workshops,
             'events': events,
-            'combined': combined
+            'combined': combined,
+            'selected_filter': selected_filter
         }
 
     return render(request, 'events.html', context)
@@ -60,9 +64,13 @@ def lector_list(request):
 
 def lector_page(request, slug):
     lector = Lector.objects.get(slug=slug)
-    events = Event.objects.filter(lector=lector).order_by('date')
+    events = Event.objects.all().order_by('date')
+    workshops = Workshop.objects.all().order_by('start')
+    combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x.start)
     context = {
+        'workshops': workshops,
         'events': events,
+        'combined': combined,
         'lector': lector
     }
     return render(request, 'lector_page.html', context)

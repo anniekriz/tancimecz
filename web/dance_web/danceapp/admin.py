@@ -10,7 +10,7 @@ class EventInline(admin.TabularInline):
 
 class EventGroupAdmin(admin.ModelAdmin):
     inlines = [EventInline]
-    list_display = ('location', 'time', 'description')
+    list_display = ('location', 'startTime', 'description')
     search_fields = ('location__name', 'description')
 
     def get_form(self, request, obj=None, **kwargs):

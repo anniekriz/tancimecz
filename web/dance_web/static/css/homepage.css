@@ -160,7 +160,7 @@ a {
 }
 
 .event-date, .workshop-date {
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
 /* Hidden description */
@@ -170,7 +170,6 @@ a {
     transition: height 0.3s ease;
 }
 
-/* Toggle button */
 .toggle-description {
     display: inline-block;
     margin-top: 10px;

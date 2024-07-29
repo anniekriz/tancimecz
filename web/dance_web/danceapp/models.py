@@ -33,13 +33,17 @@ class Location(models.Model):
 class EventGroup(models.Model):
     lector = models.ManyToManyField(Lector, verbose_name="Lektor")
     location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
-    time = models.TimeField(verbose_name="Čas", default='18:00')
+    startTime = models.TimeField(verbose_name="Začátek", default='18:00')
+    endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='19:00', null=True, blank=True)
     description = models.TextField(verbose_name="Popis")
     image = models.ImageField(verbose_name="Obrázek", upload_to='images/')
 
     def __str__(self):
-        time = self.time.strftime('%H:%M')
-        return f"{self.location.town} {time}"
+        startTime = self.startTime.strftime('%H:%M')
+        endTime = self.endTime.strftime('%H:%M')
+        if self.endTime:
+            return f"{self.location.town} {startTime}-{endTime}"
+        return f"{self.location.town} {startTime}"
 
 class Event(models.Model):
     parent = models.ForeignKey(EventGroup, verbose_name="Event Group", on_delete=models.PROTECT)
@@ -47,11 +51,12 @@ class Event(models.Model):
     description = models.TextField(verbose_name="Dodatečný popis", null=True, blank=True)
 
     def __str__(self):
-        time = self.parent.time.strftime('%H:%M')
+        startTime = self.parent.startTime.strftime('%H:%M')
+        endTime = self.endTime.strftime('%H:%M')
         date = self.date.strftime('%d.%m. %Y')
-        if self.parent:
-            return f"{self.parent.location.town} {date} {time}"
-        return f"{date}"
+        if self.parent.endTime:
+            return f"{self.parent.location.town} {date} {startTime}-{endTime}"
+        return f"{self.parent.location.town} {date} {startTime}"
 
 class Workshop(models.Model):
     title = models.CharField(verbose_name="Název", max_length=101)

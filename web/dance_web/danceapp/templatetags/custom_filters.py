@@ -1,5 +1,6 @@
 from django import template
 from django.utils import timezone
+from danceapp.models import Event, Workshop
 
 register = template.Library()
 
@@ -40,13 +41,23 @@ def date_format(event):
     if start == end:
         date = format_date(start)
         day = f"{DAYS_SHORT[start.weekday()]}"
-        time = f"{format_time(start)}" if isinstance(event, timezone.datetime) else format_time(event.parent.time)
+        if isinstance(event, Event):
+            startTime = format_time(event.parent.startTime)
+            endTime = format_time(event.parent.endTime) if event.parent.endTime else None
+        else:
+            startTime = None
+            endTime = None
     else:
         if start.month == end.month:
             date = f"{start.day}–{end.strftime('%d.%m.')}".replace('.0', '.')
         else:
             date = f"{start.day}.{start.month}.–{end.day}.{end.month}."
         day = f"{DAYS_SHORT[start.weekday()]}-{DAYS_SHORT[end.weekday()]}"
-        time = None
+        startTime = None
+        endTime = None
 
-    return {'date': date, 'day': day, 'time': time}
+    return {'date': date, 'day': day, 'startTime': startTime, 'endTime': endTime}
+
+@register.filter
+def is_instance(obj, class_name):
+    return obj.__class__.__name__ == class_name
