@@ -3,32 +3,37 @@ import datetime
 from django.contrib.auth.models import User
 
 class Lector(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Uživatel")
+    firstName = models.CharField(max_length=50, verbose_name="Jméno")
+    lastName = models.CharField(max_length=50, null=True, blank=True, verbose_name="Příjmení")
     slug = models.SlugField(max_length=100, unique=True)
-    image = models.ImageField(upload_to='images/')
-    description = models.TextField()
-    phone = models.CharField(max_length=50, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
-    link = models.CharField(max_length=256, null=True, blank=True)
+    image = models.ImageField(upload_to='images/', verbose_name="Fotka")
+    description = models.TextField(verbose_name="Popis")
+    phone = models.CharField(max_length=50, null=True, blank=True, verbose_name="Telefon")
+    email = models.EmailField(null=True, blank=True, verbose_name="E-mail")
+    link = models.CharField(max_length=256, null=True, blank=True, verbose_name="Odkaz na stránku")
 
     class Meta:
         ordering = ['firstName'] #řazení lektorů podle abecedy
+        verbose_name = "Lektor"
+        verbose_name_plural = "Lektoři"
 
     def __str__(self):
         return f"{self.firstName} {self.lastName or ''}".strip()
     
 class Location(models.Model):
-    coordinates = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    town = models.CharField(max_length=50)
-    address = models.CharField(max_length=100)
-    description = models.CharField(max_length=100, null=True, blank=True)
-    lector = models.ForeignKey(Lector, on_delete=models.PROTECT)
+    coordinates = models.CharField(max_length=50, verbose_name="Souřadnice")
+    town = models.CharField(max_length=50, verbose_name="Město/Obec")
+    address = models.CharField(max_length=100, verbose_name="Adresa (ulice a ČP)")
+    description = models.CharField(max_length=100, null=True, blank=True, verbose_name="Popis (jak se k nám dostat)")
+    lector = models.ForeignKey('Lector', on_delete=models.PROTECT, verbose_name="Lektor")
 
     def __str__(self):
         return f"{self.town}, {self.address}"
+    
+    class Meta:
+        verbose_name = "Místo konání"
+        verbose_name_plural = "Místa konání"
 
 class EventGroup(models.Model):
     lector = models.ManyToManyField(Lector, verbose_name="Lektor")
@@ -44,11 +49,15 @@ class EventGroup(models.Model):
         if self.endTime:
             return f"{self.location.town} {startTime}-{endTime}"
         return f"{self.location.town} {startTime}"
+    
+    class Meta:
+        verbose_name = "Taneční večer"
+        verbose_name_plural = "Taneční večery"
 
 class Event(models.Model):
     parent = models.ForeignKey(EventGroup, verbose_name="Event Group", on_delete=models.PROTECT)
     date = models.DateField(verbose_name="Datum", default=datetime.date.today)
-    description = models.TextField(verbose_name="Dodatečný popis", null=True, blank=True)
+    description = models.TextField(verbose_name="Dodatečný popis (nepovinné)", null=True, blank=True)
 
     def __str__(self):
         startTime = self.parent.startTime.strftime('%H:%M')
@@ -57,6 +66,14 @@ class Event(models.Model):
         if self.parent.endTime:
             return f"{self.parent.location.town} {date} {startTime}-{endTime}"
         return f"{self.parent.location.town} {date} {startTime}"
+    
+    class Meta:
+        verbose_name = "Taneční večer"
+        verbose_name_plural = "Taneční večery"
+    
+    @property
+    def endTime(self):
+        return self.parent.endTime
 
 class Workshop(models.Model):
     title = models.CharField(verbose_name="Název", max_length=101)
@@ -72,6 +89,10 @@ class Workshop(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = "Workshop"
+        verbose_name_plural = "Workshopy"
 
 class EventLector(models.Model):
     eventId = models.ForeignKey(Event, on_delete=models.CASCADE)

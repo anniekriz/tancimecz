@@ -19,6 +19,11 @@
       {{ form.DELETE }}
       {% endif %}
     </td>
+    {% if form.instance.endTime %}
+      <td>{{ form.instance.endTime }}</td>
+    {% else %}
+      <td>N/A</td>
+    {% endif %}
   </tr>
   {% endfor %}
 </table>

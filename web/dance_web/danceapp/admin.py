@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django import forms
+from .forms import EventGroupForm
+from .widgets import CustomTimeWidget
 from .models import Event, Lector, Location, EventGroup, Workshop
 
 admin.site.register(Location)
@@ -10,7 +12,8 @@ class EventInline(admin.TabularInline):
 
 class EventGroupAdmin(admin.ModelAdmin):
     inlines = [EventInline]
-    list_display = ('location', 'startTime', 'description')
+    form = EventGroupForm  
+    list_display = ('location', 'startTime', 'endTime', 'description')
     search_fields = ('location__name', 'description')
 
     def get_form(self, request, obj=None, **kwargs):
@@ -21,9 +24,13 @@ admin.site.register(EventGroup, EventGroupAdmin)
 
 class EventAdmin(admin.ModelAdmin):
     change_form_template = 'admin/change_form.html'
-    list_display = ('date', 'parent', 'description')
+    list_display = ('date', 'parent', 'description', 'get_end_time')  # Use method for endTime
     list_filter = ('date', 'parent')
     search_fields = ('description', 'parent__location__name')
+
+    def get_end_time(self, obj):
+        return obj.parent.endTime
+    get_end_time.short_description = 'End Time'
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -37,7 +44,7 @@ class EventAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        if not change: 
+        if not change:
             try:
                 lector = Lector.objects.get(user=request.user)
                 obj.lector.add(lector)
@@ -105,6 +112,3 @@ class LectorAdmin(admin.ModelAdmin):
             return qs.none()
 
 admin.site.register(Lector, LectorAdmin)
-
-
-
