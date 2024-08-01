@@ -8,7 +8,7 @@ class CustomTimeWidget(AdminTimeWidget):
             'admin/js/vendor/jquery/jquery.js',
             'admin/js/jquery.init.js',
             'admin/js/actions.js',
-            'static/js/custom_time_widget.js',  # Path to your custom JS file
+            'static/js/custom_time_widget.js',  
         )
 
     def __init__(self, attrs=None, format=None, choices=None):
