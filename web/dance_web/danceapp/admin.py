@@ -13,12 +13,18 @@ class EventInline(admin.TabularInline):
 class EventGroupAdmin(admin.ModelAdmin):
     inlines = [EventInline]
     form = EventGroupForm  
-    list_display = ('location', 'startTime', 'endTime', 'description')
+    list_display = ('location', 'startTime', 'endTime', 'short_description')
     search_fields = ('location__name', 'description')
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EventGroupAdmin, self).get_form(request, obj, **kwargs)
         return form
+    
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(lector__user=request.user)
 
 admin.site.register(EventGroup, EventGroupAdmin)
 

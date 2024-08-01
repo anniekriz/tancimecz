@@ -7,7 +7,7 @@ class Lector(models.Model):
     firstName = models.CharField(max_length=50, verbose_name="Jméno")
     lastName = models.CharField(max_length=50, null=True, blank=True, verbose_name="Příjmení")
     slug = models.SlugField(max_length=100, unique=True)
-    image = models.ImageField(upload_to='images/', verbose_name="Fotka")
+    image = models.ImageField(upload_to='images/', null=True, blank=True, verbose_name="Fotka")
     description = models.TextField(verbose_name="Popis")
     phone = models.CharField(max_length=50, null=True, blank=True, verbose_name="Telefon")
     email = models.EmailField(null=True, blank=True, verbose_name="E-mail")
@@ -39,13 +39,13 @@ class EventGroup(models.Model):
     lector = models.ManyToManyField(Lector, verbose_name="Lektor")
     location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
     startTime = models.TimeField(verbose_name="Začátek", default='18:00')
-    endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='19:00', null=True, blank=True)
+    endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='20:00', null=True, blank=True)
     description = models.TextField(verbose_name="Popis")
-    image = models.ImageField(verbose_name="Obrázek", upload_to='images/')
+    image = models.ImageField(verbose_name="Obrázek", upload_to='images/',  null=True, blank=True)
 
     def __str__(self):
         startTime = self.startTime.strftime('%H:%M')
-        endTime = self.endTime.strftime('%H:%M')
+        endTime = self.endTime.strftime('%H:%M') if self.endTime else 'N/A'
         if self.endTime:
             return f"{self.location.town} {startTime}-{endTime}"
         return f"{self.location.town} {startTime}"
@@ -54,6 +54,9 @@ class EventGroup(models.Model):
         verbose_name = "Taneční večer"
         verbose_name_plural = "Taneční večery"
 
+    def short_description(self):
+        return self.description[:75] + '...' if len(self.description) > 75 else self.description
+
 class Event(models.Model):
     parent = models.ForeignKey(EventGroup, verbose_name="Event Group", on_delete=models.PROTECT)
     date = models.DateField(verbose_name="Datum", default=datetime.date.today)
@@ -61,7 +64,7 @@ class Event(models.Model):
 
     def __str__(self):
         startTime = self.parent.startTime.strftime('%H:%M')
-        endTime = self.endTime.strftime('%H:%M')
+        endTime = self.parent.endTime.strftime('%H:%M') if self.parent.endTime else 'N/A'
         date = self.date.strftime('%d.%m. %Y')
         if self.parent.endTime:
             return f"{self.parent.location.town} {date} {startTime}-{endTime}"

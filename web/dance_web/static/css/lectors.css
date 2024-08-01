@@ -17,7 +17,7 @@ h2 {
 .lectors {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .lector {

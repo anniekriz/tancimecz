@@ -13,7 +13,7 @@ def filter_past_events(events):
     for event in events:
         if hasattr(event, 'end'):
             if isinstance(event.end, timezone.datetime):
-                if timezone.localtime(event.end) >= now:
+                if event.end >= now:
                     future_events.append(event)
             else:
                 if event.end >= now.date():
@@ -21,7 +21,32 @@ def filter_past_events(events):
         elif hasattr(event, 'date'):
             if event.date >= now.date():
                 future_events.append(event)
+        elif hasattr(event, 'start'):
+            if event.start >= now.date():
+                future_events.append(event)
     return future_events
+
+@register.filter
+def show_past_events(events):
+    if events is None:
+        return []
+    now = timezone.now()
+    past_events = []
+    for event in events:
+        if hasattr(event, 'end'):
+            if isinstance(event.end, timezone.datetime):
+                if event.end < now:
+                    past_events.append(event)
+            else:
+                if event.end < now.date():
+                    past_events.append(event)
+        elif hasattr(event, 'date'):
+            if event.date < now.date():
+                past_events.append(event)
+        elif hasattr(event, 'start'):
+            if event.start < now.date():
+                past_events.append(event)
+    return past_events
 
 @register.filter
 def date_format(event):

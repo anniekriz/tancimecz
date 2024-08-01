@@ -47,14 +47,14 @@ def event_list(request):
     return render(request, 'events.html', context)
 
 def past_events(request):
-    now = timezone.now()
-    past_events_events = Event.objects.filter(date__lt=now.date()).order_by('-date')
-    past_workshops = Workshop.objects.filter(end__lt=now).order_by('-end')
+    now = timezone.now().date()
+    past_events = Event.objects.filter(date__lt=now)
+    past_workshops = Workshop.objects.filter(end__lt=now)
+    
+    combined = list(past_events) + list(past_workshops)
     
     context = {
-        'past_events': past_events_events,
-        'past_workshops': past_workshops,
-        'selected_type': 'PAST'
+        'combined': combined,
     }
     return render(request, 'past_events.html', context)
 
@@ -64,8 +64,8 @@ def lector_list(request):
 
 def lector_page(request, slug):
     lector = Lector.objects.get(slug=slug)
-    events = Event.objects.all().order_by('date')
-    workshops = Workshop.objects.all().order_by('start')
+    events = Event.objects.filter(parent__lector=lector).order_by('date')
+    workshops = Workshop.objects.filter(lector=lector).order_by('start')
     combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x.start)
     context = {
         'workshops': workshops,

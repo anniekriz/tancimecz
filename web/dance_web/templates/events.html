@@ -34,16 +34,18 @@
 </div>
 <div class="events">
     {% if selected_filter == 'ALL' %}
-        {% for item in combined %}
+        {% for item in combined|filter_past_events %}
             <div class="{% if item|is_instance:'Event' %}event{% else %}workshop{% endif %}">
                 {% if item|is_instance:'Event' %}
                     <h2 class="event-title">{{ item.parent.location.town }}</h2>
                 {% else %}
                     <h2 class="workshop-title">{{ item.title }}</h2>
                 {% endif %}
+                {% if item.image %}
                 <div class="{% if item|is_instance:'Event' %}event-image{% else %}workshop-image{% endif %}">
                     <img src="{% if item|is_instance:'Event' %}{{ item.parent.image.url }}{% else %}{{ item.image.url }}{% endif %}">
                 </div>
+                {% endif %}
                 <div class="{% if item|is_instance:'Event' %}event-details{% else %}workshop-details{% endif %}">
                     {% if item.link %}
                         <div class="{% if item|is_instance:'Event' %}event-link{% else %}workshop-link{% endif %}">
@@ -111,9 +113,11 @@
             {% for event in events %}
                 <div class="event">
                     <h2 class="event-title">{{ event.parent.location.town }}</h2>
+                    {% if event.image %} 
                     <div class="event-image">
                         <img src="{{ event.parent.image.url }}">
                     </div>
+                    {% endif %}
                     <div class="event-details">
                         {% if event.link %}
                             <div class="event-link">
@@ -162,9 +166,11 @@
             {% for workshop in workshops %}
                 <div class="workshop">
                     <h2 class="workshop-title">{{ workshop.title }}</h2>
+                    {% if workshop.image %}
                     <div class="workshop-image">
                         <img src="{{ workshop.image.url }}" alt="{{ workshop.title }}">
                     </div>
+                    {% endif %}
                     <div class="workshop-details">
                         {% if workshop.link %}
                             <div class="workshop-link">
