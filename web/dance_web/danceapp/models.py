@@ -23,6 +23,7 @@ class Lector(models.Model):
     
 class Location(models.Model):
     coordinates = models.CharField(max_length=50, verbose_name="Souřadnice")
+    name = models.CharField(max_length=50, null=True, blank=True, verbose_name="Název místa (nepovinné)")
     town = models.CharField(max_length=50, verbose_name="Město/Obec")
     address = models.CharField(max_length=100, verbose_name="Adresa (ulice a ČP)")
     description = models.CharField(max_length=100, null=True, blank=True, verbose_name="Popis (jak se k nám dostat)")

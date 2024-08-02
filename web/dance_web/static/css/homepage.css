@@ -214,11 +214,6 @@ a {
     transition: transform 0.3s ease;
 }
 
-.no-events {
-    text-align: center; 
-    margin-top: 20px;
-}
-
 .button {
     padding: 10px 20px; 
     background-color: #ffffff; 

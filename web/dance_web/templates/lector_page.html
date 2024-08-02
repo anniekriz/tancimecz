@@ -59,7 +59,7 @@
                         {% endwith %}
                     </div>
                     <div class="{% if item|is_instance:'Event' %}event-location{% else %}workshop-location{% endif %}">
-                        <p><strong>Kde: </strong>{% if item|is_instance:'Event' %}{{ item.parent.location.town }}, {{ item.parent.location.address }}{% else %}{{ item.location.town }}, {{ item.location.address }}{% endif %}</p>
+                        <p><strong>Kde: </strong>{% if item|is_instance:'Event' %}{{ item.parent.location.name }} {{ item.parent.location.address }}, {{ item.parent.location.town }}{% else %}{{ item.location.name }} {{ item.location.address }}, {{ item.location.town }}{% endif %}</p>
                         <div class="{% if item|is_instance:'Event' %}event-location-description{% else %}workshop-location-description{% endif %}"> 
                             {% if item|is_instance:'Event' %}
                                 {% if item.parent.location.description %}

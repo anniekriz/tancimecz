@@ -43,7 +43,7 @@
                                 {% endwith %}
                             </div>
                             <div class="event-location">
-                                <p><strong>Kde: </strong>{{ workshop.location.town }}, {{ workshop.location.address }}</p>
+                                <p><strong>Kde: </strong>{{ workshop.location.name }} {{ workshop.location.address }}, {{ workshop.location.town }}</p>
                                 <div class="event-location-description"> 
                                     {% if workshop.location.description %}
                                         <p>{{ workshop.location.description }}</p>
@@ -107,7 +107,7 @@
                             {% endwith %}
                         </div>
                         <div class="event-location">
-                            <p><strong>Kde: </strong>{{ event.parent.location.town }}, {{ event.parent.location.address }}</p>
+                            <p><strong>Kde: </strong>{{ event.parent.location.name }} {{ event.parent.location.address }}, {{ event.parent.location.town }}</p>
                             <div class="event-location-description"> 
                                 {% if event.parent.location.description %}
                                     <p>{{ event.parent.location.description }}</p>
