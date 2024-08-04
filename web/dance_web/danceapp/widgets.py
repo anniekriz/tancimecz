@@ -11,9 +11,10 @@ class CustomTimeWidget(AdminTimeWidget):
             'static/js/custom_time_widget.js',  
         )
 
-    def __init__(self, attrs=None, format=None, choices=None):
+    def __init__(self, attrs=None, format=None):
         super().__init__(attrs, format)
-        self.attrs['class'] = 'vTimeField'
-
-    def render(self, name, value, attrs=None, renderer=None):
-        return super().render(name, value, attrs, renderer)
+        if attrs is None:
+            attrs = {}
+        attrs['class'] = 'vTimeField'
+        attrs['data-error-msg'] = 'Zadejte čas ve formátu 18, 18:00 nebo 18:00:00.'
+        self.attrs.update(attrs)

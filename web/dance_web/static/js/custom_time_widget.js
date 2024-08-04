@@ -52,5 +52,17 @@
                 });
             });
         }
+
+        // Custom error message handling for time fields
+        $('.vTimeField').on('input', function() {
+            var $input = $(this);
+            var errorElement = $input.next('.errorlist');
+            if (errorElement.length > 0) {
+                var errorMessage = errorElement.find('li');
+                if (errorMessage.length > 0 && errorMessage.text().includes('Enter a valid time')) {
+                    errorMessage.text('Zadejte čas ve formátu 18, 18:00 nebo 18:00:00');
+                }
+            }
+        });
     });
 })(django.jQuery);
