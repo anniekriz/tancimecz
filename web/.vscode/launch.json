@@ -5,17 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Django",
+            "name": "Python Debugger: Django",
             "type": "debugpy",
             "request": "launch",
             "args": [
                 "runserver"
             ],
             "django": true,
-            "justMyCode": true,
             "autoStartBrowser": false,
-            "program": "${workspaceFolder}\\manage.py"
+            "program": "${workspaceFolder}\\dance_web\\manage.py"
         }
     ]
 }
-

@@ -4,6 +4,14 @@ from danceapp.forms import Search, Search_lectors
 from django.db.models import Q
 from django.utils import timezone
 from itertools import chain
+import requests
+from datetime import datetime
+from django.http import JsonResponse
+
+import logging
+
+# Konfigurace loggeru
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def homepage(request):
     events = Event.objects.all().order_by('date')
@@ -20,7 +28,7 @@ def homepage(request):
 def event_list(request):
     selected_filter = request.GET.get('filter', 'ALL')
     if selected_filter == 'WORKSHOP':
-        workshops = Workshop.objects.all().order_by('start')
+        workshops = get_all_workshops()
         context = {
             'workshops': workshops,
             'events': [],
@@ -35,8 +43,8 @@ def event_list(request):
         }
     else:
         events = Event.objects.all().order_by('date')
-        workshops = Workshop.objects.all().order_by('start')
-        combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x.start)
+        workshops = get_all_workshops()
+        combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x['start'])
         context = {
             'workshops': workshops,
             'events': events,
@@ -45,6 +53,49 @@ def event_list(request):
         }
 
     return render(request, 'events.html', context)
+
+#sosání ací z Nesměně 
+
+def fetch_nesmen_events():
+    api_url1 = "https://www.centrum-nesmen.cz/LocationService/GetLocationList?format=json"
+    response1 = requests.get(api_url1)
+    api_url2 = "https://www.centrum-nesmen.cz/CourseService/GetCourseList?count=4&type=Dances&language=CZ&includeImages=true&format=json"
+    response2 = requests.get(api_url2)
+    locations = response1.json().get('list', [])
+    courses = response2.json().get('list', [])
+    workshops = []
+    workshop = {
+        'title': "Pokusnej workshop :)",
+        'start': datetime.strptime("2024-10-01", "%Y-%m-%d").date(),
+        'end': datetime.strptime("2024-10-03", "%Y-%m-%d").date(),
+        'image': ""
+    }
+    workshops.append(workshop)
+
+   #for course in courses:
+   #    workshop = {
+   #        'title': course['name'],
+   #        'start': datetime.strptime(course['startDate'], "%Y-%m-%d").date(),
+   #        'end': datetime.strptime(course['endDate'], "%Y-%m-%d").date(),
+   #        'image': course.get('image', '')
+   #    }
+   #    workshops.append(workshop)
+
+    return workshops
+
+def get_all_workshops():
+    db_workshops = list(Workshop.objects.all().values('title', 'start', 'end', 'image'))
+    external_workshops = fetch_nesmen_events()
+    
+    # Combine the lists
+    all_workshops = db_workshops + external_workshops
+    
+    # Sort the combined list by 'start'
+    all_workshops_sorted = sorted(all_workshops, key=lambda x: x['start'])
+    
+    return all_workshops_sorted
+
+
 
 def past_events(request):
     now = timezone.now().date()
