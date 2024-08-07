@@ -36,7 +36,8 @@ def event_list(request):
     else:
         events = Event.objects.all().order_by('date')
         workshops = Workshop.objects.all().order_by('start')
-        combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x.start)
+        combined = list(set(chain(events, workshops)))  # Ensure combined list is unique
+        combined.sort(key=lambda x: x.date if hasattr(x, 'date') else x.start)
         context = {
             'workshops': workshops,
             'events': events,
@@ -78,19 +79,26 @@ def lector_page(request, slug):
 def search_result(request):
     form = Search(request.GET)
     events = Event.objects.all()
+    workshops = Workshop.objects.all()
 
     if 'query' in request.GET:
         if form.is_valid():
             query = form.cleaned_data.get('query')
             events = Event.objects.filter(
+                Q(parent__description__icontains=query) |
+                Q(parent__lector__firstName__icontains=query) |
+                Q(parent__lector__lastName__icontains=query) |
+                Q(parent__location__town__icontains=query)
+            ).distinct()
+            workshops = Workshop.objects.filter(
                 Q(title__icontains=query) |
                 Q(lector__firstName__icontains=query) |
                 Q(lector__lastName__icontains=query) |
                 Q(description__icontains=query) |
                 Q(location__town__icontains=query)
-            )
+            ).distinct()
 
-    return render(request, 'events.html', {'form': form, 'events': events})
+    return render(request, 'events.html', {'form': form, 'events': events, 'workshops': workshops})
 
 def search_result_lectors(request):
     form = Search_lectors(request.GET)
