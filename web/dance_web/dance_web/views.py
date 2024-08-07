@@ -44,7 +44,10 @@ def event_list(request):
     else:
         events = Event.objects.all().order_by('date')
         workshops = get_all_workshops()
-        combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x['start'])
+        combined = sorted(
+            chain(events, workshops),
+            key=lambda x: x.date if hasattr(x, 'date') else x['start']
+        )
         context = {
             'workshops': workshops,
             'events': events,
@@ -72,30 +75,29 @@ def fetch_nesmen_events():
     }
     workshops.append(workshop)
 
-   #for course in courses:
-   #    workshop = {
-   #        'title': course['name'],
-   #        'start': datetime.strptime(course['startDate'], "%Y-%m-%d").date(),
-   #        'end': datetime.strptime(course['endDate'], "%Y-%m-%d").date(),
-   #        'image': course.get('image', '')
-   #    }
-   #    workshops.append(workshop)
+    # Uncomment and modify as needed
+    # for course in courses:
+    #     workshop = {
+    #         'title': course['name'],
+    #         'start': datetime.strptime(course['startDate'], "%Y-%m-%d").date(),
+    #         'end': datetime.strptime(course['endDate'], "%Y-%m-%d").date(),
+    #         'image': course.get('image', '')
+    #     }
+    #     workshops.append(workshop)
 
     return workshops
 
 def get_all_workshops():
-    db_workshops = list(Workshop.objects.all().values('title', 'start', 'end', 'image'))
+    db_workshops = list(Workshop.objects.all())
     external_workshops = fetch_nesmen_events()
     
-    # Combine the lists
-    all_workshops = db_workshops + external_workshops
-    
     # Sort the combined list by 'start'
-    all_workshops_sorted = sorted(all_workshops, key=lambda x: x['start'])
+    all_workshops_sorted = sorted(
+        db_workshops + external_workshops,
+        key=lambda x: x.start if isinstance(x, Workshop) else x['start']
+    )
     
     return all_workshops_sorted
-
-
 
 def past_events(request):
     now = timezone.now().date()

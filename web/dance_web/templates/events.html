@@ -93,11 +93,6 @@
                             <p><strong>Cena: </strong>{{ item.price }}</p>
                         </div>
                     {% endif %}
-                    {% if not item|is_instance:'Event' %}
-                    <div class="workshop-contact">
-                        <p><strong>Kontakt: </strong><small>{{ item.contact }}</small></p>
-                    </div>
-                    {% endif %}
                     <div class="{% if item|is_instance:'Event' %}event-description{% else %}workshop-description{% endif %}">
                         <p class="description"><strong>Na co se těšit: </strong>{% if item|is_instance:'Event' %}{{ item.parent.description }}<br>{{ item.description }}{% else %}{{ item.description }}{% endif %}</p>
                         <button class="toggle-description">↓</button>
@@ -204,9 +199,6 @@
                                 <p><strong>Cena: </strong>{{ workshop.price }}</p>
                             </div>
                         {% endif %}
-                        <div class="workshop-contact">
-                            <p><strong>Kontakt: </strong><small>{{ workshop.contact }}</small></p>
-                        </div>
                         <div class="workshop-description">
                             <p class="description"><strong>Na co se těšit: </strong>{{ workshop.description }}</p>
                             <button class="toggle-description">↓</button>

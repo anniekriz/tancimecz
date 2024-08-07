@@ -1,6 +1,7 @@
 from django import template
 from django.utils import timezone
 from danceapp.models import Event, Workshop
+import datetime
 
 register = template.Library()
 
@@ -50,12 +51,15 @@ def show_past_events(events):
 
 @register.filter
 def date_format(event):
-    if hasattr(event, 'start') and hasattr(event, 'end'):
-        start = timezone.localtime(event.start) if isinstance(event.start, timezone.datetime) else event.start
-        end = timezone.localtime(event.end) if isinstance(event.end, timezone.datetime) else event.end
+    if isinstance(event, dict):
+        start = event.get('start')
+        end = event.get('end', start)
     else:
-        start = event.date
-        end = event.date
+        start = event.start if hasattr(event, 'start') else event.date
+        end = event.end if hasattr(event, 'end') else start
+
+    start = timezone.localtime(start) if isinstance(start, datetime.datetime) else start
+    end = timezone.localtime(end) if isinstance(end, datetime.datetime) else end
 
     def format_time(t):
         return t.strftime('%H:%M').lstrip('0').replace(' 0', ' ')
@@ -66,7 +70,7 @@ def date_format(event):
     if start == end:
         date = format_date(start)
         day = f"{DAYS_SHORT[start.weekday()]}"
-        if isinstance(event, Event):
+        if not isinstance(event, dict) and isinstance(event, Event):
             startTime = format_time(event.parent.startTime)
             endTime = format_time(event.parent.endTime) if event.parent.endTime else None
         else:
@@ -74,7 +78,7 @@ def date_format(event):
             endTime = None
     else:
         if start.month == end.month:
-            date = f"{start.day}–{end.strftime('%d.%m.')}".replace('.0', '.')
+            date = f"{start.day}–{end.day}.{start.month}.".replace('.0', '.')
         else:
             date = f"{start.day}.{start.month}.–{end.day}.{end.month}."
         day = f"{DAYS_SHORT[start.weekday()]}-{DAYS_SHORT[end.weekday()]}"
