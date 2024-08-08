@@ -150,11 +150,6 @@
         <p>Donec at risus ac leo luctus tincidunt id eu mauris. Aenean bibendum ex sit amet nisl hendrerit sollicitudin. Vivamus malesuada enim at est sagittis pellentesque. Phasellus id mollis nisl. Pellentesque aliquet magna ut sapien scelerisque tincidunt. Sed dui sapien, condimentum quis lacinia mattis, bibendum eu ante. Sed eget est sed augue varius euismod at et lectus. Nam sed lectus et felis aliquam interdum. Etiam risus lacus, tristique sit amet nisi id, pharetra consequat dui. Pellentesque eleifend convallis sapien, a sagittis ipsum suscipit vel. Etiam tincidunt facilisis neque, nec vehicula enim consectetur vel. Vivamus pulvinar suscipit eros, eget cursus nisi aliquet non.</p>
         <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris et faucibus metus. Nunc malesuada diam et felis dictum, in iaculis dolor mollis. Maecenas velit nibh, ultrices et pulvinar sit amet, tincidunt nec massa. Sed quis consectetur odio. Aenean dictum laoreet eros eu commodo. Duis pellentesque dictum tempus. Quisque nibh ex, posuere ac facilisis ut, viverra quis ante. Duis sodales tempus urna, eget dignissim massa egestas nec. Suspendisse sollicitudin sem in molestie maximus. Proin ac nibh ligula.</p>
     </div>
-    <div class="all">
-        <form method="get" action="{% url 'o_tancich' %}">
-            <button type="submit" class="button">Vše o tancich</button>
-        </form>
-    </div>
     <h2>Naši lektoři:</h2>
     <div class="lectors">
         {% for lector in lectors %}
@@ -175,13 +170,19 @@
     </div>
     <div class="o_nas">
         <h2>O nás</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dolor mauris, bibendum nec ante quis, lobortis placerat sem. Vivamus lectus neque, semper eu ipsum sed, gravida aliquet odio. Nam placerat, nulla sed maximus ullamcorper, leo felis aliquet lacus, sollicitudin eleifend justo orci ut velit. Curabitur semper sagittis ligula a ultrices. Morbi metus purus, ornare eu ligula at, tincidunt luctus nulla. Curabitur dignissim id enim id consectetur. Donec finibus ut elit non ornare. Sed id odio ut velit feugiat semper eget non ante. Cras ultrices efficitur eros, in maximus sapien posuere sit amet. Donec ipsum metus, sodales tristique sollicitudin nec, tincidunt at risus. Vivamus condimentum, magna et blandit vestibulum, quam nulla sagittis mi, sed interdum urna diam vel sem. Aliquam scelerisque eget est a hendrerit.</p>
-        <p>Nullam mollis magna sed risus elementum, quis feugiat sapien auctor. Cras at elementum turpis. Phasellus a eros velit. Ut mollis pellentesque ex id euismod. Donec pretium dolor sit amet mi pharetra, eget cursus turpis ultrices. Sed molestie magna erat, vel fermentum justo scelerisque id. Curabitur ultrices eros a ipsum sodales vulputate. Maecenas quis metus aliquam, venenatis elit eget, tempor odio. Praesent egestas ipsum quis nunc gravida, at efficitur nisi pellentesque. Sed ac auctor ligula, in vehicula.</p>
-    </div>
-    <div class="all">
-        <form method="get" action="{% url 'o_nas' %}">
-            <button type="submit" class="button">Více</button>
-        </form>
+        <p>
+            Jsme skupina lidí, které spojuje společný tanec a zpívání v kruhu.
+            Základním zdrojem a inspirací nám jsou Tance univerzálního míru, tance dávných tradic,
+            mantrické tance. Mezinárodně se jim říká Dances of Universal Peace (DUP). Mají své kořeny
+            v duchovních tradicích všech kultur. Taneční kruhy DUP jsou po celém světě.
+            Tance v Čechách mají dnes již více než 20-ti letou tradici díky PhDr. Ludmile Chrášťanské,
+            která dala vznik prvním tanečním kruhům, zvala učitele tanců z různých zemí a podpořila
+            další nadšené tanečníky, kteří se rozhodli šířit tyto tance dále.
+            V roce 2004 byl z jejího podnětu zorganizován první mezinárodní kemp v Čechách, kam
+            přijeli taneční učitelé a tanečníci z celé Evropy.
+            V roce 2008 bylo založeno o.s. Tančíme.cz pro organizování tanečních kempů, mítinků a
+            tanečních akcí.
+        </p>
     </div>
     <div class="oraganizace">
         <h2>Organizace:</h2>
