@@ -1,17 +1,20 @@
 header {
-    background-color: #00796b;
+    background-color: #022F42;
     padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
+}
+
+.logo {
+    align-items: left;
 }
 
 .menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    align-items: right;
+    font-family: 'Ysabeau SC', sans-serif;
+    font-size: 24;
 }
 
 .menu li {
@@ -22,9 +25,9 @@ header {
 .menu a {
     text-decoration: none;
     color: white;
-    font-weight: bold;
 }
 
 .menu a:hover {
-    color: rgb(255, 77, 136);
+    text-decoration: underline;
+    color: rgba(103, 240, 252, 1);
 }
