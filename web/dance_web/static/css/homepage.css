@@ -135,6 +135,10 @@ a {
     border-radius: 50%;
 }
 
+.workshop-lector-name{
+    display: inline-block;
+}
+
 .button {
 }
 
