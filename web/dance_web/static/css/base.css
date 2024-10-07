@@ -1,20 +1,28 @@
-header {
+@import url('https://fonts.cdnfonts.com/css/ysabeau-sc');
+
+.page {
+    width: 100%;
+    text-align: center;
+}
+
+.header {
+    width: 100%;
     background-color: #022F42;
     padding: 10px 0;
-
 }
 
 .logo {
-    align-items: left;
+    left: 0;
 }
 
 .menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    align-items: right;
+    right: 0;
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 24;
+    color: #022F42;
 }
 
 .menu li {

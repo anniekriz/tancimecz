@@ -28,20 +28,20 @@
                     {% endwith %}
                 </div>
                 <div class="workshop-content">
-                    <div class="workshop-address">{{ workshop.location.address }}, {{ workshop.location.town }}</div>
+                    <div class="workshop-address"><div class="workshop-address-town">{{ workshop.location.town }}</div>{{ workshop.location.address }} </div>
                     <div class="workshop-time">8:00-18:00</div>
                     <div class="workshop-description">
                         {{ workshop.description }}
                     </div>
                     <div class="workshop-lectors">
                         <div class="workshop-lector">
-                            <img class="workshop-lector-image" alt="" />
+                            {% for lector in workshop.lector.all %}
+                            <img class="workshop-lector-image" src="{{ lector.image.url }}" alt="lector" />
                             <div class="workshop-lector-name">
-                                {% for lector in workshop.lector.all %}
                                     <a href="{% url 'lector_page' slug=lector.slug %}">
                                         {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
                                     </a>
-                                {% endfor %}
+                            {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -50,13 +50,44 @@
             {% endfor %}
         </div>
     {% else %}
-    <div class="no-events">
+    <div class="noWorkshops">
         Momentálně nejsou naplánované žádné workshopy.
     </div>
     {% endif %} 
     </div>
     <div id="events" class="section">
         <div class="section-title">Taneční večery</div>
+        {% if events|filter_past_events %}
+        <div class="events-cards">
+            {% for event in events|filter_past_events|slice:":8" %}
+            <div class="event-card">
+                <div class="event-town">{{ event.parent.location.town }}</div>
+                <div class="event-date">
+                    {% with event|date_format as date %}
+                        <p>{{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}</p>
+                    {% endwith %}
+                </div>
+                <div class="event-content">
+                    <div class="event-adress">{{ event.parent.location.address }}</div>
+                    <div class="event-lector">
+                        {% for lector in workshop.lector.all %}
+                        <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                        <div class="event-lector-name">
+                                <a href="{% url 'lector_page' slug=lector.slug %}">
+                                    {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
+                                </a>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="no-events">
+                <p>Momentálně nejsou žádné večerní tance.</p>
+            </div>
+        {% endif %}
     </div>
     <div id="aboutDances" class="section">
         <div class="section-title">O tancích</div>
