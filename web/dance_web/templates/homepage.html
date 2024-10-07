@@ -41,19 +41,18 @@
                                 <div class="workshop-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
                             </a>
                             {% endfor %}
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
-        </div>
-    {% else %}
+        </div>  
+        {% else %}
+    </div>
     <div class="noWorkshops">
         Momentálně nejsou naplánované žádné workshopy.
     </div>
     {% endif %} 
-    </div>
     <div id="events" class="section">
         <div class="section-title">Taneční večery</div>
         {% if events|filter_past_events %}
