@@ -139,10 +139,46 @@ a {
     display: inline-block;
 }
 
-.button {
+.workshop-card:hover {
 }
 
-.workshop-card:hover {
+.event-cards {}
+
+.event-card {}
+
+.event-title {}
+
+.event-date {}
+
+.event-content {}
+
+.event-image {}
+
+.event-address {}
+
+.event-address-town {}
+
+.event-time {}
+
+.event-description {}
+
+.event-lectors {}
+
+.event-lector {}
+
+.event-lector-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.event-lector-name {}
+
+.event-card:hover {
+
+}
+
+.button {
 }
 
 .button:hover {

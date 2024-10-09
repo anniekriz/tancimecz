@@ -48,44 +48,44 @@
             {% endfor %}
         </div>  
         {% else %}
+        <div class="noWorkshops">
+            Momentálně nejsou naplánované žádné workshopy.
+        </div>
+        {% endif %} 
     </div>
-    <div class="noWorkshops">
-        Momentálně nejsou naplánované žádné workshopy.
-    </div>
-    {% endif %} 
     <div id="events" class="section">
         <div class="section-title">Taneční večery</div>
         {% if events|filter_past_events %}
-        <div class="events-cards">
+        <div class="event-cards">
             {% for event in events|filter_past_events|slice:":8" %}
             <div class="event-card">
                 <div class="event-town">{{ event.parent.location.town }}</div>
                 <div class="event-date">
                     {% with event|date_format as date %}
-                        <p>{{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}</p>
+                        {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}
                     {% endwith %}
                 </div>
                 <div class="event-content">
-                    <div class="event-adress">{{ event.parent.location.address }}</div>
-                    <div class="event-lector">
-                        {% for lector in workshop.lector.all %}
-                        <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                        <div class="event-lector-name">
-                                <a href="{% url 'lector_page' slug=lector.slug %}">
-                                    {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
-                                </a>
-                        {% endfor %}
+                    <div class="event-address">{{ event.parent.location.address }} </div>
+                    <div class="event-lectors">
+                        <div class="event-lector">
+                            {% for lector in event.parent.lector.all %}
+                            <a href="{% url 'lector_page' slug=lector.slug %}">
+                                <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                                <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+                            </a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
-        </div>
+        </div>  
         {% else %}
-            <div class="no-events">
-                <p>Momentálně nejsou žádné večerní tance.</p>
-            </div>
-        {% endif %}
+        <div class="noEvents">
+            Momentálně nejsou naplánované žádné taneční večery.
+        </div>
+        {% endif %} 
     </div>
     <div id="aboutDances" class="section">
         <div class="section-title">O tancích</div>
