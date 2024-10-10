@@ -28,11 +28,11 @@ a {
 
 .header-text {
     color: #ffffff;
-    font-size: 2em;
+    font-size: 2.3em;
     font-family: 'Raleway', sans-serif;
     position: relative;
-    top: 30px;
-    right: 50px;
+    top: 40px;
+    right: 40px;
     text-align: right;
 }
 
@@ -240,9 +240,12 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     justify-content: center;
     gap: 20px;
-    padding: 15px;
-    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
+
 
 .lector {
     text-align: center;
@@ -258,7 +261,20 @@ a {
     border: 1px solid #3C3F0F;
 }
 
+.aboutUs-content {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
 
+.aboutUs-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    text-align: left;
+    line-height: 1.6;
+}
 
 .button {
 }

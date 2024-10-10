@@ -12,7 +12,9 @@
 }
 
 .logo {
-    left: 0;
+    position: relative;
+    top: 20px;
+    left: -550px;
 }
 
 .menu {
@@ -21,8 +23,11 @@
     padding: 0;
     right: 0;
     font-family: 'Ysabeau SC', sans-serif;
-    font-size: 24;
+    font-size: 1.5em;
     color: #022F42;
+    position: relative;
+    right: -460px;
+    top: -25px
 }
 
 .menu li {
