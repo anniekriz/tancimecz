@@ -65,6 +65,12 @@ a {
     margin-left: 10px;
     margin-right: 10px;
     position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.workshop-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
 }
 
 .workshop-title {
@@ -137,9 +143,6 @@ a {
 
 .workshop-lector-name{
     display: inline-block;
-}
-
-.workshop-card:hover {
 }
 
 .event-cards {}
