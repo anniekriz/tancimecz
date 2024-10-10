@@ -79,7 +79,7 @@
             {% for event in events|filter_past_events|slice:":2" %}
                 <div class="event">
                     <div class="event-title">
-                        {{ event.parent.location.town }}
+                        {{ event}}
                     </div>
                     {% if event.image %} 
                     <div class="event-image">
