@@ -106,6 +106,7 @@ a {
     position: relative;
     margin-top: -84px;
     color: #000006;
+    font-family: 'Roboto', sans-serif;
 }
 
 .workshop-image {
@@ -218,6 +219,45 @@ a {
 }
 
 .event-lector-name {}
+
+.aboutDances-content {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.aboutDances-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.lectors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.lector {
+    text-align: center;
+}
+
+.lector-image {
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border: 1px solid #3C3F0F;
+}
+
 
 
 .button {

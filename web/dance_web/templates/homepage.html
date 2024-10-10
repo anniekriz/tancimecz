@@ -91,9 +91,24 @@
     </div>
     <div id="aboutDances" class="section">
         <div class="section-title">O tancích</div>
+        <div class="aboutDances-content">
+            <div class="aboutDances-text">Tance univerzálního míru vycházejí z různých spirituálních a kulturních tradic. Jedná se o kombinaci jednoduchých pohybů lidových tanců se zpěvem posvátných slov ze světových náboženství i tradic původních národů. Tančíme a Zpíváme je pro radost, pro některé z nás jsou duchovní cestou. <br><br>Nálada těchto Tanců je nekonečně různorodá, můžeme oslavovat hravou energii Krišny, prožívat soucítění buddhistické Qwan Yin, milost panny Marie nebo zakoušet emoce jakéhokoli dalšího duchovního archetypu. Zakoušením těchto mnoha tradic získáváme hlubší porozumění a úctu ke kulturám a dědictví svých předků a pěstujeme ve svých srdcích soucítění a mír.</div>
+        </div>
     </div>
     <div id="lectors" class="section">
         <div class="section-title">Kdo s vámi tančí</div>
+        <div class="lectors">
+            {% for lector in lectors %}
+            <div class="lector">
+                <a href="{% url 'lector_page' slug=lector.slug %}">
+                    <img class="lector-image" src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
+                </a>
+            </div>
+            {% endfor %}
+            {% if not lectors %}
+                <p>Není dostupný žádný lektor.</p>
+            {% endif %}
+        </div>
     </div>
     <div id="aboutUs" class="section">
         <div class="section-title">O nás</div>
