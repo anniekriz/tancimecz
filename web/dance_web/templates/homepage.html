@@ -68,7 +68,7 @@
                     {% endwith %}
                 </div>
                 <div class="event-content">
-                    <div class="event-address">{{ event.parent.location.address }} </div>
+                    <div class="event-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
                     <div class="event-lectors">
                         <div class="event-lector">
                             {% for lector in event.parent.lector.all %}
