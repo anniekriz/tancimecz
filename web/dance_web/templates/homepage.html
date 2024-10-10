@@ -17,6 +17,7 @@
         {% if workshops|filter_past_events %}
         <div class="workshop-cards">
             {% for workshop in workshops|filter_past_events|slice:":3" %}
+            <a href="{{ workshop.link }}">
             <div class="workshop-card">
                 <div class="workshop-title">{{ workshop.title }}</div>
                 {% if workshop.image %}
@@ -45,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            </a>
             {% endfor %}
         </div>  
         {% else %}
