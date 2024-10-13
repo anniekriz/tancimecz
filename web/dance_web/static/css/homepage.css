@@ -24,6 +24,7 @@ a {
     height: 987px;
     background-image: url("/static/images/kruh.jpg");
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .header-text {
@@ -142,16 +143,18 @@ a {
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    vertical-align: middle
 }
 
 .workshop-lector-name{
     display: inline-block;
+    vertical-align: middle
 }
 
 .event-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 17px;
     justify-content: center;
     padding-top: 40px;
 }
@@ -159,13 +162,15 @@ a {
 .event-card {
     background-color: #B5D2F0;
     border-radius: 15px;
-    width: 200px;
+    width: 206px;
     height: auto;
     padding: 10px;
     display: inline-block;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
+    cursor: pointer;
+
 }
 
 .event-card:hover {
@@ -216,9 +221,14 @@ a {
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    vertical-align: middle
 }
 
-.event-lector-name {}
+.event-lector-name {
+    display: inline-block;
+    vertical-align: middle;
+
+}
 
 .aboutDances-content {
     width: 90%;
