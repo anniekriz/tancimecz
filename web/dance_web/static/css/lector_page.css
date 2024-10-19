@@ -1,216 +1,235 @@
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #cff2f6;
-    text-align: center;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-h1, h2 {
-    text-align: center;
-    color: rgb(255, 77, 136);
-}
-
-h1 {
-    font-size: 3em;
-    font-weight: bold;
-}
-
-h2 {
-    font-size: 1.8em;
-    font-weight: bold;
-}
-
-.lector-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
 .lector {
-    background-color: #e0f7fa;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 80%;
+    display: inline-block;
+}
+
+.name {
+    font-size: 3em;
+    font-family: 'Ysabeau SC', sans-serif; 
+    text-align: left;    
+    border-bottom: 1px solid #000006; 
+    margin-bottom: 30px;
 }
 
 .lector img {
-    height: 300px;
+    width: 300px;
+    margin-right: 16px;
+    margin-bottom: 2px;
+    vertical-align: top;
+    float: left;
 }
 
 .lector-description {
-    text-align: center;
-    font-size: 1em;
-    margin-top: 20px;
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.text {
-    text-align: justify;
-    max-width: 800px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    text-align: left;
+    line-height: 1.4;
+    vertical-align: top;
 }
 
 .contact {
-    color: #00796b;
-    text-align: center;
-    vertical-align: bottom;
     margin-top: 20px;
 }
 
-.lector-events {
+.email, .phone, .link {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.3em;
+    text-align: left;
+    line-height: 1.4;
+    vertical-align: top;
+} 
+
+.link a {
+    color: #3C3F0F;
+}
+
+.section {
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 3em;
+    font-family: 'Ysabeau SC', sans-serif; 
+    text-align: left;    
+    border-bottom: 1px solid #000006;                   
+}
+
+.workshop-cards {
+    padding-top: 40px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;
-    justify-items: center;
 }
 
-.lector-events-title {
-    margin-bottom: 0px;
-}
-
-/* Styles for each event card */
-.event, .workshop {
-    background-color: #e0f7fa;
-    border: 1px solid #00796b;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
+.workshop-card {
+    background-color: #D27015;
+    border-radius: 15px;
+    width: 300px;
+    height: auto;
+    padding: 16px;
+    display: inline-block;
+    vertical-align: top;
     margin-left: 10px;
     margin-right: 10px;
-    padding: 10px;
-    width: 350px; 
-    height: auto;
-    box-sizing: border-box;
-    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
-/* Specific styles for h2 within event and workshop class */
-.event-title, .workshop-title {
-    font-size: 1.8em;
-    color: rgb(255, 77, 136);
-    font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+.workshop-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
 }
 
-/* Styles for event and workshop details */
-.event-details, .workshop-details {
-    background-color: #ffffff;
-    font-size: 1em;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+.workshop-title {
+    font-size: 3em;
+    font-family: 'Amatic SC', sans-serif;
+    padding-bottom: 10px;
+    color: #ffffff;
+                                                
+}
+
+.workshop-date {
+    background-color: #3C3F0F;
+    color: #ffffff;
+    border-radius: 15px;
+    width: 100px;
+    height: 80px;
+    position: relative;
+    top: -20px;
+    left: 220px;
+    display: block;
+    rotate: 11deg;
+    z-index: 1;
+    line-height: 80px;
+}
+
+.workshop-content {
+    background-color: #FFF8F0;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
     text-align: left;
-    margin: 0px;
-    padding-top: 1px;
+    position: relative;
+    margin-top: -84px;
+    color: #000006;
+    font-family: 'Roboto', sans-serif;
+}
+
+.workshop-image {
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+    position: relative;
+}
+
+.workshop-address {
+}
+
+.workshop-address-town {
+    font-weight: bold;
+}
+
+.workshop-time {
+    margin-top: 10px;
+}
+
+.workshop-description {
+    margin-top: 10px;
+}
+
+.workshop-lectors {
+    margin-top: 10px;
+}
+
+.workshop-lector {
+    display: inline-block;
+}
+
+.workshop-lector-image{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.workshop-lector-name{
+    display: inline-block;
+    vertical-align: middle
+}
+
+.event-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 17px;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.event-card {
+    background-color: #B5D2F0;
+    border-radius: 15px;
+    width: 206px;
+    height: auto;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    cursor: pointer;
+
+}
+
+.event-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.event-town {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+    color: #000006;
+    padding-bottom: 5px;
+}
+
+.event-date {
+    font-family: 'Road Rage', sans-serif;
+    color: #000006;
+    font-size: 1.5em;
     padding-bottom: 10px;
 }
 
-.event-details p,
-.workshop-details p {
-    margin: 5px 0; /* Reduce the margin between paragraphs */
+.event-content {
+    background-color: #FFF8F0;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    color: #000006;
+    font-family: 'Roboto', sans-serif;
 }
 
-.event-details a, .workshop-details a {
-    word-wrap: break-word; 
-    color: #00796b; 
-    text-decoration: underline; /* Ensure links are underlined */
+.event-address {
+    padding-bottom: 10px;
 }
 
-.event-details a:hover, .workshop-details a:hover {
-    color: rgb(255, 77, 136);
-    text-decoration: underline;
+.event-address-town {}
+
+.event-time {}
+
+.event-description {}
+
+.event-lectors {}
+
+.event-lector {
+    font-weight: bold;
 }
 
-/* Ensure that links within the event-lector and workshop-lector class are not underlined */
-.event-lector a, .workshop-lector a {
-    text-decoration: none;
-    color: #00796b;
+.event-lector-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle
 }
 
-.event-lector a:hover, .workshop-lector a:hover {
-    color: rgb(255, 77, 136);
-    text-decoration: underline;
-}
-
-.event-date, .workshop-date {
-    font-size: 1.2em;
-    padding-top: 8px;
-    padding-bottom: 3px;
-}
-
-.event-lector,
-.workshop-lector {
-    margin-bottom: 7px; /* Reduce the bottom margin */
-}
-
-.event-location,
-.workshop-location {
-    margin-bottom: 7px; /* Reduce the bottom margin */
-}
-
-.event-description,
-.workshop-description {
-    margin-top: 7px; /* Reduce the top margin */
-}
-
-/* Hidden description */
-.description {
-    overflow: hidden;
-    height: 40px;
-    transition: height 0.3s ease;
-    margin: 0px;
-}
-
-.event img, .workshop img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    max-height: 200px;
-}
-
-/* Toggle button */
-.toggle-description {
+.event-lector-name {
     display: inline-block;
-    margin-top: 0px;
-    padding: 5px 10px;
-    border: none;
-    background-color: #00796b;
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    vertical-align: middle;
 
-/* Hover effect for event and workshop cards */
-.event:hover, .workshop:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
-}
-
-.no-events{
-    margin-top: 0px;
 }
 
 .archiv {

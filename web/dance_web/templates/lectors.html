@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Naši lektoři:</h2>
     <div class="search-container">
         <form method="get" action="{% url 'search_lectors' %}">
             <input type="text" name="query" placeholder="Hledat..." value="{{ request.GET.query }}">

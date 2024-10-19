@@ -78,6 +78,11 @@ class Event(models.Model):
     @property
     def endTime(self):
         return self.parent.endTime
+    
+    @property
+    def colorNumber(self):
+        hash_value = hash(self.parent.location.town)
+        return hash_value % 6 + 1
 
 class Workshop(models.Model):
     title = models.CharField(verbose_name="Název", max_length=101)
