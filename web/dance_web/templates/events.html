@@ -34,11 +34,11 @@
         <div class="event-cards">
             <div class="event-card event-card-color{{ event.colorNumber }}">
                 <div class="event-town">{{ event.parent.location.town }}</div>
-                <div class="event-date">
+                <!-- <div class="event-date">
                     {% with event|date_format as date %}
                         {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}
                     {% endwith %}
-                </div>
+                </div> -->
                 <div class="event-content">
                     <div class="event-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
                     <div class="event-lectors">
@@ -97,14 +97,14 @@
         <div class="section-title">Taneční večery</div>
         {% if events|filter_past_events %}
         <div class="event-cards">
-            {% for event in events|filter_past_events|slice:":10" %}
+            {% for event in events|filter_past_events%}
             <div class="event-card event-card-color{{ event.colorNumber }}">
                 <div class="event-town">{{ event.parent.location.town }}</div>
-                <div class="event-date">
+                <!-- <div class="event-date">
                     {% with event|date_format as date %}
                         {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}
                     {% endwith %}
-                </div>
+                </div> -->
                 <div class="event-content">
                     <div class="event-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
                     <div class="event-lectors">
@@ -132,18 +132,18 @@
             <div class="section-title">Workshopy</div>
             {% if workshops|filter_past_events %}
             <div class="workshop-cards">
-                {% for workshop in workshops|filter_past_events|slice:":3" %}
+                {% for workshop in workshops|filter_past_events%}
                 <a href="{{ workshop.link }}">
                 <div class="workshop-card">
                     <div class="workshop-title">{{ workshop.title }}</div>
                     {% if workshop.image %}
                     <img class="workshop-image" src="{{ workshop.image.url }}" alt="{{ workshop.title }}">
                     {% endif %}
-                    <div class="workshop-date">
+                    <!-- <div class="workshop-date">
                         {% with workshop|date_format as date %}
                                 {{ date.day }} {{ date.date }}
                         {% endwith %}
-                    </div>
+                    </div> -->
                     <div class="workshop-content">
                         <div class="workshop-address"><div class="workshop-address-town">{{ workshop.location.town }}</div>{{ workshop.location.address }} </div>
                         <div class="workshop-time">8:00-18:00</div>

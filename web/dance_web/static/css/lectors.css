@@ -4,6 +4,7 @@
     justify-content: center;
     gap: 10px;
     padding: 0 20px;
+    margin-top: 40px;
 }
 
 .lector {
@@ -36,41 +37,5 @@
 
 .name a {
     border-bottom: none;
-}
-
-.search-container {
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 10px; 
-}
-
-.search-container input[type="text"] {
-    padding: 10px; 
-    background-color: #ffffff; 
-    color: #434343; 
-    border: none; 
-    border-radius: 10px; 
-    font-size: 1em; 
-    width: 80%; 
-    max-width: 400px; 
-    margin-right: 10px; 
-    outline: 1px solid #3C3F0F 
-}
-
-.search-container button {
-    padding: 10px 20px; 
-    background-color: #ffffff; 
-    color: #3C3F0F; 
-    border: none; 
-    border-radius: 20px; 
-    font-size: 1em; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease, color 0.3s ease; 
-}
-
-.search-container button:hover {
-    background-color: #3C3F0F; 
-    color: #ffffff; 
 }
 

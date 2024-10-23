@@ -9,12 +9,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class="search-container">
-        <form method="get" action="{% url 'search_lectors' %}">
-            <input type="text" name="query" placeholder="Hledat..." value="{{ request.GET.query }}">
-            <button type="submit">Hledat</button>
-        </form>
-    </div>
     <div class="lectors">
         {%for lector in lectors%}
         <div class="lector">
