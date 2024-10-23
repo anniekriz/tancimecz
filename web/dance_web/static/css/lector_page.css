@@ -272,18 +272,16 @@
 
 .archiv-button {
     padding: 10px 20px;
-    margin-right: 40px;
-    background-color: #ffffff;
-    color: rgb(255, 77, 136);
-    border: none;
+    background-color: #3C3F0F;
+    color: #ffffff;
     border-radius: 20px;
     font-size: 1em;
-    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .archiv-button:hover {
-    background-color: #ffffff;
-    color: #00796b;
+    background-color: #FFF8F0;
+    color: #3C3F0F;
+    border: 1px solid #3C3F0F;
 }
