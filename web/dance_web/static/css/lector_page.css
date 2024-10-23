@@ -78,13 +78,6 @@
     padding-top: 20px;
 }
 
-.section-title {
-    font-size: 3em;
-    font-family: 'Ysabeau SC', sans-serif; 
-    text-align: left;    
-    border-bottom: 1px solid #000006;                   
-}
-
 .workshop-cards {
     padding-top: 40px;
     display: flex;
@@ -103,6 +96,10 @@
     margin-right: 10px;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.workshop-card a {
+    color: #000006;
 }
 
 .workshop-card:hover {
@@ -204,7 +201,10 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
     cursor: pointer;
+}
 
+.event-card a {
+    color: #000006;
 }
 
 .event-card:hover {

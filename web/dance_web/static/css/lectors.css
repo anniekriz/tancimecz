@@ -1,18 +1,27 @@
+.section {
+    padding-top: 20px;
+    max-width: 1200px;
+    margin: 0 auto; 
+    display: flex;
+    justify-content: center;  
+}
+
 .lectors {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    justify-content: center;  
+    gap: 20px; 
     padding: 0 20px;
     margin-top: 40px;
 }
 
 .lector {
-    flex: 1 1 150px;
+    flex: 0 1 150px;  
     max-width: 200px;
     padding: 10px;
     transition: transform 0.3s;
     box-sizing: border-box;
+    text-align: center;  
 }
 
 .lector:hover {

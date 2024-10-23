@@ -32,14 +32,15 @@
             {% endif %}
             {% if lector.link %}
                 <div class="link">
-                    <a href="{{ lector.link }}" target="_blank">{{ lector.link }}
+                    <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
                 </div>
             {% endif %}
         </div>
     </div>
+    <div class="section">
     {% if workshops|filter_past_events %}
     <div class="workshop-cards">
-        {% for workshop in workshops|filter_past_events|slice:":3" %}
+        {% for workshop in workshops|filter_past_events %}
         <a href="{{ workshop.link }}">
         <div class="workshop-card">
             <div class="workshop-title">{{ workshop.title }}</div>
@@ -78,7 +79,7 @@
     <div id="events" class="text-container section">
         {% if events|filter_past_events %}
         <div class="event-cards">
-            {% for event in events|filter_past_events|slice:":10" %}
+            {% for event in events|filter_past_events %}
             <div class="event-card">
                 <div class="event-town">{{ event.parent.location.town }}</div>
                 <div class="event-date">
@@ -113,5 +114,6 @@
                 </form>
             </div>
         {% endif %}
+    </div>
     </div>
 {% endblock %}
