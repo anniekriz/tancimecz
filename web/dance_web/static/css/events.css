@@ -1,0 +1,232 @@
+button {
+    padding: 10px 20px; 
+    background-color: #ffffff; 
+    color: #3C3F0F; 
+    border: none; 
+    border-radius: 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.search-container button:hover {
+    background-color: #3C3F0F; 
+    color: #ffffff; 
+}
+
+.section {
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 3em;
+    font-family: 'Ysabeau SC', sans-serif; 
+    text-align: left;    
+    border-bottom: 1px solid #000006;                   
+}
+
+.workshop-cards {
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.workshop-card {
+    background-color: #D27015;
+    border-radius: 15px;
+    width: 300px;
+    height: auto;
+    padding: 16px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.workshop-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+.workshop-title {
+    font-size: 3em;
+    font-family: 'Amatic SC', sans-serif;
+    padding-bottom: 10px;
+    color: #ffffff;
+                                                
+}
+
+.workshop-date {
+    background-color: #3C3F0F;
+    color: #ffffff;
+    border-radius: 15px;
+    width: 100px;
+    height: 80px;
+    position: relative;
+    top: -20px;
+    left: 220px;
+    display: block;
+    rotate: 11deg;
+    z-index: 1;
+    line-height: 80px;
+}
+
+.workshop-content {
+    background-color: #FFF8F0;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
+    text-align: left;
+    position: relative;
+    margin-top: -84px;
+    color: #000006;
+    font-family: 'Roboto', sans-serif;
+}
+
+.workshop-image {
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+    position: relative;
+}
+
+.workshop-address {
+}
+
+.workshop-address-town {
+    font-weight: bold;
+}
+
+.workshop-time {
+    margin-top: 10px;
+}
+
+.workshop-description {
+    margin-top: 10px;
+}
+
+.workshop-lectors {
+    margin-top: 10px;
+}
+
+.workshop-lector {
+    display: inline-block;
+}
+
+.workshop-lector-image{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.workshop-lector-name{
+    display: inline-block;
+    vertical-align: middle
+}
+
+.event-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 17px;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.event-card {
+    border-radius: 15px;
+    width: 206px;
+    height: auto;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    cursor: pointer;
+}
+
+.event-card-color1 {
+    background-color: #B5D2F0;
+    color: #000006;
+}
+
+.event-card-color2 {
+    background-color: #B45C06;
+    color: #ffffff;
+}
+
+.event-card-color3 {
+    background-color: #3C3F0F;
+    color: #ffffff;
+}
+
+.event-card-color4 {
+    background-color: #D8D479;
+    color: #000006;
+}
+
+.event-card-color5 {
+    background-color: #FDE095;
+    color: #000006;
+}
+
+.event-card-color6 {
+    background-color: #DA8D46;
+    color: #000006;
+}
+
+.event-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.event-town {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+    padding-bottom: 5px;
+}
+
+.event-date {
+    font-family: 'Road Rage', sans-serif;
+    font-size: 1.5em;
+    padding-bottom: 10px;
+}
+
+.event-content {
+    background-color: #FFF8F0;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    color: #000006;
+    font-family: 'Roboto', sans-serif;
+}
+
+.event-address {
+    padding-bottom: 10px;
+}
+
+.event-address-town {}
+
+.event-time {}
+
+.event-description {}
+
+.event-lectors {}
+
+.event-lector {
+    font-weight: bold;
+}
+
+.event-lector-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.event-lector-name {
+    display: inline-block;
+    vertical-align: middle;
+
+}

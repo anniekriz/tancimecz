@@ -1,0 +1,50 @@
+.section {
+    padding-top: 20px;
+    max-width: 1200px;
+    margin: 0 auto; 
+    display: flex;
+    justify-content: center;  
+}
+
+.lectors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  
+    gap: 20px; 
+    padding: 0 20px;
+    margin-top: 40px;
+}
+
+.lector {
+    flex: 0 1 150px;  
+    max-width: 200px;
+    padding: 10px;
+    transition: transform 0.3s;
+    box-sizing: border-box;
+    text-align: center;  
+}
+
+.lector:hover {
+    transform: scale(1.05);
+}
+
+.lector img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 1px solid #3C3F0F;
+}
+
+.name {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: #3C3F0F;
+    font-family: 'Raleway', sans-serif;
+}
+
+.name a {
+    border-bottom: none;
+}
+

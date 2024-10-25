@@ -1,0 +1,334 @@
+/* General Styles */
+body {
+    background-color: rgba(255, 248, 240, 1); 
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.o_tancich {
+    background-image: url("static/images/kruh.jpg");
+    color: black;
+    margin-left: 100px;
+}
+
+.o_tancich .title {
+    font-size: 48px;
+}
+
+.o_tancich .text {
+    font-size: 24px;
+}
+
+.o_tancich .button {
+    padding: 0; 
+    background-color: transparent;  
+    border: none;  
+    cursor: pointer; 
+    margin-top: 10px;
+    font-size: 30px;
+    transition:  font-size 0.3s ease;
+}
+
+.button:hover {
+    font-size: 40px;
+}
+
+.title-workshop {
+    font-size: 64px;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 40px;
+    padding-left: 40px;
+}
+
+/* Workshop section background */
+.workshops {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px;
+    background-image: linear-gradient(#022F42, rgba(255, 248, 240, 1));
+}
+
+/* Styles for each workshop card */
+.workshop {
+    background-color: #ffffff;
+    border-radius: 15px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    margin: 20px;
+    padding: 20px;
+    width: 300px; 
+    height: auto;
+    box-sizing: border-box;
+    text-align: left;
+    position: relative; 
+}
+
+/* Specific styles for h2 within workshop class */
+.workshop-title {
+    font-size: 1.6em;
+    color: #d35400; /* Strong contrasting color */
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: transparent; 
+}
+
+/* Styling for the date badge in the corner */
+.workshop-date {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #27ae60; /* Green badge */
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+/* Workshop details */
+.workshop-details {
+    font-size: 1em;
+    color: #2c3e50; 
+    margin-top: 10px;
+}
+
+/* Ensure that links within the workshop-lector class are not underlined */
+.workshop-lector a {
+    text-decoration: none;
+    color: #2980b9;
+    font-weight: bold;
+}
+
+.workshop-lector a:hover {
+    color: #e74c3c; /* Highlight color on hover */
+    text-decoration: underline;
+}
+
+.workshop-location {
+    font-style: italic;
+    margin-top: 5px;
+    color: #7f8c8d; /* Lighter text for location */
+}
+
+.workshop-description {
+    margin-top: 10px;
+    line-height: 1.5em;
+    color: #34495e; /* Darker color for readability */
+}
+
+/* Styling for the image */
+.workshop-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Hover effect for workshop cards */
+.workshop:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Bigger shadow on hover */
+}
+
+/* Button styles for "Všechny" */
+.button {
+    background-color: #27ae60;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #2ecc71;
+}
+
+
+/* Button styles for "Všechny" */
+.button {
+    background-color: #27ae60;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #2ecc71;
+}
+
+/* Additional container styling */
+.all {
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+.events {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    justify-items: center;
+}
+
+/* Styles for each event card */
+.event {
+    background-color: #e0f7fa;
+    border: 1px solid #00796b;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 350px; 
+    height: auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Specific styles for h2 within event class */
+.event-title {
+    font-size: 1.8em;
+    color: rgb(255, 77, 136);
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    background-color: #ffffff;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for event details */
+.event-details {
+    background-color: #ffffff;
+    font-size: 1em;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin: 0px;
+    padding-top: 1px;
+    padding-bottom: 10px;
+}
+
+.event-details p {
+    margin: 5px 0;
+}
+
+.event-details a {
+    word-wrap: break-word; 
+    color: #00796b; 
+    text-decoration: underline;
+}
+
+.event-details a:hover {
+    color: rgb(255, 77, 136);
+    text-decoration: underline;
+}
+
+/* Ensure that links within the event-lector class are not underlined */
+.event-lector a {
+    text-decoration: none;
+    color: #00796b;
+}
+
+.event-lector a:hover {
+    color: rgb(255, 77, 136);
+    text-decoration: underline;
+}
+
+.event-date {
+    font-size: 1.4em;
+    padding-top: 8px;
+    padding-bottom: 0px;
+}
+
+.event-lector {
+    margin-bottom: 5px;
+}
+
+.event-location {
+    margin-bottom: 5px;
+}
+
+.event-description {
+    margin-top: 5px;
+}
+
+/* Hidden description */
+.description {
+    overflow: hidden;
+    height: 40px;
+    transition: height 0.3s ease;
+    margin: 0px;
+}
+
+.event img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    max-height: 200px;
+}
+
+/* Toggle button */
+.toggle-description {
+    display: inline-block;
+    margin-top: 0px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #00796b;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for event cards */
+.event:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+
+.lectors {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 0px;
+    background-color: #e0f7fa;
+    padding: 15px;
+}
+
+.lector {
+    width: 100px; 
+    height: 100px; 
+    overflow: hidden; 
+}    
+
+.lector img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* oříznutí obrázku tak, aby zaplnil čtverec */
+    display: block;
+    border-radius: 50%;
+}
+
+.lector a {
+    border-bottom: none;
+}
+
