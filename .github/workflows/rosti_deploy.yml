@@ -1,6 +1,6 @@
 # .github/workflows/rosti_deploy.yml
 
-name: Deploy into RoötÌ.cz
+name: Deploy into Ro≈°t√≠.cz
 
 on:
     push:
@@ -52,14 +52,12 @@ jobs:
           EOF
           scp -o UserKnownHostsFile=./known_hosts -P $PORT rosti.nginx.conf $USER@$HOST:/srv/conf/nginx.d/app.conf
           rm rosti.nginx.conf
-      - name: Setup virtual environment and install Python dependencies
-        run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install -r /srv/app/requirements.txt
       - name: Copy code
         run: |
           rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git ./ $USER@$HOST:/srv/app/
+      - name: install Python dependencies
+        run: |
+          pip install -r /srv/app/requirements.txt
       - name: Apply changes
         run: |
           ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST supervisorctl reread
