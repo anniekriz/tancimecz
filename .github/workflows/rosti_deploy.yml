@@ -30,35 +30,9 @@ jobs:
           cat << EOF > .env
           ${{ secrets.ENV }}
           EOF
-      - name: Dependencies
+      - name: Setup Python
         run: |
-          npm install
-      - name: Build
-        run: |
-          npm run build
-      - name: Setup Node.js
-        run: |
-          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST /usr/local/bin/rosti node $NODE_VERSION
-      - name: Setup Supervisord
-        run: |
-          cat << EOF > rosti.app.conf
-          [program:app]
-          command=/srv/bin/primary_tech/npm start
-          environment=PATH="/srv/bin/primary_tech:/usr/local/bin:/usr/bin:/bin:/srv/.npm-packages/bin"
-          stopasgroup=true
-          directory=/srv/app
-          process_name=app
-          autostart=true
-          autorestart=true
-          stdout_logfile=/srv/log/node.log
-          stdout_logfile_maxbytes=2MB
-          stdout_logfile_backups=5
-          stdout_capture_maxbytes=2MB
-          stdout_events_enabled=false
-          redirect_stderr=true
-          EOF
-          scp -o UserKnownHostsFile=./known_hosts -P $PORT rosti.app.conf $USER@$HOST:/srv/conf/supervisor.d/app.conf
-          rm rosti.app.conf
+          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST /usr/local/bin/rosti python $PYTHON_VERSION
       - name: Setup Nginx
         run: |
           cat << EOF > rosti.nginx.conf
@@ -82,7 +56,7 @@ jobs:
         run: |
           python3 -m venv venv
           source venv/bin/activate
-          pip install -r /srv/app/web/dance_web/requirements.txt
+          pip install -r /srv/app/requirements.txt
       - name: Copy code
         run: |
           rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git ./ $USER@$HOST:/srv/app/
