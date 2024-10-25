@@ -1,0 +1,24 @@
+.add-lector, .remove-lector {
+    margin-left: 10px;
+    font-size: 1.3em;
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+}
+.add-lector {
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    background-color: green;
+}
+.remove-lector {
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-bottom: 3px;
+    background-color: red;
+}
+
+#lectors-container div {
+    margin-bottom: 10px;
+}

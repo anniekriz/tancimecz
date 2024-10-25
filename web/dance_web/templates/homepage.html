@@ -10,10 +10,19 @@
 
 {% block content %}
     <div class="header-image">
-        <div class="header-text">Umíš-li mluvit, umíš zpívat, umíš-li chodit, umíš tančit...</div>
+        <div class="header-text"> <span class="first-line">
+            <span class="first-line">„UMÍŠ-LI MLUVIT, UMÍŠ ZPÍVAT,</span> <br>
+            <span class="second-line">UMÍŠ-LI CHODIT, UMÍŠ TANČIT...“</span>
+        </div>
+    </div>
+    <div>
+        <img clas="image1" src="" alt="zubin">
+        <div class="block1">
+            <div class="title1">Pojďte tančit ....</div>
+            <div class="text1">Vícedenní taneční semináře nebo kratší, které si zaslouží Vaši pozornost (například návštěvy zahraničních lektorů).</div>
+        </div>
     </div>
     <div id="workshops" class="text-container section">
-        <div class="section-title">Workshopy</div>
         {% if workshops|filter_past_events %}
         <div class="workshop-cards">
             {% for workshop in workshops|filter_past_events|slice:":3" %}
@@ -55,8 +64,9 @@
         </div>
         {% endif %} 
     </div>
+    <div class="title2">.... a setkávat se</div>
+    <div class="text2">spolu na pravidelných tanečních večerech</div>
     <div id="events" class="text-container section">
-        <div class="section-title">Večerní taneční setkání</div>
         {% if events|filter_past_events %}
         <div class="event-cards">
             {% for event in events|filter_past_events|slice:":10" %}
@@ -92,6 +102,7 @@
     <div id="aboutDances" class="text-container section">
         <div class="section-title">O tancích</div>
         <div class="aboutDances-content">
+            <img class="aboutDances-image" src="" alt="">
             <div class="aboutDances-text">Tance univerzálního míru vycházejí z různých spirituálních a kulturních tradic. Jedná se o kombinaci jednoduchých pohybů lidových tanců se zpěvem posvátných slov ze světových náboženství i tradic původních národů. Tančíme a Zpíváme je pro radost, pro některé z nás jsou duchovní cestou. <br><br>Nálada těchto Tanců je nekonečně různorodá, můžeme oslavovat hravou energii Krišny, prožívat soucítění buddhistické Qwan Yin, milost panny Marie nebo zakoušet emoce jakéhokoli dalšího duchovního archetypu. Zakoušením těchto mnoha tradic získáváme hlubší porozumění a úctu ke kulturám a dědictví svých předků a pěstujeme ve svých srdcích soucítění a mír.</div>
         </div>
     </div>
@@ -113,11 +124,12 @@
     <div id="aboutUs" class="text-container section">
         <div class="section-title">O nás</div>
         <div class="aboutUs-content">
+            <img class="aboutUs-image" src="" alt="">
             <div class="aboutUs-text">Jsme skupina lidí, které spojuje společný tanec a zpívání v kruhu. Základním zdrojem a inspirací nám jsou Tance univerzálního míru, tance dávných tradic, mantrické tance. Mezinárodně se jim říká Dances of Universal Peace (DUP). Mají své kořeny v duchovních tradicích všech kultur. <br><br>Taneční kruhy DUP jsou po celém světě. Tance v Čechách mají dnes již více než 20-ti letou tradici díky PhDr. Ludmile Chrášťanské, která dala vznik prvním tanečním kruhům, zvala učitele tanců z různých zemí a podpořila další nadšené tanečníky, kteří se rozhodli šířit tyto tance dále. <br><br>V roce 2004 byl z jejího podnětu zorganizován první mezinárodní kemp v Čechách, kam přijeli taneční učitelé a tanečníci z celé Evropy. V roce 2008 bylo založeno o.s. Tančíme.cz pro organizování tanečních kempů, mítinků a tanečních akcí.</div>
         </div>
     </div>
     <div id="logos" class="text-container section">
-        <div class="section-title">Máme rádi</div>
+        <div class="section-title">Naši přátelé</div>
         <img class="logo_image" src="static/images/loga_organizaci.png" alt="">
     </div>
 {% endblock %}
