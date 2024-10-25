@@ -10,13 +10,17 @@
 
 {% block content %}
     <div class="header-image">
-        <div class="header-text">„Umíš-li mluvit, umíš zpívat, 
-            umíš-li chodit, umíš tančit...“</div>
+        <div class="header-text"> <span class="first-line">
+            <span class="first-line">„UMÍŠ-LI MLUVIT, UMÍŠ ZPÍVAT,</span> <br>
+            <span class="second-line">UMÍŠ-LI CHODIT, UMÍŠ TANČIT...“</span>
+        </div>
     </div>
     <div>
         <img clas="image1" src="" alt="zubin">
-        <div class="title1">Pojďte tančit ....</div>
-        <div class="text1">Vícedenní taneční semináře nebo kratší, které si zaslouží Vaši pozornost (například návštěvy zahraničních lektorů).</div>
+        <div class="block1">
+            <div class="title1">Pojďte tančit ....</div>
+            <div class="text1">Vícedenní taneční semináře nebo kratší, které si zaslouží Vaši pozornost (například návštěvy zahraničních lektorů).</div>
+        </div>
     </div>
     <div id="workshops" class="text-container section">
         {% if workshops|filter_past_events %}
