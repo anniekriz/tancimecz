@@ -34,7 +34,7 @@
 }
 
 .workshop-card {
-    background-color: #D27015;
+    background-color: #ffffff;
     border-radius: 15px;
     width: 300px;
     height: auto;
@@ -60,7 +60,7 @@
     font-size: 3em;
     font-family: 'Amatic SC', sans-serif;
     padding-bottom: 10px;
-    color: #ffffff;
+    color: #000006;
                                                 
 }
 
@@ -172,7 +172,7 @@
 }
 
 .event-card-color5 {
-    background-color: #FDE095;
+    background-color: #E09E23;
     color: #000006;
 }
 

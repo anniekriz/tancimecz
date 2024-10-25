@@ -1,4 +1,23 @@
-button {
+.search-container {
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px; 
+}
+
+.search-container input[type="text"] {
+    padding: 10px; 
+    background-color: #ffffff; 
+    color: #434343; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 1em; 
+    width: 80%; 
+    max-width: 400px; 
+    margin-right: 10px; 
+    outline: 1px solid #3C3F0F 
+}
+
+.search-container button, .archiv-button {
     padding: 10px 20px; 
     background-color: #ffffff; 
     color: #3C3F0F; 
@@ -8,11 +27,34 @@ button {
     font-weight: bold; 
     cursor: pointer; 
     transition: background-color 0.3s ease, color 0.3s ease; 
+    outline: 1px solid #3C3F0F
 }
 
-.search-container button:hover {
+.filter button {
+    padding: 10px 20px; 
+    background-color: #ffffff; 
+    color: #3C3F0F; 
+    border: none; 
+    border-radius: 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    outline: 1px solid #3C3F0F;
+    margin-left: 20px;
+}
+
+.search-container button:hover, .archiv-button:hover, .button:hover {
     background-color: #3C3F0F; 
     color: #ffffff; 
+}
+
+.filter {
+    margin-top: 30px;
+}
+
+.archiv {
+    margin-top: 30px;
 }
 
 .section {
@@ -33,7 +75,7 @@ button {
 }
 
 .workshop-card {
-    background-color: #D27015;
+    background-color: #ffffff;
     border-radius: 15px;
     width: 300px;
     height: auto;
@@ -55,7 +97,7 @@ button {
     font-size: 3em;
     font-family: 'Amatic SC', sans-serif;
     padding-bottom: 10px;
-    color: #ffffff;
+    color: #000006;
                                                 
 }
 
@@ -167,7 +209,7 @@ button {
 }
 
 .event-card-color5 {
-    background-color: #FDE095;
+    background-color: #E09E23;
     color: #000006;
 }
 

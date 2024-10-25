@@ -285,3 +285,8 @@
     color: #3C3F0F;
     border: 1px solid #3C3F0F;
 }
+
+.no-events {
+    color: #000006;
+    font-family: 'Roboto', sans-serif;
+}
