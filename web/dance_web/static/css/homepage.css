@@ -1,45 +1,22 @@
-/*@import url('https://fonts.cdnfonts.com/css/reem-kufi');*/
-@import url('https://fonts.cdnfonts.com/css/raleway-5');
-@import url('https://fonts.cdnfonts.com/css/ysabeau-sc');
-@import url('https://fonts.cdnfonts.com/css/amatic-sc-2');
-@import url('https://fonts.cdnfonts.com/css/road-rage-2');
-@import url('https://fonts.cdnfonts.com/css/roboto');
-             
-body {
-    padding: 0px;
-    margin: 0px;
-}
-
-a {
-    text-decoration: none;
-    color: #000006;
-}
-
-.content {
-    width: 100%;
-}
-
 .header-image {
     width: 100%;
     height: 987px;
     background-image: url("/static/images/kruh.jpg");
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .header-text {
     color: #ffffff;
-    font-size: 2em;
+    font-size: 2.3em;
     font-family: 'Raleway', sans-serif;
     position: relative;
-    top: 30px;
-    right: 50px;
+    top: 40px;
+    right: 40px;
     text-align: right;
 }
 
 .section {
-    width: 100%;
-    max-width: 1200px;
-    display: inline-block;
     padding-top: 20px;
 }
 
@@ -68,6 +45,10 @@ a {
     margin-right: 10px;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.workshop-card a {
+    color: #000006;
 }
 
 .workshop-card:hover {
@@ -142,30 +123,62 @@ a {
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    vertical-align: middle
 }
 
 .workshop-lector-name{
     display: inline-block;
+    vertical-align: middle
 }
 
 .event-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 17px;
     justify-content: center;
     padding-top: 40px;
 }
 
 .event-card {
-    background-color: #B5D2F0;
     border-radius: 15px;
-    width: 200px;
+    width: 206px;
     height: auto;
     padding: 10px;
     display: inline-block;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
+    cursor: pointer;
+}
+
+.event-card-color1 {
+    background-color: #B5D2F0;
+    color: #000006;
+}
+
+.event-card-color2 {
+    background-color: #B45C06;
+    color: #ffffff;
+}
+
+.event-card-color3 {
+    background-color: #3C3F0F;
+    color: #ffffff;
+}
+
+.event-card-color4 {
+    background-color: #D8D479;
+    color: #000006;
+}
+
+.event-card-color5 {
+    background-color: #FDE095;
+    color: #000006;
+}
+
+.event-card-color6 {
+    background-color: #DA8D46;
+    color: #000006;
 }
 
 .event-card:hover {
@@ -176,13 +189,11 @@ a {
 .event-town {
     font-family: 'Raleway', sans-serif;
     font-size: 2em;
-    color: #000006;
     padding-bottom: 5px;
 }
 
 .event-date {
     font-family: 'Road Rage', sans-serif;
-    color: #000006;
     font-size: 1.5em;
     padding-bottom: 10px;
 }
@@ -216,9 +227,18 @@ a {
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    vertical-align: middle
 }
 
-.event-lector-name {}
+.event-lector-name {
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.event-lector a {
+    color: #000006;
+}
 
 .aboutDances-content {
     width: 90%;
@@ -240,9 +260,12 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     justify-content: center;
     gap: 20px;
-    padding: 15px;
-    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
+
 
 .lector {
     text-align: center;
@@ -258,7 +281,24 @@ a {
     border: 1px solid #3C3F0F;
 }
 
+.aboutUs-content {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
 
+.aboutUs-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.logo_image {
+    width: 700px;
+}
 
 .button {
 }

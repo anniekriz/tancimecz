@@ -1,18 +1,80 @@
 @import url('https://fonts.cdnfonts.com/css/ysabeau-sc');
+@import url('https://fonts.cdnfonts.com/css/raleway-5');
+@import url('https://fonts.cdnfonts.com/css/amatic-sc-2');
+@import url('https://fonts.cdnfonts.com/css/road-rage-2');
+@import url('https://fonts.cdnfonts.com/css/roboto');
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    width: 100%;
+}
 
 .page {
     width: 100%;
     text-align: center;
+    background-color: #FFF8F0;
+}
+
+.text-container {
+    width: 96%;
+    max-width: 1200px;
+    text-align: left;
+    display: inline-block;
 }
 
 .header {
+    width: 100%;
+    background-color: #022F42;
+    text-align: center;
+}
+
+.header-content {
+    position: relative;
+}
+
+.menu {
+    display: inline-block;
+    font-family: 'Ysabeau SC', sans-serif;
+    font-size: 1.5em;
+    vertical-align: top;
+    position: absolute;
+    right: 0px;
+    top: 53px;
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.menu-item {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.menu-item a {
+    color: #ffffff;
+}
+
+/* .header {
     width: 100%;
     background-color: #022F42;
     padding: 10px 0;
 }
 
 .logo {
-    left: 0;
+    position: relative;
+    top: 20px;
+    left: -550px;
 }
 
 .menu {
@@ -21,21 +83,39 @@
     padding: 0;
     right: 0;
     font-family: 'Ysabeau SC', sans-serif;
-    font-size: 24;
+    font-size: 1.5em;
     color: #022F42;
-}
-
-.menu li {
-    margin: 0 15px;
-    display: inline;
+    position: relative;
+    right: -460px;
+    top: -40px
 }
 
 .menu a {
     text-decoration: none;
     color: white;
-}
+}*/
 
 .menu a:hover {
     text-decoration: underline;
     color: rgba(103, 240, 252, 1);
+} 
+
+.footer {
+    background: linear-gradient(to top, #022F42, #FFF8F0);
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+}
+
+.footer-logo {
+    vertical-align: bottom;
+    width: 400px;
+    position: relative;
+    padding-top: 350px;
+}
+
+.footer-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    color: #ffffff;
+    padding-top: 50px;
 }

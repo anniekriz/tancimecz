@@ -12,24 +12,24 @@
 <body>
     <div class="page">
         <div class="header">
-            <nav>
-                <div class="logo">
-                    <img src="static/images/logo.png" alt="logo" width="200">
-                </div>
-                <ul class="menu">
-                    <li><a href="{% url 'homepage' %}">Úvod</a></li>
-                    <li><a href="{% url 'events' %}">Kdy a kde</a></li>
-                    <li><a href="{% url 'lectors' %}">S kým</a></li>
-                    <li><a href="{% url 'o_tancich' %}">Ostatní</a></li>
-                </ul>
-            </nav>
+        <div class="text-container header-content">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="logo" width="300"/>
+            </div>
+            <div class="menu">
+                <div class="menu-item"><a href="{% url 'homepage' %}">Úvod</a></div>
+                <div class="menu-item"><a href="{% url 'events' %}">Kdy a kde</a></div>
+                <div class="menu-item"><a href="{% url 'lectors' %}">S kým</a></div>
+            </div>
+        </div>
         </div>
         <div class="content">
             {% block content %}
             {% endblock %}
         </div>
         <div class="footer">
-            
+            <img class="footer-logo" src="/static/images/logo2.png" alt="">
+            <div class="footer-text">©2024 Tancime.cz</div>
         </div>
     </div>
 </body>

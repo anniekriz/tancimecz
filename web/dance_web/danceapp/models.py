@@ -63,6 +63,9 @@ class Event(models.Model):
     date = models.DateField(verbose_name="Datum", default=datetime.date.today)
     description = models.TextField(verbose_name="Dodatečný popis (nepovinné)", null=True, blank=True)
 
+    town_to_number = {}
+    next_number = 1
+
     def __str__(self):
         startTime = self.parent.startTime.strftime('%H:%M')
         endTime = self.parent.endTime.strftime('%H:%M') if self.parent.endTime else 'N/A'
@@ -78,6 +81,16 @@ class Event(models.Model):
     @property
     def endTime(self):
         return self.parent.endTime
+    
+    @property
+    def colorNumber(self):
+        town_name = self.parent.location.town
+        
+        if town_name not in Event.town_to_number:
+            Event.town_to_number[town_name] = Event.next_number
+            Event.next_number = (Event.next_number % 6) + 1
+        
+        return Event.town_to_number[town_name]
 
 class Workshop(models.Model):
     title = models.CharField(verbose_name="Název", max_length=101)

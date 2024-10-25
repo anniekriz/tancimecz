@@ -1,221 +1,7 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #cff2f6; /* Light cyan background */
-    color: #333; /* Dark grey text color */
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    text-align: center;
-}
-
-/* Headings */
-h1, h2 {
-    text-align: center;
-    color: #00796b; /* Teal color for headings */
-}
-
-h1 {
-    margin-top: 20px;
-    font-size: 3em;
-    font-weight: bold;
-    color: rgb(255, 77, 136);
-    background-color: #e0f7fa;
-}
-
-h2 {
-    font-size: 1.8em;
-    font-weight: bold;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    display: inline-block;
-    background-color: #ffffff; /* White background for text */
-    padding: 5px 15px; /* Padding around the text */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-/* Paragraphs */
-p {
-    margin-top: 0px;
-    margin: auto;
-    max-width: 600px; /* Limit width for better readability */
-    padding: 0 15px;
-}
-
-/* Links */
-a {
-    color: #00796b; /* Teal color for links */
-    text-decoration: none;
-    font-weight: bold;
-    border-bottom: none;
-    transition: color 0.3s ease, border-bottom-color 0.3s ease;
-}
-
-a:hover {
-    color: #ff5252;
-    border-bottom-color: #ff5252;
-}
-
-.events {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px;
-    justify-items: center;
-}
-
-/* Styles for each event card */
-.event, .workshop {
-    background-color: #e0f7fa;
-    border: 1px solid #00796b;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 10px;
-    width: 350px; 
-    height: auto;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-/* Specific styles for h2 within event and workshop class */
-.event-title, .workshop-title {
-    font-size: 1.8em;
-    color: rgb(255, 77, 136);
-    font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    background-color: #ffffff;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Styles for event and workshop details */
-.event-details, .workshop-details {
-    background-color: #ffffff;
-    font-size: 1em;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    margin: 0px;
-    padding-top: 1px;
-    padding-bottom: 10px;
-}
-
-.event-details p,
-.workshop-details p {
-    margin: 5px 0; /* Reduce the margin between paragraphs */
-}
-
-.event-details a, .workshop-details a {
-    word-wrap: break-word; 
-    color: #00796b; 
-    text-decoration: underline; /* Ensure links are underlined */
-}
-
-.event-details a:hover, .workshop-details a:hover {
-    color: rgb(255, 77, 136);
-    text-decoration: underline;
-}
-
-/* Ensure that links within the event-lector and workshop-lector class are not underlined */
-.event-lector a, .workshop-lector a {
-    text-decoration: none;
-    color: #00796b;
-}
-
-.event-lector a:hover, .workshop-lector a:hover {
-    color: rgb(255, 77, 136);
-    text-decoration: underline;
-}
-
-.event-date, .workshop-date {
-    font-size: 1.4em;
-    padding-top: 8px;
-    padding-bottom: 0px;
-}
-
-.event-lector,
-.workshop-lector {
-    margin-bottom: 5px; /* Reduce the bottom margin */
-}
-
-.event-location,
-.workshop-location {
-    margin-bottom: 5px; /* Reduce the bottom margin */
-}
-
-.event-description,
-.workshop-description {
-    margin-top: 5px; /* Reduce the top margin */
-}
-
-/* Hidden description */
-.description {
-    overflow: hidden;
-    height: 40px;
-    transition: height 0.3s ease;
-    margin: 0px;
-}
-
-.event img, .workshop img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    max-height: 200px;
-}
-
-/* Toggle button */
-.toggle-description {
-    display: inline-block;
-    margin-top: 0px;
-    padding: 5px 10px;
-    border: none;
-    background-color: #00796b;
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Hover effect for event and workshop cards */
-.event:hover, .workshop:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
-}
-
-
-.search-container {
-    background-color: #cff2f6; 
-    border: none;
-    text-align: center;
-    margin: 10px 20px; 
-    padding: 10px; 
-    border-radius: 10px;
-}
-
-.search-container input[type="text"] {
-    padding: 10px; 
-    background-color: #ffffff; 
-    color: #434343; 
-    border: none; 
-    border-radius: 10px; 
-    font-size: 1em; 
-    width: 80%; 
-    max-width: 400px; 
-    margin-right: 10px; 
-    outline: 1px solid #00796b 
-}
-
-.search-container button {
+button {
     padding: 10px 20px; 
     background-color: #ffffff; 
-    color: #00796b; 
+    color: #3C3F0F; 
     border: none; 
     border-radius: 20px; 
     font-size: 1em; 
@@ -225,52 +11,222 @@ a:hover {
 }
 
 .search-container button:hover {
-    background-color: #00796b; 
+    background-color: #3C3F0F; 
     color: #ffffff; 
 }
 
-.button {
-    padding: 10px 20px; 
-    background-color: #ffffff; 
-    color: #00796b; 
-    border: none; 
-    border-radius: 20px; 
-    font-size: 1em; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease, color 0.3s ease; 
+.section {
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 3em;
+    font-family: 'Ysabeau SC', sans-serif; 
+    text-align: left;    
+    border-bottom: 1px solid #000006;                   
+}
+
+.workshop-cards {
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.workshop-card {
+    background-color: #D27015;
+    border-radius: 15px;
+    width: 300px;
+    height: auto;
+    padding: 16px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.workshop-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+.workshop-title {
+    font-size: 3em;
+    font-family: 'Amatic SC', sans-serif;
+    padding-bottom: 10px;
+    color: #ffffff;
+                                                
+}
+
+.workshop-date {
+    background-color: #3C3F0F;
+    color: #ffffff;
+    border-radius: 15px;
+    width: 100px;
+    height: 80px;
+    position: relative;
+    top: -20px;
+    left: 220px;
+    display: block;
+    rotate: 11deg;
+    z-index: 1;
+    line-height: 80px;
+}
+
+.workshop-content {
+    background-color: #FFF8F0;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
+    text-align: left;
+    position: relative;
+    margin-top: -84px;
+    color: #000006;
+    font-family: 'Roboto', sans-serif;
+}
+
+.workshop-image {
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+    position: relative;
+}
+
+.workshop-address {
+}
+
+.workshop-address-town {
+    font-weight: bold;
+}
+
+.workshop-time {
     margin-top: 10px;
 }
 
-.button:hover {
-    background-color: #00796b;
-    color: #ffffff;
+.workshop-description {
+    margin-top: 10px;
 }
 
-.button.active {
-    background-color: #00796b;
-    color: #ffffff;
+.workshop-lectors {
+    margin-top: 10px;
 }
 
-.archiv {
-    display: flex;
-    justify-content: right;
+.workshop-lector {
+    display: inline-block;
 }
 
-.archiv-button {
-    padding: 10px 20px;
-    margin-right: 40px;
-    background-color: #ffffff;
-    color: rgb(255, 77, 136);
-    border: none;
-    border-radius: 20px;
-    font-size: 1em;
-    font-weight: bold;
+.workshop-lector-image{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.workshop-lector-name{
+    display: inline-block;
+    vertical-align: middle
+}
+
+.event-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 17px;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.event-card {
+    border-radius: 15px;
+    width: 206px;
+    height: auto;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.archiv-button:hover {
-    background-color: #ffffff;
-    color: #00796b;
+.event-card-color1 {
+    background-color: #B5D2F0;
+    color: #000006;
+}
+
+.event-card-color2 {
+    background-color: #B45C06;
+    color: #ffffff;
+}
+
+.event-card-color3 {
+    background-color: #3C3F0F;
+    color: #ffffff;
+}
+
+.event-card-color4 {
+    background-color: #D8D479;
+    color: #000006;
+}
+
+.event-card-color5 {
+    background-color: #FDE095;
+    color: #000006;
+}
+
+.event-card-color6 {
+    background-color: #DA8D46;
+    color: #000006;
+}
+
+.event-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.event-town {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+    padding-bottom: 5px;
+}
+
+.event-date {
+    font-family: 'Road Rage', sans-serif;
+    font-size: 1.5em;
+    padding-bottom: 10px;
+}
+
+.event-content {
+    background-color: #FFF8F0;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    color: #000006;
+    font-family: 'Roboto', sans-serif;
+}
+
+.event-address {
+    padding-bottom: 10px;
+}
+
+.event-address-town {}
+
+.event-time {}
+
+.event-description {}
+
+.event-lectors {}
+
+.event-lector {
+    font-weight: bold;
+}
+
+.event-lector-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.event-lector-name {
+    display: inline-block;
+    vertical-align: middle;
+
 }

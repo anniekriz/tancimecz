@@ -9,114 +9,111 @@
 {% endblock %}
 
 {% block content %}
-    <div class="lector-page"> 
-        <div class="lector">
-            <img src="{{ lector.image.url }}" alt="{{ lector.image }}">
-            <br><h1>{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</h1>
-            <div class="lector-description">
-                <div class="text">{{ lector.description }}</div>
+    <div class="lector-navigation">
+        {% if prev_lector %}
+            <a href="{% url 'lector_page' slug=prev_lector.slug %}" class="nav-arrow left-arrow">←</a>
+        {% endif %}
+        {% if next_lector %}
+            <a href="{% url 'lector_page' slug=next_lector.slug %}" class="nav-arrow right-arrow">→</a>
+        {% endif %}
+    </div>
+    <div class="text-container lector">
+        <div class="name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
+        <img src="{{ lector.image.url }}" alt="{{ lector.image }}">
+        <div class="lector-description">
+            {{ lector.description }}
+        </div>
+        <div class="contact">
+            {% if lector.email %}
+                <div class="email">{{ lector.email }}</div>
+            {% endif %}
+            {% if lector.phone %}
+                <div class="phone">{{ lector.phone }}</div>
+            {% endif %}
+            {% if lector.link %}
+                <div class="link">
+                    <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="section">
+    {% if workshops|filter_past_events %}
+    <div class="workshop-cards">
+        {% for workshop in workshops|filter_past_events %}
+        <a href="{{ workshop.link }}">
+        <div class="workshop-card">
+            <div class="workshop-title">{{ workshop.title }}</div>
+            {% if workshop.image %}
+            <img class="workshop-image" src="{{ workshop.image.url }}" alt="{{ workshop.title }}">
+            {% endif %}
+            <div class="workshop-date">
+                {% with workshop|date_format as date %}
+                        {{ date.day }} {{ date.date }}
+                {% endwith %}
             </div>
-            <div class="contact">
-                {% if lector.email or lector.phone %}
-                <p><u>Kontakt:</u></p>
-                {% endif %}
-                {% if lector.email %}
-                <p>E-mail: {{ lector.email }}</p>
-                {% endif %}
-                {% if lector.phone %}
-                <p>Telefon: {{ lector.phone }}</p>
-                {% endif %}
-            </div>
-            <div class="link">
-                {% if lector.link %}   
-                <p>Odkaz na stránku: <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a></p>
-                {% endif %}
+            <div class="workshop-content">
+                <div class="workshop-address"><div class="workshop-address-town">{{ workshop.location.town }}</div>{{ workshop.location.address }} </div>
+                <div class="workshop-time">8:00-18:00</div>
+                <div class="workshop-description">
+                    {{ workshop.description }}
+                </div>
+                <div class="workshop-lectors">
+                    <div class="workshop-lector">
+                        {% for lector in workshop.lector.all %}
+                        <a href="{% url 'lector_page' slug=lector.slug %}">
+                            <img class="workshop-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                            <div class="workshop-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="lector-events-title"><h2>Akce s lektorem:</h2></div>
-        <div class="lector-events">
-            {% for item in combined %}
-            <div class="{% if item|is_instance:'Event' %}event{% else %}workshop{% endif %}">
-                {% if item|is_instance:'Event' %}
-                    <h2 class="event-title">{{ item.parent.location.town }}</h2>
-                {% else %}
-                    <h2 class="workshop-title">{{ item.title }}</h2>
-                {% endif %}
-                {% if item.image %}
-                <div class="{% if item|is_instance:'Event' %}event-image{% else %}workshop-image{% endif %}">
-                    <img src="{% if item|is_instance:'Event' %}{{ item.parent.image.url }}{% else %}{{ item.image.url }}{% endif %}">
-                </div>
-                {% endif %}
-                <div class="{% if item|is_instance:'Event' %}event-details{% else %}workshop-details{% endif %}">
-                    {% if item.link %}
-                        <div class="{% if item|is_instance:'Event' %}event-link{% else %}workshop-link{% endif %}">
-                            <p><a href="{{ item.link }}" target="_blank">{{ item.link }}</a></p>
-                        </div>
-                    {% endif %}
-                    <div class="{% if item|is_instance:'Event' %}event-date{% else %}workshop-date{% endif %}">
-                        {% with item|date_format as date %}
-                        <p>{{ date.day }} {{ date.date }} {% if date.startTime %} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}{% endif %}</p>
-                        {% endwith %}
-                    </div>
-                    <div class="{% if item|is_instance:'Event' %}event-location{% else %}workshop-location{% endif %}">
-                        <p><strong>Kde: </strong>{% if item|is_instance:'Event' %}{{ item.parent.location.name }} {{ item.parent.location.address }}, {{ item.parent.location.town }}{% else %}{{ item.location.name }} {{ item.location.address }}, {{ item.location.town }}{% endif %}</p>
-                        <div class="{% if item|is_instance:'Event' %}event-location-description{% else %}workshop-location-description{% endif %}"> 
-                            {% if item|is_instance:'Event' %}
-                                {% if item.parent.location.description %}
-                                    <p>{{ item.parent.location.description }}</p>
-                                {% endif %}
-                            {% else %}
-                                {% if item.location.description %}
-                                    <p>{{ item.location.description }}</p>
-                                {% endif %}
-                            {% endif %}
-                        </div> 
-                    </div>
-                    <div class="{% if item|is_instance:'Event' %}event-lector{% else %}workshop-lector{% endif %}">
-                        <p><strong>S kým: </strong>
-                            {% if item|is_instance:'Event' %}
-                                {% for lector in item.parent.lector.all %}
-                                    <a href="{% url 'lector_page' slug=lector.slug %}">
-                                        {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
-                                    </a>
-                                {% endfor %}
-                            {% else %}
-                                {% for lector in item.lector.all %}
-                                    <a href="{% url 'lector_page' slug=lector.slug %}">
-                                        {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}
-                                    </a>
-                                {% endfor %}
-                            {% endif %}
-                        </p>
-                    </div>
-                    {% if item.price %}
-                        <div class="{% if item|is_instance:'Event' %}event-price{% else %}workshop-price{% endif %}">
-                            <p><strong>Cena: </strong>{{ item.price }}</p>
-                        </div>
-                    {% endif %}
-                    {% if not item|is_instance:'Event' %}
-                    <div class="workshop-contact">
-                        <p><strong>Kontakt: </strong><small>{{ item.contact }}</small></p>
-                    </div>
-                    {% endif %}
-                    <div class="{% if item|is_instance:'Event' %}event-description{% else %}workshop-description{% endif %}">
-                        <p class="description"><strong>Na co se těšit: </strong>{% if item|is_instance:'Event' %}{{ item.parent.description }}<br>{{ item.description }}{% else %}{{ item.description }}{% endif %}</p>
-                        <button class="toggle-description">↓</button>
-                    </div>
-                </div>
-            </div>
+        </a>
         {% endfor %}
-        </div>
-            {% if not combined|filter_past_events %}
-                <p class="no-events">Lektor momentálně nepořádá žádné akce.</p>
-            {% endif %}
-            {% if not combined|filter_past_events %}
-                <div class="archiv">
-                    <form method="get" action="{% url 'past_events' %}">
-                        <button type="submit" class="archiv-button">Archiv událostí</button>
-                    </form>
+    </div>  
+    {% else %}
+    {% endif %} 
+    </div>
+    <div id="events" class="text-container section">
+        {% if events|filter_past_events %}
+        <div class="event-cards">
+            {% for event in events|filter_past_events %}
+            <div class="event-card">
+                <div class="event-town">{{ event.parent.location.town }}</div>
+                <div class="event-date">
+                    {% with event|date_format as date %}
+                        {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}
+                    {% endwith %}
                 </div>
-            {% endif %}
-        
+                <div class="event-content">
+                    <div class="event-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
+                    <div class="event-lectors">
+                        <div class="event-lector">
+                            {% for lector in event.parent.lector.all %}
+                            <a href="{% url 'lector_page' slug=lector.slug %}">
+                                <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                                <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>  
+        {% endif %} 
+        {% if not combined|filter_past_events %}
+            <div class="no-events">Lektor momentálně nepořádá žádné akce.</div>
+        {% endif %}
+        {% if not combined|filter_past_events %}
+            <div class="archiv">
+                <form method="get" action="{% url 'past_events' %}">
+                    <button type="submit" class="archiv-button">Archiv událostí</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
     </div>
 {% endblock %}
