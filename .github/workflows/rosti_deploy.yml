@@ -13,19 +13,16 @@ jobs:
         HOST: ssh.rosti.cz
         USER: app
         PORT: 14817
-        NODE_VERSION: 22.2.0
+        PYTHON_VERSION: 3.12.3
       steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "v22.2.0"
       - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.ROSTI_DEPLOY_SSH_KEY }}
       - name: Setup hostkey
         run: |
           echo "ssh.rosti.cz ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCBQLdOpCnDXFL/e6SexPmJEHPfsl9E0rcfBTqAuFgaTySjGBrHSgLezg1LQDlmxPVOXmqS2zCbX7UjnNpkGwW5m5kQwZTKpBF2iabrDTq/hX2GtzBfLLZNJbiQZ1QSxosgr/9makFEsu8Cnl8mBZx3WypJAPZD4taAm6gCWIZBYhrfN1DNHlockU8GLwfINnY8hgLZSntePjujKAyihUAryUd+dw9LXlzEZGB747yHCJ22HCXs8IxaizLJyX2f/eyGDjpeAlR1O7jRbY9P1RzIbOojT4XAgUqB7WXyGLJY8GF8KKLFLets4TMugdfyvvsEIS7oTNr6EZOwvna+1dih" > ./known_hosts
-      - name: env
+      - name: Env
         run: |
           cat << EOF > .env
           ${{ secrets.ENV }}
@@ -57,7 +54,7 @@ jobs:
           rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git ./ $USER@$HOST:/srv/app/
       - name: install Python dependencies
         run: |
-          pip install -r /srv/app/requirements.txt
+          pip install -r app/requirements.txt
       - name: Apply changes
         run: |
           ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST supervisorctl reread
