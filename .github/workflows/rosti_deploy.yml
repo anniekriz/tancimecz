@@ -3,8 +3,10 @@
 name: Deploy into Roští.cz
 
 on:
-    push:
-      branches: [rosti]
+  workflow_dispatch:
+  push:
+    branches:
+      - rosti
 
 jobs:
     deploy:
