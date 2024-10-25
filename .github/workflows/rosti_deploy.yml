@@ -54,7 +54,7 @@ jobs:
           rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git ./ $USER@$HOST:/srv/app/
       - name: install Python dependencies
         run: |
-          pip install -r app/requirements.txt
+          pip install -r requirements.txt
       - name: Apply changes
         run: |
           ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST supervisorctl reread
