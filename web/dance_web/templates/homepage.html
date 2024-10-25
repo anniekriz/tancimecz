@@ -56,7 +56,7 @@
         {% endif %} 
     </div>
     <div id="events" class="text-container section">
-        <div class="section-title">Taneční večery</div>
+        <div class="section-title">Večerní taneční setkání</div>
         {% if events|filter_past_events %}
         <div class="event-cards">
             {% for event in events|filter_past_events|slice:":10" %}
