@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start": "python3 web/dance_web/app.py",
         "build": "echo 'No build required'",
         "test": "echo 'No test required'"
     },
