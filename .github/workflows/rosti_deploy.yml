@@ -53,7 +53,7 @@ jobs:
           rm rosti.nginx.conf
       - name: Copy code
         run: |
-          rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git ./ $USER@$HOST:/srv/app/
+          rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git ./web/dance_web/ $USER@$HOST:/srv/app/
       - name: install Python dependencies
         run: |
           pip install -r requirements.txt
