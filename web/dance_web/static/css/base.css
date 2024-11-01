@@ -32,9 +32,11 @@ a {
 }
 
 .header {
+    position: relative;
     width: 100%;
-    background-color: #022F42;
+    background-color: rgb(2,47,66,0.3);
     text-align: center;
+    z-index: 1;
 }
 
 .header-content {
