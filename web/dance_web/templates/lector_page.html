@@ -5,6 +5,7 @@
 {% block title %}Events{% endblock %}
 
 {% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/lector_page.css' %}">
 {% endblock %}
 
@@ -23,19 +24,23 @@
         <div class="lector-description">
             {{ lector.description }}
         </div>
-        <div class="contact">
-            {% if lector.email %}
-                <div class="email">{{ lector.email }}</div>
-            {% endif %}
-            {% if lector.phone %}
-                <div class="phone">{{ lector.phone }}</div>
-            {% endif %}
-            {% if lector.link %}
-                <div class="link">
-                    <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
-                </div>
-            {% endif %}
-        </div>
+    </div>
+    <div class="section-contact">
+    {% if lector.email or lector.phone or lector.link %}    
+    <div class="contact">
+        {% if lector.email %}
+            <div class="email">{{ lector.email }}</div>
+        {% endif %}
+        {% if lector.phone %}
+            <div class="phone">{{ lector.phone }}</div>
+        {% endif %}
+        {% if lector.link %}
+            <div class="link">
+                <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
     </div>
     <div class="section">
     {% if workshops|filter_past_events %}
@@ -80,7 +85,7 @@
         {% if events|filter_past_events %}
         <div class="event-cards">
             {% for event in events|filter_past_events %}
-            <div class="event-card">
+            <div class="event-card event-card-color{{ event.colorNumber }}">
                 <div class="event-town">{{ event.parent.location.town }}</div>
                 <div class="event-date">
                     {% with event|date_format as date %}

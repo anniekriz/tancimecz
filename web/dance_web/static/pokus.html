@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Grid Layout</title>
+    <style>
+        /* Grid container for the events */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);  /* 4 equal-width columns */
+            gap: 10px;  /* Space between grid items */
+           width: 830px;/* Optional: set max width for the grid */
+            /*margin: auto;*/
+        }
+
+        /* Base styles for all events */
+        .event {
+            background-color: lightgray;  /* For visibility */
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            color: #333;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Small event (200x200px) */
+        .small-event {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Large event (200x400px) */
+        .large-event {
+            width: 200px;
+            height: 410px;
+            grid-row: span 2;  /* Span two rows in the grid */
+        }
+    </style>
+</head>
+<body>
+
+<div class="events-grid">
+    <div class="event small-event">Event 1</div>
+    <div class="event small-event">Event 2</div>
+    <div class="event large-event">Event 3</div>
+    <div class="event small-event">Event 4</div>
+    <div class="event large-event">Event 5</div>
+    <div class="event small-event">Event 6</div>
+    <div class="event small-event">Event 7</div>
+    <div class="event small-event">Event 8</div>
+</div>
+
+</body>
+</html>

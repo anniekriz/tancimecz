@@ -1,70 +1,60 @@
-.header-image {
-    position: relative;
-    width: 100%;
-    height: 987px;
-    background-image: url("/static/images/kruh.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    z-index: 0;
-    margin-top: -110px;
+.search-container {
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px; 
 }
 
-.header-text {
-    color: #ffffff;
-    font-size: 2.3em;
-    font-family: 'Ysabeau SC', sans-serif;
-    position: relative;
-    top: 743px;
-    left: 670px;
-    line-height: 25px;
-    width: 700px;
+.search-container input[type="text"] {
+    padding: 10px; 
+    background-color: #ffffff; 
+    color: #434343; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 1em; 
+    width: 80%; 
+    max-width: 400px; 
+    margin-right: 10px; 
+    outline: 1px solid #3C3F0F 
 }
 
-.first-line {
-  display: block;
-  text-align: left;
+.search-container button, .archiv-button {
+    padding: 10px 20px; 
+    background-color: #ffffff; 
+    color: #3C3F0F; 
+    border: none; 
+    border-radius: 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    outline: 1px solid #3C3F0F
 }
 
-.second-line {
-  display: block;
-  text-align: right; 
+.filter button {
+    padding: 10px 20px; 
+    background-color: #ffffff; 
+    color: #3C3F0F; 
+    border: none; 
+    border-radius: 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    outline: 1px solid #3C3F0F;
+    margin-left: 20px;
 }
 
-.block1 {
-    align-items: center;
+.search-container button:hover, .archiv-button:hover, .button:hover {
+    background-color: #3C3F0F; 
+    color: #ffffff; 
 }
 
-.image1 {
-    position: absolute;
-    left: 190px;
-    top: 816px;
-    border: 1px solid #ffffff;
+.filter {
+    margin-top: 30px;
 }
 
-.image2 {
-    background-image: url("/static/images/ruce.png");
-}
-
-.block1 {
-    background-color: #ffffff;
-    padding: 40px;
-}
-
-.title1 {
-    position: relative;
-    font-family: 'Ysabeau SC', sans-serif;
-    font-size: 3.5em;
-    text-align: left;
-    left: 500px;
-}
-
-.text1 {
-    position: relative;
-    font-family: 'Raleway', sans-serif; 
-    font-size: 1em;
-    text-align: left;
-    width: 400px;
-    left: 505px;
+.archiv {
+    margin-top: 30px;
 }
 
 .section {
@@ -78,29 +68,32 @@
     border-bottom: 1px solid #000006;                   
 }
 
-.workshop-cards {
-    padding-top: 40px;
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 equal-width columns */
+    gap: 10px;  /* Space between grid items */
+    max-width: 1000px;  /* Optional: set max width for the grid */
+    margin: auto; 
+}
+
+.event-card-flex {
     display: flex;
-    justify-content: center;
+    position: relative;
 }
 
 .workshop-card {
     background-color: #ffffff;
     border-radius: 15px;
-    width: 300px;
-    height: fit-content;
+    width: 200px;
+    height: 400px;
     padding: 16px;
-    display: inline-block;
+    grid-row: span 2;
+    display: block;
     vertical-align: top;
     margin-left: 10px;
     margin-right: 10px;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    border: 1px solid #69390C;
-}
-
-.workshop-card a {
-    color: #000006;
 }
 
 .workshop-card:hover {
@@ -113,7 +106,6 @@
     font-family: 'Amatic SC', sans-serif;
     padding-bottom: 10px;
     color: #000006;
-    text-align: center;
                                                 
 }
 
@@ -141,7 +133,6 @@
     margin-top: -84px;
     color: #000006;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid #69390C;
 }
 
 .workshop-image {
@@ -185,46 +176,21 @@
     vertical-align: middle
 }
 
-.block2 {
-    margin-top: 40px;
-    align-items: center;
-}
-
-.title2 {
-    position: relative;
-    font-family: 'Ysabeau SC', sans-serif;
-    font-size: 3.5em;
-    text-align: right;
-    right: 200px;
-}
-
-.text2 {
-    position: relative;
-    font-family: 'Raleway', sans-serif; 
-    font-size: 1em;
-    text-align: right;
-    width: 400px;
-    left: 823px;
-}
-
-
 .event-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 17px;
     justify-content: center;
     padding-top: 40px;
 }
 
+
 .event-card {
     border-radius: 15px;
-    width: 206px;
-    height: auto;
+    width: 200px;
+    height: 200px;
     padding: 10px;
-    display: inline-block;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
+    display: block;
     cursor: pointer;
 }
 
@@ -264,15 +230,14 @@
 }
 
 .event-town {
-    font-family: 'Amatic SC', sans-serif;
-    font-weight: 700;
-    font-size: 2.3em;
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
     padding-bottom: 5px;
 }
 
 .event-date {
-    font-family: 'Pompiere', sans-serif;
-    font-size: 1.4em;
+    font-family: 'Road Rage', sans-serif;
+    font-size: 1.5em;
     padding-bottom: 10px;
 }
 
@@ -312,82 +277,4 @@
     display: inline-block;
     vertical-align: middle;
 
-}
-
-.event-lector a {
-    color: #000006;
-}
-
-.aboutDances-content {
-    width: 90%;
-    margin: 0 auto;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.aboutDances-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.2em;
-    text-align: left;
-    line-height: 1.6;
-}
-
-.aboutDances-image {
-    padding-right: 20px;
-}
-
-.lectors {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    justify-content: center;
-    gap: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-
-.lector {
-    text-align: center;
-}
-
-.lector-image {
-    object-fit: cover;
-    display: block;
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    border: 1px solid #3C3F0F;
-}
-
-.aboutUs-content {
-    width: 90%;
-    margin: 0 auto;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.aboutUs-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.2em;
-    text-align: left;
-    line-height: 1.6;
-}
-
-.aboutUs-image {
-    padding-left: 20px;
-}
-
-.logo_image {
-    width: 700px;
-}
-
-.button {
-}
-
-.button:hover {
 }
