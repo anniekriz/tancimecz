@@ -318,15 +318,14 @@
     color: #000006;
 }
 
-.aboutDances-content {
-    width: 90%;
+.aboutDances-content, .aboutUs-content {
     margin: 0 auto;
-    padding: 10px;
+    padding-top: 30px;
     display: flex;
-    justify-content: center;
+    padding-bottom: 20px;
 }
 
-.aboutDances-text {
+.aboutDances-text, .aboutUs-text {
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
     text-align: left;
@@ -335,6 +334,10 @@
 
 .aboutDances-image {
     padding-right: 20px;
+}
+
+.aboutUs-image {
+    padding-left: 20px;
 }
 
 .lectors {
@@ -363,24 +366,6 @@
     border: 1px solid #3C3F0F;
 }
 
-.aboutUs-content {
-    width: 90%;
-    margin: 0 auto;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.aboutUs-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.2em;
-    text-align: left;
-    line-height: 1.6;
-}
-
-.aboutUs-image {
-    padding-left: 20px;
-}
 
 .logo_image {
     width: 700px;
