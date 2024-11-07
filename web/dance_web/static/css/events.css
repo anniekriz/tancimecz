@@ -57,20 +57,21 @@
     color: #000006;
 }
 
-.event-card:hover {
+.event:hover {
     transform: scale(1.03); 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .event-town {
-    font-family: 'Raleway', sans-serif;
-    font-size: 2em;
+    font-family: 'Amatic SC', sans-serif;
+    font-weight: 700;
+    font-size: 2.3em;
     padding-bottom: 5px;
 }
 
 .event-date {
-    font-family: 'Road Rage', sans-serif;
-    font-size: 1.5em;
+    font-family: 'Pompiere', sans-serif;
+    font-size: 1.4em;
     padding-bottom: 10px;
 }
 
@@ -112,6 +113,10 @@
 
 }
 
+.event-lector a {
+    color: #000006;
+}
+
 .workshop {
     width: 200px;
     height: 417px;
@@ -125,6 +130,11 @@
     display: block;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border: 1px solid #69390C;
+}
+
+.workshop a {
+    color: #000006;
 }
 
 .workshop:hover {
@@ -137,6 +147,7 @@
     font-family: 'Amatic SC', sans-serif;
     padding-bottom: 10px;
     color: #000006;
+    text-align: center;
                                                 
 }
 
@@ -164,6 +175,7 @@
     margin-top: -84px;
     color: #000006;
     font-family: 'Roboto', sans-serif;
+    border: 1px solid #69390C;
 }
 
 .workshop-image {
@@ -254,6 +266,7 @@
     transition: background-color 0.3s ease, color 0.3s ease; 
     outline: 1px solid #3C3F0F;
     margin-left: 20px;
+    z-index: 10;
 }
 
 .archiv-button {
