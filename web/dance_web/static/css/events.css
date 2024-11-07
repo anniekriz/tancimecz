@@ -1,9 +1,9 @@
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* 4 equal-width columns */
+    grid-template-columns: repeat(5, 1fr);  /* 4 equal-width columns */
     gap: 10px;  /* Space between grid items */
-   width: 830px;/* Optional: set max width for the grid */
-    /*margin: auto;*/
+    width: 1040px;/* Optional: set max width for the grid */
+    margin: auto;/*margin: auto;*/
 }
 
 /* Base styles for all events */
@@ -229,7 +229,7 @@
     outline: 1px solid #3C3F0F 
 }
 
-.search-container button, .archiv-button {
+.search-container button {
     padding: 10px 20px; 
     background-color: #ffffff; 
     color: #3C3F0F; 
@@ -256,9 +256,28 @@
     margin-left: 20px;
 }
 
-.search-container button:hover, .archiv-button:hover, .button:hover {
+.archiv-button {
+    background-color: #3C3F0F; 
+    color: #ffffff;
+    padding: 10px 20px;  
+    border: none; 
+    border-radius: 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    margin-left: 20px;
+}
+
+.search-container button:hover, .filter button:hover {
     background-color: #3C3F0F; 
     color: #ffffff; 
+}
+
+.archiv-button:hover {
+    outline: 1px solid #3C3F0F;
+    background-color: #ffffff; 
+    color: #3C3F0F; 
 }
 
 .filter {
@@ -267,5 +286,8 @@
 
 .archiv {
     margin-top: 30px;
+    right: -540px;
+    top: -68px;
+    position: relative;
 }
 
