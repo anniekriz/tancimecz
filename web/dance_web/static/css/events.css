@@ -2,8 +2,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 4 equal-width columns */
     gap: 10px; /* Space between grid items */
-    width: 1040px; /* Optional: set max width for the grid */
-    margin: auto; /*margin: auto;*/
+    margin: auto; /*margin: auto;*/    
 }
 
 .workshop-card {
@@ -11,6 +10,7 @@
     grid-row: span 2;
     background-color: #ffffff;
     border: 1px solid #69390C;
+    text-align: center;
 }
 
 .workshop-content {
