@@ -73,28 +73,7 @@
     {% if events|filter_past_events %}
     <div class="evening-cards">
         {% for event in events|filter_past_events|slice:":10" %}
-        <div class="evening-card evening-card-color{{ event.colorNumber }}">
-            <div class="evening-card-inner">
-                <div class="evening-town">{{ event.parent.location.town }}</div>
-                <div class="evening-date">
-                    {% with event|date_format as date %}
-                    {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}
-                    {% endwith %}
-                </div>
-                <div class="evening-content">
-                    <div class="evening-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
-                    <div class="evening-lectors">
-                        {% for lector in event.parent.lector.all %}
-                        <a class="evening-lector" href="{% url 'lector_page' slug=lector.slug %}">
-                            <img class="evening-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                            <div class="evening-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {% include "evening_card.html" with event=event %}
         {% endfor %}
     </div>
     {% else %}
