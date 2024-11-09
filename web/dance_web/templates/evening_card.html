@@ -1,19 +1,19 @@
 {% load custom_filters %}
-<div class="evening-card evening-card-color{{ event.colorNumber }}">
-    <div class="evening-card-inner">
-        <div class="evening-town">{{ event.parent.location.town }}</div>
-        <div class="evening-date">
+<div class="evening-card event-card evening-card-color{{ event.colorNumber }}">
+    <div class="event-card-inner">
+        <div class="event-title">{{ event.parent.location.town }}</div>
+        <div class="event-date">
             {% with event|date_format as date %}
             {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}&ndash;{{ date.endTime }} {% endif %}
             {% endwith %}
         </div>
-        <div class="evening-content">
+        <div class="evening-content event-content">
             <div class="evening-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
             <div class="evening-lectors">
                 {% for lector in event.parent.lector.all %}
-                <a class="evening-lector" href="{% url 'lector_page' slug=lector.slug %}">
-                    <img class="evening-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                    <div class="evening-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+                <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
+                    <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                    <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
                 </a>
                 {% endfor %}
             </div>

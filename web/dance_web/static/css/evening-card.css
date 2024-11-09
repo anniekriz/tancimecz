@@ -1,56 +1,94 @@
-/* Evening event card styles */
-.evening-card {
+/* Common styles for Evenings everywhere and Workshops on events page *************************************************************************/
+
+.event-card {
     width: 200px;
-    height: 200px;
     border-radius: 15px;
     padding: 10px;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
     cursor: pointer;
-    display: flex;
+    display: block;
+    overflow: hidden;
 }
-    .evening-card:hover {
+
+    .event-card:hover {
         transform: scale(1.03);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
-.evening-card-inner {
+.event-card-inner {
     display: block;
 }
 
-.evening-card-content {
-    border-radius: 12px;
-    border: 1px solid #69390C;
-    background-color: #FFF8F0;
-    max-height: 349px;
-    overflow: hidden;
-}
-
-/* Header */
-.evening-town {
+.event-title {
     font-family: 'Amatic SC', sans-serif;
     font-weight: 700;
     font-size: 2.3em;
     padding-bottom: 5px;
+    margin-right: -6px;
+    white-space: nowrap;
 }
 
-.evening-date {
+.event-date {
     font-family: 'Pompiere', sans-serif;
     font-size: 1.4em;
     padding-bottom: 10px;
 }
 
-/* Content */
-.evening-content {
+.event-content {
     font-family: 'Roboto', sans-serif;
     color: #000006;
     background-color: #FFF8F0;
     width: 188px;
     border-radius: 10px;
     padding: 8px;
+    padding-bottom: 4px;
+    margin-left: -3px;
+    text-align: left;
+}
+
+.event-lector {
+    color: #000006;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
     margin-left: -2px;
+    margin-right: -4px;
+    align-items: center;
+    height: 29px;
+}
+
+.event-lector:hover {
+    color: #006090;
+    font-weight: bold;
+}
+
+.event-lector-image {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.event-lector-name {
+    margin-left: 4px;
+    font-size: 0.9em;
+    margin-top: -1px;
+}
+
+
+/* Specific styles for Evening event card ****************************************************************************************************/
+
+.evening-card {
+    height: 200px;
+    text-align: left;
+    display: flex;
+}
+
+.evening-content {
     height: 97px;
+    border: 1px solid #FFF8F0;
 }
 
 .evening-address {
@@ -69,64 +107,44 @@
 .evening-lectors {
     display: flex;
     align-items: center;
-    height: 46px;
+    height: 50px;
 }
-
-.evening-lector {
-    color: #000006;
-    white-space: nowrap;
-    overflow: hidden;
-    display: flex;
-    margin-left: -2px;
-    margin-right: -4px;
-    align-items: center;
-}
-    .evening-lector:hover {
-        color: #006090;
-        font-weight: bold;
-    }
-
-.evening-lector-image {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    vertical-align: middle;
-}
-
-.evening-lector-name {
-    margin-left: 3px;
-}
-
 
 /* Card Colors */
 
 .evening-card-color1 {
     background-color: #B5D2F0;
     color: #000006;
+    border: 1px solid #B5D2F0;
 }
 
 .evening-card-color2 {
     background-color: #B45C06;
     color: #ffffff;
+    border: 1px solid #B45C06;
 }
 
 .evening-card-color3 {
     background-color: #3C3F0F;
     color: #ffffff;
+    border: 1px solid #3C3F0F;
 }
 
 .evening-card-color4 {
     background-color: #D8D479;
     color: #000006;
+    border: 1px solid #D8D479;
 }
 
 .evening-card-color5 {
     background-color: #E09E23;
     color: #000006;
+    border: 1px solid #E09E23;
 }
 
 .evening-card-color6 {
     background-color: #DA8D46;
     color: #000006;
+    border: 1px solid #DA8D46;
 }
 

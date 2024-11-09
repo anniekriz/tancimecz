@@ -35,37 +35,34 @@
     {% include "evening_card.html" with event=event %}
     {% else %}
     <!-- a link workshopu -->
-    <div class="event-card workshop">
+    <div class="workshop-card event-card">
         <div class="event-card-inner">
-            <div class="workshop-title">{{ event.title }}</div>
-            <!-- <div class="workshop-date">
+            <div class="event-title">{{ event.title }}</div>
+            <div class="event-date">
                 {% with event|date_format as date %}
                 {{ date.day }} {{ date.date }}
                 {% endwith %}
-            </div> -->
-            <div class="event-card-content">
+            </div>
+            <!--<div class="workshop-card-content">-->
+            <div class="workshop-content event-content">
                 {% if event.image %}
                 <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}">
                 {% endif %}
-                <div class="workshop-content">
-                    <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
-                    <div class="workshop-time">8:00-18:00</div>
-                    <div class="workshop-description">
-                        <!-- {{ event.description }} -->
-                        <p>text bladjbjawbfuo čcan,gvw., lqmuti uqášěšýčíášunrkoawlcrq.e-.,ml .-k oeawefrjian</p>
-                    </div>
-                    <div class="workshop-lectors">
-                        <div class="workshop-lector">
-                            {% for lector in event.lector.all %}
-                            <a href="{% url 'lector_page' slug=lector.slug %}">
-                                <img class="workshop-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                                <div class="workshop-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
-                            </a>
-                            {% endfor %}
-                        </div>
-                    </div>
+                <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
+                <div class="workshop-time">8:00-18:00</div>
+                <div class="workshop-description">
+                    {{ event.description }} 
+                </div>
+                <div class="workshop-lectors">
+                    {% for lector in event.lector.all %}
+                    <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
+                        <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                        <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
+            <!--</div>-->
         </div>
     </div>
     {% endif %}
