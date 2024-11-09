@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 4 equal-width columns */
     gap: 10px; /* Space between grid items */
-    margin: auto; /*margin: auto;*/    
+    margin: auto; /*margin: auto;*/
+    width: 1170px;
 }
 
 .workshop-card {
@@ -99,7 +100,6 @@
     cursor: pointer;
     border: none;
     transition: color 0.3s ease;
-    margin-left: 20px;
     font-family: 'Ysabeau SC', sans-serif;
     background-color: #FFF8F0;
 }
@@ -144,4 +144,25 @@
     right: -540px;
     top: -68px;
     position: relative;
+}
+
+@media (max-width: 1200px) {
+    .events-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+        width: 930px;
+    }
+}
+
+@media (max-width: 960px) {
+    .events-grid {
+        grid-template-columns: repeat(3, 1fr); /* 4 equal-width columns */
+        width: 694px;
+    }
+}
+
+@media (max-width: 720px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr); /* 4 equal-width columns */
+        width: 460px;
+    }
 }
