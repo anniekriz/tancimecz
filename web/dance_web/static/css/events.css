@@ -11,7 +11,7 @@
     display: flex;
 }
 
-.event-field {
+.event-card-inner {
     display: block;
 }
 
@@ -131,6 +131,7 @@
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
     border: 1px solid #69390C;
+    overflow: hidden;
 }
 
 .workshop a {
@@ -166,22 +167,31 @@
     line-height: 80px;
 }
 
-.workshop-content {
+.event-card-content {
+    border-radius: 12px;
+    border: 1px solid #69390C;
     background-color: #FFF8F0;
-    border-radius: 0px 0px 15px 15px;
-    padding: 10px;
+    max-height: 349px;
+    overflow: hidden;
+}
+
+.workshop-content {
     text-align: left;
-    position: relative;
-    margin-top: -84px;
     color: #000006;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid #69390C;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    overflow: hidden;
 }
 
 .workshop-image {
     width: 100%;
     border-radius: 15px 15px 0px 0px;
     position: relative;
+    max-height: 150px;
+    object-fit: cover;
 }
 
 .workshop-address {
@@ -241,7 +251,7 @@
     outline: 1px solid #3C3F0F 
 }
 
-.search-container button {
+/* .search-container button {
     padding: 10px 20px; 
     background-color: #ffffff; 
     color: #3C3F0F; 
@@ -252,24 +262,25 @@
     cursor: pointer; 
     transition: background-color 0.3s ease, color 0.3s ease; 
     outline: 1px solid #3C3F0F
-}
+} */
 
 .filter button {
     padding: 10px 20px; 
-    background-color: #ffffff; 
-    color: #3C3F0F; 
-    border: none; 
-    border-radius: 20px; 
-    font-size: 1em; 
-    font-weight: bold; 
+    color: #000006; 
+    font-size: 1.5em; 
     cursor: pointer; 
-    transition: background-color 0.3s ease, color 0.3s ease; 
-    outline: 1px solid #3C3F0F;
+    border: none;
+    transition: color 0.3s ease; 
     margin-left: 20px;
-    z-index: 10;
+    font-family: 'Ysabeau SC', sans-serif; 
+    background-color: #FFF8F0;
 }
 
-.archiv-button {
+.filter button:hover {
+    color: rgba(103, 240, 252, 1);
+}
+
+/* .archiv-button {
     background-color: #3C3F0F; 
     color: #ffffff;
     padding: 10px 20px;  
@@ -280,21 +291,24 @@
     cursor: pointer; 
     transition: background-color 0.3s ease, color 0.3s ease; 
     margin-left: 20px;
-}
+} */
 
-.search-container button:hover, .filter button:hover {
+/* .search-container button:hover, .filter button:hover {
     background-color: #3C3F0F; 
     color: #ffffff; 
-}
+} */
 
-.archiv-button:hover {
+/* .archiv-button:hover {
     outline: 1px solid #3C3F0F;
     background-color: #ffffff; 
     color: #3C3F0F; 
-}
+} */
 
 .filter {
     margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #000006;
+    text-align: left;
 }
 
 .archiv {
