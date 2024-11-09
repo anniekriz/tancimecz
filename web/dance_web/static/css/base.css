@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: 'Pompiere';
-    src: url('/static/fonts/pompiere-regular.ttf') format('truetype');
+    src: url('/static/fonts/pompiere-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
