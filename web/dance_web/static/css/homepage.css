@@ -208,114 +208,12 @@
 }
 
 
-.event-cards {
+.evening-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 17px;
     justify-content: center;
     padding-top: 40px;
-}
-
-.event-card {
-    border-radius: 15px;
-    width: 206px;
-    height: auto;
-    padding: 10px;
-    display: inline-block;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
-    cursor: pointer;
-}
-
-.event-card-color1 {
-    background-color: #B5D2F0;
-    color: #000006;
-}
-
-.event-card-color2 {
-    background-color: #B45C06;
-    color: #ffffff;
-}
-
-.event-card-color3 {
-    background-color: #3C3F0F;
-    color: #ffffff;
-}
-
-.event-card-color4 {
-    background-color: #D8D479;
-    color: #000006;
-}
-
-.event-card-color5 {
-    background-color: #E09E23;
-    color: #000006;
-}
-
-.event-card-color6 {
-    background-color: #DA8D46;
-    color: #000006;
-}
-
-.event-card:hover {
-    transform: scale(1.03); 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.event-town {
-    font-family: 'Amatic SC', sans-serif;
-    font-weight: 700;
-    font-size: 2.3em;
-    padding-bottom: 5px;
-}
-
-.event-date {
-    font-family: 'Pompiere', sans-serif;
-    font-size: 1.4em;
-    padding-bottom: 10px;
-}
-
-.event-content {
-    background-color: #FFF8F0;
-    border-radius: 10px;
-    padding: 10px;
-    position: relative;
-    color: #000006;
-    font-family: 'Roboto', sans-serif;
-}
-
-.event-address {
-    padding-bottom: 10px;
-}
-
-.event-address-town {}
-
-.event-time {}
-
-.event-description {}
-
-.event-lectors {}
-
-.event-lector {
-    font-weight: bold;
-}
-
-.event-lector-image {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    vertical-align: middle
-}
-
-.event-lector-name {
-    display: inline-block;
-    vertical-align: middle;
-
-}
-
-.event-lector a {
-    color: #000006;
 }
 
 .aboutDances-content, .aboutUs-content {
