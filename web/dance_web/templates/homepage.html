@@ -12,9 +12,8 @@
 {% block content %}
 <div class="header-image">
     <div class="header-text">
-        <span class="first-line">
-            <span class="first-line">„UMÍŠ-LI MLUVIT, UMÍŠ ZPÍVAT,</span> <br>
-            <span class="second-line">UMÍŠ-LI CHODIT, UMÍŠ TANČIT...“</span>
+        <span class="first-line">„UMÍŠ-LI MLUVIT, UMÍŠ ZPÍVAT,</span> <br>
+        <span class="second-line">UMÍŠ-LI CHODIT, UMÍŠ TANČIT...“</span>
     </div>
 </div>
 <img class="image1" src="static/images/zubin.jpg" alt="zubin" width="300px">
@@ -24,7 +23,7 @@
 </div>
 <div class="image2"></div>
 <div id="workshops" class="text-container section">
-    {% if workshops|filter_past_events %}
+    {% if workshops|filter_past_events
     <div class="workshop-cards">
         {% for workshop in workshops|filter_past_events|slice:":3" %}
         <a href="{{ workshop.link }}">
