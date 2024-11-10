@@ -119,25 +119,30 @@
     padding-top: 40px;
 }
 
-.aboutDances-content, .aboutUs-content {
+.about-content {
     margin: 0 auto;
     padding-top: 30px;
     display: flex;
     padding-bottom: 20px;
 }
 
-.aboutDances-text, .aboutUs-text {
+.about-text {
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
     text-align: left;
     line-height: 1.6;
 }
 
-.aboutDances-image {
+.about-text p {
+    margin: 0px;
+    margin-bottom: 15px;
+}
+
+.about-dances-image {
     padding-right: 20px;
 }
 
-.aboutUs-image {
+.about-us-image {
     padding-left: 20px;
 }
 
