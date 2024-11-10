@@ -47,6 +47,9 @@ jobs:
               location /static/ {
                       alias /srv/app/static/;
               }
+              location /static/admin/ {
+                      alias /srv/app/static/;
+              }
           }        
           EOF
           scp -o UserKnownHostsFile=./known_hosts -P $PORT rosti.nginx.conf $USER@$HOST:/srv/conf/nginx.d/app.conf
