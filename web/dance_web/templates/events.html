@@ -28,7 +28,6 @@
         <button type="submit" class="archiv-button">Archiv událostí</button>
     </form>
 </div> -->
-{% if selected_filter == 'ALL' %}
 <div class="events-grid text-container">
     {% for event in combined|filter_past_events %}
     {% if event|is_instance:'Event' %}
@@ -68,82 +67,4 @@
     {% endif %}
     {% endfor %}
 </div>
-{% else %}
-<div id="events" class="events-grid">
-    {% if events|filter_past_events %}
-    {% for event in events|filter_past_events%}
-    <div class="event-card event event-card-color{{ event.colorNumber }}">
-        <div class="event-field">
-            <div class="event-town">{{ event.parent.location.town }}</div>
-            <div class="event-date">
-                {% with event|date_format as date %}
-                {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}–{{ date.endTime }} {% endif %}
-                {% endwith %}
-            </div>
-            <div class="event-content">
-                <div class="event-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
-                <div class="event-lectors">
-                    <div class="event-lector">
-                        {% for lector in event.parent.lector.all %}
-                        <a href="{% url 'lector_page' slug=lector.slug %}">
-                            <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                            <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% if not workshops and not events %}
-    <div class="no-events">
-        Momentálně nejsou naplánované žádné taneční večery.
-    </div>
-    {% endif %}
-</div>
-<div id="workshops" class="events-grid">
-    {% if workshops|filter_past_events %}
-    {% for workshop in workshops|filter_past_events%}
-    <a href="{{ workshop.link }}">
-        <div class="event-card workshop">
-            <div class="event-field">
-                <div class="workshop-title">{{ event.title }}</div>
-                {% if event.image %}
-                <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}">
-                {% endif %}
-                <div class="workshop-date">
-                    {% with workshop|date_format as date %}
-                    {{ date.day }} {{ date.date }}
-                    {% endwith %}
-                </div>
-                <div class="workshop-content">
-                    <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
-                    <div class="workshop-time">8:00-18:00</div>
-                    <div class="workshop-description">
-                        <!-- {{ event.description }} -->
-                        <p>text bladjbjawbfuo čcan,gvw., lqmuti uqášěšýčíášunrkoawlcrq.e-.,ml .-k oeawefrjian</p>
-                    </div>
-                    <div class="workshop-lectors">
-                        <div class="workshop-lector">
-                            {% for lector in event.lector.all %}
-                            <a href="{% url 'lector_page' slug=lector.slug %}">
-                                <img class="workshop-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                                <div class="workshop-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
-                            </a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-    {% endfor %}
-    {% endif %}
-    {% if not workshops and not events %}
-    <p>Momentálně nejsou naplánované žádné workshopy.</p>
-    {% endif %}
-</div>
-{% endif %}
 {% endblock %}

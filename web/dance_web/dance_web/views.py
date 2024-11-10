@@ -20,17 +20,15 @@ def homepage(request):
 def event_list(request):
     selected_filter = request.GET.get('filter', 'ALL')
     if selected_filter == 'WORKSHOP':
-        workshops = Workshop.objects.all().order_by('start')
+        combined = Workshop.objects.all().order_by('start')
         context = {
-            'workshops': workshops,
-            'events': [],
+            'combined': combined,
             'selected_filter': selected_filter
         }
     elif selected_filter == 'EVENT':
-        events = Event.objects.all().order_by('date')
+        combined = Event.objects.all().order_by('date')
         context = {
-            'workshops': [],
-            'events': events,
+            'combined': combined,
             'selected_filter': selected_filter
         }
     else:
