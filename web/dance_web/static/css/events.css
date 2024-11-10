@@ -1,3 +1,7 @@
+.header {
+    background-color: #55768F;
+}
+
 .events-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 4 equal-width columns */

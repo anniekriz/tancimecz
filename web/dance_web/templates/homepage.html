@@ -98,7 +98,7 @@
         {% for lector in lectors %}
         <div class="lector">
             <a href="{% url 'lector_page' slug=lector.slug %}">
-                <img class="lector-image" src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
+                <img class="lector-image" src="{{ lector.image.url }}" alt="{{ lector.firstName }}" title="{{ lector.firstName }} {{ lector.lastName }}"  />
             </a>
         </div>
         {% endfor %}
