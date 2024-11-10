@@ -51,9 +51,13 @@ jobs:
           EOF
           scp -o UserKnownHostsFile=./known_hosts -P $PORT rosti.nginx.conf $USER@$HOST:/srv/conf/nginx.d/app.conf
           rm rosti.nginx.conf
+      - name: Backup SQLite Database
+        run: |
+          TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST "cp /srv/app/db.sqlite3 /srv/app/db_backup_\$TIMESTAMP.sqlite3 || true"
       - name: Copy code
         run: |
-          rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git ./web/dance_web/ $USER@$HOST:/srv/app/
+          rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git --exclude=db.sqlite3 ./web/dance_web/ $USER@$HOST:/srv/app/
       - name: install Python dependencies
         run: |
           pip install -r requirements.txt
