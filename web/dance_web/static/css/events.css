@@ -4,9 +4,9 @@
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 4 equal-width columns */
-    gap: 10px; /* Space between grid items */
-    margin: auto; /*margin: auto;*/
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px; 
+    margin: auto; 
     width: 1170px;
 }
 
