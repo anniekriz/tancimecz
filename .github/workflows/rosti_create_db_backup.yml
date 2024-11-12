@@ -1,0 +1,29 @@
+# .github/workflows/rosti_deploy.yml
+
+name: Create DB backup on Roští.cz
+
+on:
+  workflow_dispatch:
+  
+jobs:
+    backup:
+      runs-on: ubuntu-latest
+      env:
+        HOST: ssh.rosti.cz
+        USER: app
+        PORT: 14817
+      steps:
+      - uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.ROSTI_DEPLOY_SSH_KEY }}
+      - name: Setup hostkey
+        run: |
+          echo "ssh.rosti.cz ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCBQLdOpCnDXFL/e6SexPmJEHPfsl9E0rcfBTqAuFgaTySjGBrHSgLezg1LQDlmxPVOXmqS2zCbX7UjnNpkGwW5m5kQwZTKpBF2iabrDTq/hX2GtzBfLLZNJbiQZ1QSxosgr/9makFEsu8Cnl8mBZx3WypJAPZD4taAm6gCWIZBYhrfN1DNHlockU8GLwfINnY8hgLZSntePjujKAyihUAryUd+dw9LXlzEZGB747yHCJ22HCXs8IxaizLJyX2f/eyGDjpeAlR1O7jRbY9P1RzIbOojT4XAgUqB7WXyGLJY8GF8KKLFLets4TMugdfyvvsEIS7oTNr6EZOwvna+1dih" > ./known_hosts
+      - name: Env
+        run: |
+          cat << EOF > .env
+          ${{ secrets.ENV }}
+          EOF
+      - name: Backup SQLite Database
+        run: |
+          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST "TIMESTAMP=$(date +\"%Y%m%d%H%M%S\") && cp /srv/app/db.sqlite3 /srv/app/db_backup_\$TIMESTAMP.sqlite3"
