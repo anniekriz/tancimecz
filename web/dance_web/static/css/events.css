@@ -11,7 +11,7 @@
 }
 
 .workshop-card {
-    height: 432px;
+    height: 432px; 
     grid-row: span 2;
 }
 
