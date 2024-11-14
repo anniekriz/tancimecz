@@ -67,26 +67,34 @@ a {
     vertical-align: top;
 }
 
-.section-contact {
-    justify-content: center;
-    position: relative;
-    max-width: 800px;
-}
-
 .contact {
     margin-top: 20px;
     position: relative;
-    padding: 20px;
-    border: 1px solid #3C3F0F;
-    width: 1000px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3C3F0F;
+    width: 100%;
+    display: flex;
 }
 
 .email, .phone, .link {
     font-family: 'Raleway', sans-serif;
     font-size: 1.3em;
-    text-align: left;
     line-height: 1.4;
     vertical-align: top;
+    width: 33%;
+    vertical-align: bottom;
+}
+
+.email {
+    text-align: left;
+}
+
+.phone {
+    text-align: center;
+}
+
+.link {
+    text-align: right;
 }
 
 .archiv {

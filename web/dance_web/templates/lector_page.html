@@ -25,20 +25,24 @@
             {{ lector.description }}
         </div>
     </div>
-    <div class="section-contact">
+    <div class="section-container">
     {% if lector.email or lector.phone or lector.link %}    
     <div class="contact">
-        {% if lector.email %}
-            <div class="email">{{ lector.email }}</div>
-        {% endif %}
-        {% if lector.phone %}
-            <div class="phone">{{ lector.phone }}</div>
-        {% endif %}
-        {% if lector.link %}
-            <div class="link">
+        <div class="email">
+            {% if lector.email %}
+                <div class="email">{{ lector.email }}
+            {% endif %}
+        </div>
+        <div class="phone">
+            {% if lector.phone %}
+                {{ lector.phone }}
+            {% endif %}
+        </div>
+        <div class="link">
+            {% if lector.link %}
                 <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
     {% endif %}
     </div>
