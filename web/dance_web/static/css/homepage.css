@@ -60,11 +60,10 @@
 }
 
 .title1 {
-    position: relative;
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 3.5em;
     text-align: left;
-    left: 500px;
+    margin-left: 500px;
 }
 
 .title2 {
@@ -89,8 +88,7 @@
     font-family: 'Raleway', sans-serif;
     font-size: 1em;
     text-align: right;
-    width: 400px;
-    left: 823px;
+    right: 200px;
 }
 
 .block1 {
