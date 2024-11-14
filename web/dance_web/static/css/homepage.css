@@ -81,6 +81,27 @@
     text-align: left;
     width: 400px;
     left: 505px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000006;
+}
+
+.arrow {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0px; 
+    color: #000006;
+    left: 239px;
+    bottom: -18.5px;
+}
+
+.arrow a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.arrow a:hover {
+    color: #67F0FC; 
 }
 
 .text2 {
@@ -102,23 +123,6 @@
     align-items: center;
 }
 
-.arrow {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 0px; 
-    font-size: 1.2em;
-    color: #3C3F0F;
-}
-
-.arrow a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
-}
-
-.arrow a:hover {
-    color: #67F0FC; 
-}
 
 /* Sections */
 .workshop-cards {
