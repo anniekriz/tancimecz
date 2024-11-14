@@ -45,6 +45,10 @@
     padding-top: 0px;
 }
 
+#sections {
+    margin-top: -120px;
+}
+
 .section {
     padding-top: 20px;
     width: 100%;
@@ -58,17 +62,11 @@
     border-bottom: 1px solid #000006;
 }
 
-.image1 {
-    position: absolute;
-    left: 190px;
-    top: 716px;
-    border: 1px solid #ffffff;
-}
-
 .hands-image-container {
     background-color: #FFFFFF;
     background-image: url("/static/images/ruce.jpg");
     background-repeat: no-repeat;
+    margin-top: 120px;
 }
 
 .hands-image {
@@ -81,7 +79,9 @@
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 3.5em;
     text-align: left;
-    margin-left: 500px;
+    margin-left: 350px;
+    position: absolute;
+    top: 190px;
 }
 
 .title2 {
@@ -93,13 +93,14 @@
 }
 
 .text1 {
-    position: relative;
+    position: absolute;
     font-family: 'Raleway', sans-serif;
     font-size: 1em;
     text-align: left;
     width: 400px;
-    left: 505px;
+    left: 354px;
     padding-bottom: 10px;
+    top: 280px;
 }
 
 .text2 {
@@ -114,7 +115,21 @@
     background-color: #ffffff;
     padding: 40px;
     align-items: center;
+    height: 160px;
 }
+
+.block1-image-container {
+    width: 96%;
+    max-width: 1200px;
+    text-align: left;
+    position: relative;
+    top: -212px;
+    left: -100px;
+}
+
+    .block1-image-container img {
+        border: 2px solid #ffffff;
+    }
 
 .block2 {
     margin-top: 40px;
@@ -126,7 +141,7 @@
     max-width: 1200px; /* Length of the line */
     margin: 0px; /* Center the line horizontally */
     position: relative; /* For positioning the arrow */
-    top: -215px;
+    top: -268px;
 }
 
 .workshop-line-with-arrow::after {
@@ -148,7 +163,7 @@
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 1.5em;
     left: 1120px;
-    bottom: 215px;
+    bottom: 272px;
     transition: transform 0.3s ease; 
 }
 
@@ -369,6 +384,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .block1-image-container {
+        left: 0px;
     }
 }
 
