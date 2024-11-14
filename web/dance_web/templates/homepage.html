@@ -22,6 +22,12 @@
     <div class="title1">POJĎTE TANČIT ....</div>
     <div class="text1">Vícedenní taneční semináře nebo kratší, které si zaslouží Vaši pozornost (například návštěvy zahraničních lektorů).</div>
 </div>
+<div class="arrow-link">
+    <a href="{% url 'events' %}">
+        &#8593; <!-- Unicode arrow symbol -->
+        <span>Go to Events</span>
+    </a>
+</div>
 <div class="image2"></div>
 <div id="workshops" class="text-container section">
     {% if workshops|filter_past_events %}
