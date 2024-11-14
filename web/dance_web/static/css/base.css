@@ -84,16 +84,33 @@ a {
     background: linear-gradient(to top, #022F42, #FFF8F0);
     height: 100vh;
     font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lidi {
+    margin-top: 100px;
+}
+
+.footer-text1 {
+    margin-bottom: 20px;
+    top: -50px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.3em;
+    color: #ffffff;
+    position: relative;
 }
 
 .footer-logo {
     vertical-align: bottom;
-    width: 400px;
+    width: 350px;
     position: relative;
-    padding-top: 350px;
+    padding-top: 0px;
 }
 
-.footer-text {
+.footer-text2 {
     font-family: 'Raleway', sans-serif;
     font-size: 1.5em;
     color: #ffffff;
