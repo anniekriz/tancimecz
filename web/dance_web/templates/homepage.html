@@ -28,12 +28,12 @@
     <div class="hands-image"></div>
 </div>
 <div id="workshops" class="text-container section">
-    <div class="more">
+    <div class="workshop-more">
         <a href="{% url 'events' %}?filter=WORKSHOP">
-            <div class="arrow-text">Všechny</div>
+            <div class="workshop-arrow-text">Všechny</div>
         </a>
     </div>
-    <div class="line-with-arrow"></div>
+    <div class="workshop-line-with-arrow"></div>
     {% if workshops|filter_past_events %}
     <div class="workshop-cards">
         {% for workshop in workshops|filter_past_events|slice:":4" %}
@@ -51,6 +51,12 @@
     <div class="text2">spolu na pravidelných tanečních večerech</div>
 </div>
 <div id="events" class="text-container section">
+    <div class="event-more">
+        <a href="{% url 'events' %}?filter=EVENT">
+            <div class="event-arrow-text">Všechny</div>
+        </a>
+    </div>
+    <div class="event-line-with-arrow"></div>
     {% if events|filter_past_events %}
     <div class="evening-cards">
         {% for event in events|filter_past_events|slice:":10" %}

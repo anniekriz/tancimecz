@@ -114,15 +114,15 @@
     align-items: center;
 }
 
-.line-with-arrow {
+.workshop-line-with-arrow {
     border-top: 1px solid #000006; /* Line thickness and color */
     max-width: 1200px; /* Length of the line */
-    margin: 20px auto; /* Center the line horizontally */
+    margin: 0px; /* Center the line horizontally */
     position: relative; /* For positioning the arrow */
     top: -240px;
 }
 
-.line-with-arrow::after {
+.workshop-line-with-arrow::after {
     content: '→'; /* Unicode arrow or you can use a custom icon */
     font-size: 20px; /* Adjust arrow size */
     position: absolute;
@@ -131,31 +131,67 @@
     color: #000006; /* Arrow color */
 }
 
-.more {
+.workshop-more {
     position: relative;
+    width: 40px;
 }
 
-.arrow {
-    
-}
-
-.arrow-text {
+.workshop-arrow-text {
     position: relative;
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 1.5em;
     left: 1120px;
-    bottom: 230px;
-    transition: transform 0.3s ease, text-shadow 0.3s ease; 
+    bottom: 240px;
+    transition: transform 0.3s ease; 
 }
 
-.more a {
+.workshop-more a {
     text-decoration: none;
     color: #000006;
 }
 
-.arrow-text:hover {
-    transform: scale(1.01);
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+.workshop-arrow-text:hover {
+    transform: scale(1.05);
+}
+
+.event-line-with-arrow {
+    border-top: 1px solid #000006; /* Line thickness and color */
+    max-width: 1200px; /* Length of the line */
+    margin: 0px; /* Center the line horizontally */
+    position: relative; /* For positioning the arrow */
+    top: 10px;
+}
+
+.event-line-with-arrow::after {
+    content: '←'; /* Unicode arrow or you can use a custom icon */
+    font-size: 20px; /* Adjust arrow size */
+    position: absolute;
+    left: -18px; /* Position arrow to the end of the line */
+    top: -13.5px; /* Adjust vertically to align with the line */
+    color: #000006; /* Arrow color */
+}
+
+.event-more {
+    position: relative;
+    width: 40px;
+}
+
+.event-arrow-text {
+    position: relative;
+    font-family: 'Ysabeau SC', sans-serif;
+    font-size: 1.5em;
+    left: 0px;
+    bottom: -10px;
+    transition: transform 0.3s ease; 
+}
+
+.event-more a {
+    text-decoration: none;
+    color: #000006;
+}
+
+.event-arrow-text:hover {
+    transform: scale(1.05);
 }
 
 .workshop-cards {
