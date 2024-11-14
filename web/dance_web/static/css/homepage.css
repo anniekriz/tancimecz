@@ -385,6 +385,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    .block1-image-container {
+        left: 0px;
+    }
 }
 
 @media (min-width: 1921px) {
