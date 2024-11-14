@@ -126,7 +126,7 @@ a {
 }
 
 /* Show the hamburger icon and hide the menu on smaller screens */
-@media (max-width: 680px) {
+@media (max-width: 500px) {
     .menu {
         display: none; /* Hide the full menu */
         flex-direction: column;

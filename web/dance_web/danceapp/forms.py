@@ -16,3 +16,12 @@ class EventGroupForm(forms.ModelForm):
             'startTime': CustomTimeWidget(),
             'endTime': CustomTimeWidget(),
         }
+
+class WorkshopForm(forms.ModelForm):
+    class Meta:
+        model = Workshop
+        fields = '__all__'
+        widgets = {
+            'startTime': CustomTimeWidget(),
+            'endTime': CustomTimeWidget(),
+        }

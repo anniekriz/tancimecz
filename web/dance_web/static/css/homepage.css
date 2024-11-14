@@ -147,7 +147,7 @@
 .lectors {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    justify-content: center;
+    justify-items: center;
     gap: 20px;
     padding-left: 15px;
     padding-right: 15px;
@@ -155,9 +155,11 @@
     padding-bottom: 30px;
 }
 
-
 .lector {
     text-align: center;
+    position: relative;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
 }
 
@@ -165,10 +167,41 @@
     object-fit: cover;
     display: block;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    border: 1px solid #3C3F0F;
+    transition: opacity 0.3s ease;
+    border: 1px solid #845704;
+}
+
+/* Name overlay styling */
+.lector-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #E09E23;
+    color: #ffffff;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    border: 1px solid #845704;
+}
+
+/* Hide the image and show the name overlay on hover */
+.lector:hover .lector-image {
+    opacity: 0; /* Hide the image */
+}
+
+.lector:hover .lector-name {
+    opacity: 1; /* Show the name overlay */
 }
 
 .logo_image {
@@ -183,6 +216,41 @@
     vertical-align: top;
     margin-left: 10px;
     margin-right: 10px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #69390C;
+}
+
+.workshop-card a {
+    color: #000006;
+}
+
+.workshop-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.workshop-title {
+    font-size: 3em;
+    font-family: 'Amatic SC', sans-serif;
+    padding-bottom: 10px;
+    color: #000006;
+    text-align: center;
+}
+
+.workshop-date {
+    background-color: #3C3F0F;
+    color: #ffffff;
+    border-radius: 15px;
+    width: 100px;
+    height: 80px;
+    position: relative;
+    top: -20px;
+    left: 220px;
+    display: block;
+    rotate: 11deg;
+    z-index: 1;
+    line-height: 80px;
 }
 
 .workshop-content {
