@@ -119,6 +119,7 @@
     max-width: 1200px; /* Length of the line */
     margin: 20px auto; /* Center the line horizontally */
     position: relative; /* For positioning the arrow */
+    top: -240px;
 }
 
 .line-with-arrow::after {
@@ -143,17 +144,18 @@
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 1.5em;
     left: 1120px;
-    bottom: -10px;
+    bottom: 230px;
+    transition: transform 0.3s ease, text-shadow 0.3s ease; 
 }
 
 .more a {
     text-decoration: none;
     color: #000006;
-    transition: color 0.3s ease;
 }
 
-.arrow a:hover {
-     
+.arrow-text:hover {
+    transform: scale(1.01);
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .workshop-cards {
