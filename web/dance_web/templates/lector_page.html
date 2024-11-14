@@ -18,10 +18,10 @@
             <a href="{% url 'lector_page' slug=next_lector.slug %}" class="nav-arrow right-arrow">→</a>
         {% endif %}
     </div>
-    <div class="text-container lector">
-        <div class="name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
+    <div class="section-container lector-detail">
+        <div class="lector-detail-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
         <img src="{{ lector.image.url }}" alt="{{ lector.image }}">
-        <div class="lector-description">
+        <div class="lector-detail-description">
             {{ lector.description }}
         </div>
     </div>

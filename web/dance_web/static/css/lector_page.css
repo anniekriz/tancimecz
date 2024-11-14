@@ -20,16 +20,16 @@ a {
     position: absolute;
     top: 20px;
     z-index: 10;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    transform-origin: center;  
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center;
 }
 
 .left-arrow {
-    left: 20px; 
+    left: 20px;
 }
 
 .right-arrow {
-    right: 20px; 
+    right: 20px;
 }
 
 .nav-arrow:hover {
@@ -38,27 +38,28 @@ a {
     text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.lector {
+.lector-detail {
     display: inline-block;
 }
 
-.name {
+    .lector-detail img {
+        width: 40%;
+        margin-right: 16px;
+        margin-bottom: 2px;
+        vertical-align: top;
+        float: left;
+    }
+
+.lector-detail-name {
     font-size: 3em;
-    font-family: 'Ysabeau SC', sans-serif; 
-    text-align: left;    
-    border-bottom: 1px solid #000006; 
+    font-family: 'Ysabeau SC', sans-serif;
+    text-align: left;
+    border-bottom: 1px solid #000006;
     margin-bottom: 30px;
 }
 
-.lector img {
-    width: 40%;
-    margin-right: 16px;
-    margin-bottom: 2px;
-    vertical-align: top;
-    float: left;
-}
 
-.lector-description {
+.lector-detail-description {
     font-family: 'Raleway', sans-serif;
     font-size: 1.5em;
     text-align: left;
@@ -86,7 +87,7 @@ a {
     text-align: left;
     line-height: 1.4;
     vertical-align: top;
-} 
+}
 
 .archiv {
     display: flex;
@@ -104,11 +105,11 @@ a {
     cursor: pointer;
 }
 
-.archiv-button:hover {
-    background-color: #FFF8F0;
-    color: #3C3F0F;
-    border: 1px solid #3C3F0F;
-}
+    .archiv-button:hover {
+        background-color: #FFF8F0;
+        color: #3C3F0F;
+        border: 1px solid #3C3F0F;
+    }
 
 .no-events {
     color: #000006;

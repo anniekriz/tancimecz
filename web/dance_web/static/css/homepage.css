@@ -42,6 +42,8 @@
 
 .section {
     padding-top: 20px;
+    width: 100%;
+    display: inline-block;
 }
 
 .section-title {
@@ -82,7 +84,7 @@
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 3.5em;
     text-align: right;
-    right: 200px;
+    right: 160px;
 }
 
 .text1 {
@@ -100,7 +102,7 @@
     font-family: 'Raleway', sans-serif;
     font-size: 1em;
     text-align: right;
-    right: 200px;
+    right: 164px;
 }
 
 .block1 {

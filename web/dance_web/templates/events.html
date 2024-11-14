@@ -16,7 +16,7 @@
         <button type="submit">Hledat</button>
     </form>
 </div> -->
-<div class="filter text-container">
+<div class="filter section-container">
     <form method="get" action="{% url 'events' %}">
         <button type="submit" name="filter" value="ALL" class="button {% if selected_filter == 'ALL' %}active{% endif %}">Všechny</button>
         <button type="submit" name="filter" value="WORKSHOP" class="button {% if selected_filter == 'WORKSHOP' %}active{% endif %}">Vícedenní tance</button>
@@ -28,7 +28,7 @@
         <button type="submit" class="archiv-button">Archiv událostí</button>
     </form>
 </div> -->
-<div class="events-grid text-container">
+<div class="events-grid" section-container>
     {% for event in combined|filter_past_events %}
     {% if event|is_instance:'Event' %}
     {% include "evening_card.html" with event=event %}

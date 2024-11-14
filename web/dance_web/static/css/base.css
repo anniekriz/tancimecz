@@ -31,10 +31,9 @@ a {
     background-color: #FFF8F0;
 }
 
-.text-container {
+.section-container {
     width: 96%;
     max-width: 1200px;
-    text-align: left;
     display: inline-block;
 }
 
@@ -48,6 +47,7 @@ a {
 
 .header-content {
     position: relative;
+    text-align: left;
 }
 
 .menu {
