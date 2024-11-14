@@ -26,4 +26,4 @@ jobs:
           EOF
       - name: Backup SQLite Database
         run: |
-          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST "TIMESTAMP=$(date +\"%Y%m%d%H%M%S\") && cp /srv/app/db.sqlite3 /srv/app/db_backup_\$TIMESTAMP.sqlite3"
+          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST "TIMESTAMP=$(date +\"%Y%m%d%H%M%S\") && cp /srv/app/db.sqlite3 /srv/app/db_backup_\$TIMESTAMP.sqlite3 && cp -r /srv/app/media /srv/app/media_\$TIMESTAMP"
