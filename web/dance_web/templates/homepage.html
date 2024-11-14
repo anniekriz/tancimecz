@@ -22,16 +22,19 @@
     <div class="title1">POJĎTE TANČIT ....</div>
     <div class="text1">
         Vícedenní taneční semináře nebo kratší, které si zaslouží Vaši pozornost (například návštěvy zahraničních lektorů).
-        <div class="arrow">
-            <a href="{% url 'events' %}?filter=WORKSHOP">&#8594; Všechny</a>
-        </div>
     </div>
 </div>
 <div class="image2"></div>
 <div id="workshops" class="text-container section">
+    <div class="more">
+        <a href="{% url 'events' %}?filter=WORKSHOP">
+            <div class="arrow-text">Všechny</div>
+        </a>
+    </div>
+    <div class="line-with-arrow"></div>
     {% if workshops|filter_past_events %}
     <div class="workshop-cards">
-        {% for workshop in workshops|filter_past_events|slice:":3" %}
+        {% for workshop in workshops|filter_past_events|slice:":4" %}
         {% include "workshop_card.html" with event=workshop %}
         {% endfor %}
     </div>

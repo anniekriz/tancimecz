@@ -57,6 +57,9 @@
 
 .image2 {
     background-image: url("/static/images/ruce.jpg");
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
 }
 
 .title1 {
@@ -82,26 +85,6 @@
     width: 400px;
     left: 505px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #000006;
-}
-
-.arrow {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 0px; 
-    color: #000006;
-    left: 239px;
-    bottom: -18.5px;
-}
-
-.arrow a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
-}
-
-.arrow a:hover {
-    color: #67F0FC; 
 }
 
 .text2 {
@@ -123,8 +106,48 @@
     align-items: center;
 }
 
+.line-with-arrow {
+    border-top: 1px solid #000006; /* Line thickness and color */
+    max-width: 1200px; /* Length of the line */
+    margin: 20px auto; /* Center the line horizontally */
+    position: relative; /* For positioning the arrow */
+}
 
-/* Sections */
+.line-with-arrow::after {
+    content: '→'; /* Unicode arrow or you can use a custom icon */
+    font-size: 20px; /* Adjust arrow size */
+    position: absolute;
+    right: -18px; /* Position arrow to the end of the line */
+    top: -13.5px; /* Adjust vertically to align with the line */
+    color: #000006; /* Arrow color */
+}
+
+.more {
+    position: relative;
+}
+
+.arrow {
+    
+}
+
+.arrow-text {
+    position: relative;
+    font-family: 'Ysabeau SC', sans-serif;
+    font-size: 1.5em;
+    left: 1120px;
+    bottom: -10px;
+}
+
+.more a {
+    text-decoration: none;
+    color: #000006;
+    transition: color 0.3s ease;
+}
+
+.arrow a:hover {
+     
+}
+
 .workshop-cards {
     padding-top: 40px;
     display: flex;
