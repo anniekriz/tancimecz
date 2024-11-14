@@ -99,6 +99,7 @@
         <div class="lector">
             <a href="{% url 'lector_page' slug=lector.slug %}">
                 <img class="lector-image" src="{{ lector.image.url }}" alt="{{ lector.firstName }}" title="{{ lector.firstName }} {{ lector.lastName }}"  />
+                <div class="lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
             </a>
         </div>
         {% endfor %}
