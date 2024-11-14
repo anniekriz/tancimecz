@@ -24,90 +24,93 @@
         Vícedenní taneční semináře nebo kratší, které si zaslouží Vaši pozornost (například návštěvy zahraničních lektorů).
     </div>
 </div>
-<div class="hands-image-container text-container">
-    <div class="hands-image"></div>
-</div>
-<div id="workshops" class="text-container section">
-    <div class="workshop-more">
-        <a href="{% url 'events' %}?filter=WORKSHOP">
-            <div class="workshop-arrow-text">Všechny</div>
-        </a>
+<div class="section-container">
+    <div class="hands-image-container text-container">
+        <div class="hands-image"></div>
     </div>
-    <div class="workshop-line-with-arrow"></div>
-    {% if workshops|filter_past_events %}
-    <div class="workshop-cards">
-        {% for workshop in workshops|filter_past_events|slice:":4" %}
-        {% include "workshop_card.html" with event=workshop %}
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="no-workshops">
-        Momentálně nejsou naplánované žádné workshopy.
-    </div>
-    {% endif %}
-</div>
-<div class="block2">
-    <div class="title2">.... A SETKÁVAT SE</div>
-    <div class="text2">spolu na pravidelných tanečních večerech</div>
-</div>
-<div id="events" class="text-container section">
-    <div class="event-more">
-        <a href="{% url 'events' %}?filter=EVENT">
-            <div class="event-arrow-text">Všechny</div>
-        </a>
-    </div>
-    <div class="event-line-with-arrow"></div>
-    {% if events|filter_past_events %}
-    <div class="evening-cards">
-        {% for event in events|filter_past_events|slice:":10" %}
-        {% include "evening_card.html" with event=event %}
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="no-events">
-        Momentálně nejsou naplánované žádné taneční večery.
-    </div>
-    {% endif %}
-</div>
-<div id="aboutDances" class="text-container section">
-    <div class="section-title">O tancích</div>
-    <div class="about-content">
-        <img class="about-dances-image" src="static/images/ludmila.jpeg" alt="" width="350px" height="290px">
-        <div class="about-text">
-            <p>Tance univerzálního míru vycházejí z různých spirituálních a kulturních tradic. Jedná se o kombinaci jednoduchých pohybů lidových tanců se zpěvem posvátných slov ze světových náboženství i tradic původních národů. Tančíme a Zpíváme je pro radost, pro některé z nás jsou duchovní cestou.</p>
-            <p>Nálada těchto Tanců je nekonečně různorodá, můžeme oslavovat hravou energii Krišny, prožívat soucítění buddhistické Qwan Yin, milost panny Marie nebo zakoušet emoce jakéhokoli dalšího duchovního archetypu. Zakoušením těchto mnoha tradic získáváme hlubší porozumění a úctu ke kulturám a dědictví svých předků a pěstujeme ve svých srdcích soucítění a mír.</p>
-        </div>
-    </div>
-</div>
-<div id="lectors" class="text-container section">
-    <div class="section-title">Kdo s vámi tančí</div>
-    <div class="lectors">
-        {% for lector in lectors %}
-        <div class="lector">
-            <a href="{% url 'lector_page' slug=lector.slug %}">
-                <img class="lector-image" src="{{ lector.image.url }}" alt="{{ lector.firstName }}" title="{{ lector.firstName }} {{ lector.lastName }}" />
-                <div class="lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+    <div id="workshops" class="section">
+        <div class="workshop-more">
+            <a href="{% url 'events' %}?filter=WORKSHOP">
+                <div class="workshop-arrow-text">Všechny</div>
             </a>
         </div>
-        {% endfor %}
-        {% if not lectors %}
-        <p>Není dostupný žádný lektor.</p>
+        <div class="workshop-line-with-arrow"></div>
+        {% if workshops|filter_past_events %}
+        <div class="workshop-cards">
+            {% for workshop in workshops|filter_past_events|slice:":4" %}
+            {% include "workshop_card.html" with event=workshop %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-workshops">
+            Momentálně nejsou naplánované žádné workshopy.
+        </div>
         {% endif %}
     </div>
-</div>
-<div id="aboutUs" class="text-container section">
-    <div class="section-title">O nás</div>
-    <div class="about-content">
-        <div class="about-text">
-            <p>Jsme skupina lidí, které spojuje společný tanec a zpívání v&nbsp;kruhu. Základním zdrojem a inspirací nám jsou Tance univerzálního míru, tance dávných tradic, mantrické tance. Mezinárodně se jim říká Dances of Universal Peace (DUP). Mají své kořeny v&nbsp;duchovních tradicích všech kultur.</p>
-            <p>Taneční kruhy DUP jsou po celém světě. Tance v&nbsp;Čechách mají dnes již více než 20-ti letou tradici díky PhDr.&nbsp;Ludmile Chrášťanské, která dala vznik prvním tanečním kruhům, zvala učitele tanců z&nbsp;různých zemí a podpořila další nadšené tanečníky, kteří se rozhodli šířit tyto tance dále.</p>
-            <p>V&nbsp;roce 2004 byl z&nbsp;jejího podnětu zorganizován první mezinárodní kemp v&nbsp;Čechách, kam přijeli taneční učitelé a tanečníci z&nbsp;celé Evropy. V&nbsp;roce 2008 bylo založeno o.s. Tančíme.cz pro organizování tanečních kempů, mítinků a tanečních akcí.</p>
+    <div class="block2">
+        <div class="title2">.... A SETKÁVAT SE</div>
+        <div class="text2">spolu na pravidelných tanečních večerech</div>
+    </div>
+    <div id="events" class="section">
+        <div class="event-more">
+            <a href="{% url 'events' %}?filter=EVENT">
+                <div class="event-arrow-text">Všechny</div>
+            </a>
         </div>
-        <img class="about-us-image" src="static/images/kytary.jpg" alt="" width="400px" height="400px">
+        <div class="event-line-with-arrow"></div>
+        {% if events|filter_past_events %}
+        <div class="evening-cards">
+            {% for event in events|filter_past_events|slice:":10" %}
+            {% include "evening_card.html" with event=event %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-events">
+            Momentálně nejsou naplánované žádné taneční večery.
+        </div>
+        {% endif %}
+    </div>
+    <div id="aboutDances" class="section">
+        <div class="section-title">O tancích</div>
+        <div class="about-content">
+            <img class="about-dances-image" src="static/images/ludmila.jpeg" alt="" width="350px" height="290px">
+            <div class="about-text">
+                <p>Tance univerzálního míru vycházejí z různých spirituálních a kulturních tradic. Jedná se o kombinaci jednoduchých pohybů lidových tanců se zpěvem posvátných slov ze světových náboženství i tradic původních národů. Tančíme a Zpíváme je pro radost, pro některé z nás jsou duchovní cestou.</p>
+                <p>Nálada těchto Tanců je nekonečně různorodá, můžeme oslavovat hravou energii Krišny, prožívat soucítění buddhistické Qwan Yin, milost panny Marie nebo zakoušet emoce jakéhokoli dalšího duchovního archetypu. Zakoušením těchto mnoha tradic získáváme hlubší porozumění a úctu ke kulturám a dědictví svých předků a pěstujeme ve svých srdcích soucítění a mír.</p>
+            </div>
+        </div>
+    </div>
+    <div id="lectors" class="section">
+        <div class="section-title">Kdo s vámi tančí</div>
+        <div class="lectors">
+            {% for lector in lectors %}
+            <div class="lector">
+                <a href="{% url 'lector_page' slug=lector.slug %}">
+                    <img class="lector-image" src="{{ lector.image.url }}" alt="{{ lector.firstName }}" title="{{ lector.firstName }} {{ lector.lastName }}" />
+                    <div class="lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if not lectors %}
+            <p>Není dostupný žádný lektor.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div id="aboutUs" class="section">
+        <div class="section-title">O nás</div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Jsme skupina lidí, které spojuje společný tanec a zpívání v&nbsp;kruhu. Základním zdrojem a inspirací nám jsou Tance univerzálního míru, tance dávných tradic, mantrické tance. Mezinárodně se jim říká Dances of Universal Peace (DUP). Mají své kořeny v&nbsp;duchovních tradicích všech kultur.</p>
+                <p>Taneční kruhy DUP jsou po celém světě. Tance v&nbsp;Čechách mají dnes již více než 20-ti letou tradici díky PhDr.&nbsp;Ludmile Chrášťanské, která dala vznik prvním tanečním kruhům, zvala učitele tanců z&nbsp;různých zemí a podpořila další nadšené tanečníky, kteří se rozhodli šířit tyto tance dále.</p>
+                <p>V&nbsp;roce 2004 byl z&nbsp;jejího podnětu zorganizován první mezinárodní kemp v&nbsp;Čechách, kam přijeli taneční učitelé a tanečníci z&nbsp;celé Evropy. V&nbsp;roce 2008 bylo založeno o.s. Tančíme.cz pro organizování tanečních kempů, mítinků a tanečních akcí.</p>
+            </div>
+            <img class="about-us-image" src="static/images/kytary.jpg" alt="" width="400px" height="400px">
+        </div>
+    </div>
+    <div id="logos" class="section">
+        <div class="section-title">Naši přátelé</div>
+        <img class="logo_image" src="static/images/loga_organizaci.png" alt="">
     </div>
 </div>
-<div id="logos" class="text-container section">
-    <div class="section-title">Naši přátelé</div>
-    <img class="logo_image" src="static/images/loga_organizaci.png" alt="">
-</div>
+
     {% endblock %}

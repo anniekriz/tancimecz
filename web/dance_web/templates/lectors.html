@@ -9,18 +9,20 @@
 {% endblock %}
 
 {% block content %}
-<div class="section">
-    <div class="lectors">
-        {%for lector in lectors%}
-        <div class="lector">
-            <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
-                <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
-            <div class="name">
-                {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
+<div class="section-container">
+    <div class="section">
+        <div class="lectors">
+            {%for lector in lectors%}
+            <div class="lector">
+                <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
+                    <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
+                    <div class="name">
+                        {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
+                    </div>
+                </a>
             </div>
-            </a>
+            {%endfor%}
         </div>
-        {%endfor%}
     </div>
 </div>
 {% endblock %}
