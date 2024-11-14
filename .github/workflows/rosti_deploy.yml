@@ -56,7 +56,7 @@ jobs:
           ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST "TIMESTAMP=$(date +\"%Y%m%d%H%M%S\") && cp /srv/app/db.sqlite3 /srv/app/db_backup_\$TIMESTAMP.sqlite3 && cp -r /srv/app/media /srv/app/media_\$TIMESTAMP"
       - name: Copy code
         run: |
-          rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git --exclude=db.sqlite3 --exclude='db_backup_*.sqlite3' --exclude='media/' ./web/dance_web/ $USER@$HOST:/srv/app/
+          rsync -ae "ssh -o UserKnownHostsFile=./known_hosts -p $PORT" --delete-after --exclude=.git --exclude=db.sqlite3 --exclude='db_backup_*.sqlite3' --exclude='media/' --exclude='assets/' ./web/dance_web/ $USER@$HOST:/srv/app/
       - name: install Python dependencies
         run: |
           pip install -r requirements.txt
