@@ -11,58 +11,19 @@
 }
 
 .workshop-card {
-    height: 432px;
+    height: 432px; 
     grid-row: span 2;
-    background-color: #ffffff;
-    border: 1px solid #69390C;
-    text-align: center;
 }
 
 .workshop-content {
     height: 333px;
-    border: 1px solid #69390C;
-    display: flex;
-    flex-direction: column;
 }
 
 .workshop-image {
     width: 206px;
-    border-radius: 10px 10px 0px 0px;
-    position: relative;
     max-height: 140px;
     object-fit: cover;
-    z-index: 1;
-    margin: -9px;
-    margin-bottom: 8px;
-    flex-shrink: 0;
 }
-
-.workshop-address {
-    flex-shrink: 0;
-}
-
-.workshop-address-town {
-    font-weight: bold;
-}
-
-.workshop-time {
-    flex-shrink: 0;
-    margin-top: 4px;
-}
-
-.workshop-description {
-    margin-top: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-grow: 1;
-    font-size: 0.7em;
-}
-
-.workshop-lectors {
-    margin-top: 10px;
-    flex-shrink: 0;
-}
-
 
 
 .search-container {

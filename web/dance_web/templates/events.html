@@ -5,8 +5,8 @@
 {% block title %}Events{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/evening-card.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -42,7 +42,6 @@
                 {{ date.day }} {{ date.date }}
                 {% endwith %}
             </div>
-            <!--<div class="workshop-card-content">-->
             <div class="workshop-content event-content">
                 {% if event.image %}
                 <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}">
@@ -61,7 +60,6 @@
                     {% endfor %}
                 </div>
             </div>
-            <!--</div>-->
         </div>
     </div>
     {% endif %}

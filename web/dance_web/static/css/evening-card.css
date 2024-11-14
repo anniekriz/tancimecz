@@ -16,6 +16,11 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
+    .event-card a {
+        color: #000006;
+    }
+
+
 .event-card-inner {
     display: block;
 }
@@ -58,10 +63,10 @@
     height: 29px;
 }
 
-.event-lector:hover {
-    color: #006090;
-    font-weight: bold;
-}
+    .event-lector:hover {
+        color: #006090;
+        font-weight: bold;
+    }
 
 .event-lector-image {
     width: 24px;
@@ -148,3 +153,51 @@
     border: 1px solid #DA8D46;
 }
 
+/* Specific styles for Workshop event card ****************************************************************************************************/
+
+.workshop-card {
+    background-color: #ffffff;
+    border: 1px solid #69390C;
+    text-align: center;
+}
+
+.workshop-content {
+    border: 1px solid #69390C;
+    display: flex;
+    flex-direction: column;
+}
+
+.workshop-image {
+    border-radius: 10px 10px 0px 0px;
+    position: relative;
+    z-index: 1;
+    margin: -9px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.workshop-address {
+    flex-shrink: 0;
+}
+
+.workshop-address-town {
+    font-weight: bold;
+}
+
+.workshop-time {
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.workshop-description {
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    font-size: 0.7em;
+}
+
+.workshop-lectors {
+    margin-top: 10px;
+    flex-shrink: 0;
+}
