@@ -1,3 +1,7 @@
+.header {
+    background-color: #55768F;
+}
+
 .section-container {
     color: #000006;
     padding-left: 100px;
@@ -37,29 +41,45 @@
     text-align: left; /* Align text to the left for readability */
 }
 
-.event-lector-image {
-    width: 24px;
-    height: 24px;
+.lectors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  
+    gap: 20px; 
+    padding: 0 20px;
+    margin-top: 40px;
+}
+
+.lector {
+    flex: 0 1 150px;  
+    max-width: 200px;
+    padding: 10px;
+    transition: transform 0.3s;
+    box-sizing: border-box;
+    text-align: center;  
+}
+
+.lector:hover {
+    transform: scale(1.05);
+}
+
+.lector img {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    vertical-align: left;
-    flex-shrink: 0;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 1px solid #3C3F0F;
 }
 
-.event-lector-name {
+.name {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: #3C3F0F;
     font-family: 'Raleway', sans-serif;
-    margin-left: 4px;
-    font-size: 1.5em;
-    margin-top: -1px;
-    text-align: left;
 }
 
-/* Add hover effect for lector images and names */
-.event-lector-name:hover {
-    color: #006090;
-    font-weight: bold;
-}
-
-a {
-    color: #000006;
+.name a {
+    border-bottom: none;
 }
 

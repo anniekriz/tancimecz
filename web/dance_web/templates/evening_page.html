@@ -32,10 +32,14 @@
             {{ eventdescription }}
         </div>
         {% for lector in event.parent.lector.all %}
-            <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
-                <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% if not forloop.last %}, {% endif %}</div>
+        <div class="lector">
+            <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
+                <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
+                <div class="name">
+                    {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
+                </div>
             </a>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}
