@@ -1,6 +1,6 @@
 {% load custom_filters %}
-<a href="{% url 'evening_page' id=event.id %}" style="text-decoration: none;">
 <div class="evening-card event-card evening-card-color{{ event.colorNumber }}">
+    <a href="{% url 'evening_page' id=event.id %}" style="text-decoration: none;">
     <div class="event-card-inner">
         <div class="event-title">{{ event.parent.location.town }}</div>
         <div class="event-date">
