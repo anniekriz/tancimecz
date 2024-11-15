@@ -401,3 +401,19 @@
         transform: translate(-50%, -50%);
     }
 }
+
+.lidi {
+    margin-top: 100px;
+    position: relative;
+    top: 300px;
+    margin-top: -200px;
+}
+
+.footer-text1 {
+    margin-bottom: 20px;
+    top: 230px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.3em;
+    color: #000006;
+    position: relative;
+}
