@@ -2,7 +2,7 @@
 {% load custom_filters %}
 {% load static %}
 
-{% block title %}Events{% endblock %}
+{% block title %}Lector{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
@@ -116,13 +116,13 @@
         {% if not combined|filter_past_events %}
             <div class="no-events">Lektor momentálně nepořádá žádné akce.</div>
         {% endif %}
-        {% if not combined|filter_past_events %}
+        <!-- {% if not combined|filter_past_events %}
             <div class="archiv">
                 <form method="get" action="{% url 'past_events' %}">
                     <button type="submit" class="archiv-button">Archiv událostí</button>
                 </form>
             </div>
-        {% endif %}
+        {% endif %} -->
     </div>
     </div>
 {% endblock %}

@@ -80,6 +80,18 @@ def lector_page(request, slug):
     }
     return render(request, 'lector_page.html', context)
 
+def evening_page(request, id):
+    events = Event.objects.all().order_by('date')
+    event = Event.objects.get(id=id)
+    lectors = Lector.objects.all()
+    
+    context = {
+        'events': events,
+        'event': event,
+        'lectors': lectors
+    }
+    return render(request, 'evening_page.html', context)
+
 def search_result(request):
     form = Search(request.GET)
     events = Event.objects.all()
