@@ -13,6 +13,15 @@
     object-fit: cover;
 }
 
+.header-image1480 {
+    display: inline-block;
+}
+
+.header-image2880 {
+    display: none;
+}
+
+
 .header-text {
     color: #ffffff;
     font-size: 2.8em;
@@ -21,8 +30,9 @@
     top: 743px;
     right: 100px;
     line-height: 25px;
-    width: 700px;
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 1)
+    max-width: 700px;
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
+    width: 55%;
 }
 
 .first-line {
@@ -73,7 +83,7 @@
 .hands-image {
     width: 100%;
     height: 600px;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)); 
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
 }
 
 .title1 {
@@ -145,14 +155,14 @@
     top: -268px;
 }
 
-.workshop-line-with-arrow::after {
-    content: '→'; /* Unicode arrow or you can use a custom icon */
-    font-size: 20px; /* Adjust arrow size */
-    position: absolute;
-    right: -18px; /* Position arrow to the end of the line */
-    top: -13.5px; /* Adjust vertically to align with the line */
-    color: #000006; /* Arrow color */
-}
+    .workshop-line-with-arrow::after {
+        content: '→'; /* Unicode arrow or you can use a custom icon */
+        font-size: 20px; /* Adjust arrow size */
+        position: absolute;
+        right: -18px; /* Position arrow to the end of the line */
+        top: -13.5px; /* Adjust vertically to align with the line */
+        color: #000006; /* Arrow color */
+    }
 
 .workshop-more {
     position: relative;
@@ -165,7 +175,7 @@
     font-size: 1.5em;
     left: 1120px;
     bottom: 272px;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
 }
 
 .workshop-more a {
@@ -185,14 +195,14 @@
     top: 10px;
 }
 
-.event-line-with-arrow::after {
-    content: '←'; /* Unicode arrow or you can use a custom icon */
-    font-size: 20px; /* Adjust arrow size */
-    position: absolute;
-    left: -18px; /* Position arrow to the end of the line */
-    top: -13.5px; /* Adjust vertically to align with the line */
-    color: #000006; /* Arrow color */
-}
+    .event-line-with-arrow::after {
+        content: '←'; /* Unicode arrow or you can use a custom icon */
+        font-size: 20px; /* Adjust arrow size */
+        position: absolute;
+        left: -18px; /* Position arrow to the end of the line */
+        top: -13.5px; /* Adjust vertically to align with the line */
+        color: #000006; /* Arrow color */
+    }
 
 .event-more {
     position: relative;
@@ -205,7 +215,7 @@
     font-size: 1.5em;
     left: 0px;
     bottom: -10px;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
 }
 
 .event-more a {
@@ -336,14 +346,14 @@
     padding-bottom: 8px;
 }
 
-.workshop-card a {
-    color: #000006;
-}
+    .workshop-card a {
+        color: #000006;
+    }
 
-.workshop-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
+    .workshop-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
 
 .workshop-title {
     font-size: 3em;
@@ -377,6 +387,12 @@
 }
 
 
+@media (max-width: 1150px) {
+    .header-text {
+        left: 410px;
+    }
+}
+
 @media (max-width: 1492px) {
     .header-image {
         width: auto;
@@ -399,5 +415,13 @@
         position: absolute;
         top: 64%;
         transform: translate(-50%, -50%);
+    }
+
+    .header-image1480 {
+        display: none;
+    }
+
+    .header-image2880 {
+        display: inline-block;
     }
 }
