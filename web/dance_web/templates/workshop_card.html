@@ -13,7 +13,9 @@
                 <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
                 {% endif %}
                 <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
-                <div class="workshop-time">8:00-18:00</div>
+                {% if event.startTime %}
+                <div class="workshop-time">{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}</div>
+                {% endif %}
                 <div class="workshop-description">
                     {{ event.description }}
                 </div>
