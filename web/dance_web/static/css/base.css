@@ -83,7 +83,7 @@ a {
 
 .footer {
     background: linear-gradient(to top, #022F42, #FFF8F0);
-    height: 100vh;
+    height: 900px;
     font-family: 'Raleway', sans-serif;
     display: flex;
     flex-direction: column;
