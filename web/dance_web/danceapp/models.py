@@ -93,7 +93,8 @@ class Event(models.Model):
         return Event.town_to_number[town_name]
 
 class Workshop(models.Model):
-    title = models.CharField(verbose_name="Název", max_length=101)
+    title1 = models.CharField(verbose_name="Název - 1. řádek", max_length=101)
+    title2 = models.CharField(verbose_name="Název = ě. řádek (nepovinné)", max_length=101, null=True, blank=True)
     link = models.CharField(verbose_name="Odkaz (nepovinné)", max_length=256, null=True, blank=True)
     location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
     start = models.DateField(verbose_name="Začátek", default=datetime.date.today)
