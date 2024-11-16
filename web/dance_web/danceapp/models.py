@@ -102,7 +102,7 @@ class Workshop(models.Model):
     endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='20:00', null=True, blank=True)
     lector = models.ManyToManyField(Lector, verbose_name="Lektor/Lektoři")
     description = models.TextField(verbose_name="Popis")
-    image = models.ImageField(verbose_name="Obrázek", upload_to='images/', null=True, blank=True)
+    image = models.ImageField(verbose_name="Obrázek", upload_to='images/')
     price = models.CharField(verbose_name="Cena (nepovinné)", max_length=50, null=True, blank=True)
 
     def __str__(self):
