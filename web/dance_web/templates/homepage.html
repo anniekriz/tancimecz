@@ -32,12 +32,12 @@
 </div>
 <div id="sections" class="section-container">
     <div id="workshops" class="section">
-        <div class="workshop-more">
+        <!--<div class="workshop-more">
             <a href="{% url 'events' %}?filter=WORKSHOP">
                 <div class="workshop-arrow-text">Všechny</div>
             </a>
-        </div>
-        <div class="workshop-line-with-arrow"></div>
+        </div>-->
+        <!--<div class="workshop-line-with-arrow"></div>-->
         {% if workshops|filter_past_events %}
         <div class="workshop-cards">
             {% for workshop in workshops|filter_past_events|slice:":4" %}
