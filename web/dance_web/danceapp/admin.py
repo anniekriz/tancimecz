@@ -67,9 +67,9 @@ admin.site.unregister(Event)
 
 class WorkshopAdmin(admin.ModelAdmin):
     change_form_template = 'admin/change_form.html'
-    list_display = ('title', 'start', 'end', 'location')
+    list_display = ('title', 'title2', 'start', 'end', 'location')
     list_filter = ('start', 'end', 'location')
-    search_fields = ('title', 'location__name', 'description')
+    search_fields = ('title', 'title2', 'location__name', 'description')
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
