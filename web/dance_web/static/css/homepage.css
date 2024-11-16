@@ -81,7 +81,7 @@ hands-image1480 {
 
 /* Layout */
 #workshops {
-    margin-top: -295px;
+    margin-top: -205px;
 }
 
 #events {
@@ -147,6 +147,7 @@ hands-image1480 {
     padding: 40px;
     align-items: center;
     height: 160px;
+    padding-bottom: 0px;
 }
 
 .block1-image-container {
