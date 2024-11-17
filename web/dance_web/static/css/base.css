@@ -39,11 +39,22 @@ a {
 }
 
 .header {
-    position: relative;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: #022F424D;
     text-align: center;
-    z-index: 1;
+    z-index: 10;
+    transform: translateY(0); /* Visible */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.header.hidden {
+    transform: translateY(-100%);
+}
+.header.solid {
+    background-color: #55768F;
 }
 
 .header-content {
