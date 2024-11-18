@@ -59,8 +59,12 @@
             <a href="{% url 'events' %}?filter=EVENT">
                 <div class="event-arrow-text">Všechny</div>
             </a>
+            <svg class="line-with-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 15" preserveAspectRatio="none">
+                <line x1="0" y1="5" x2="1180" y2="5" stroke="#000006" stroke-width="1" />
+                <line x1="0" y1="5" x2="8" y2="0" stroke="#000006" stroke-width="1" />
+                <line x1="0" y1="5" x2="8" y2="10" stroke="#000006" stroke-width="1" />
+            </svg>
         </div>
-        <div class="event-line-with-arrow"></div>
         {% if events|filter_past_events %}
         <div class="evening-cards">
             {% for event in events|filter_past_events|slice:":10" %}
