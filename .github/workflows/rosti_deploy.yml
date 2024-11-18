@@ -63,6 +63,10 @@ jobs:
       - name: Collect static files
         run: |
           ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST python /srv/app/manage.py collectstatic --noinput
+      - name: Migrate DB changes
+        run: |
+          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST pip install Pillow
+          ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST python /srv/app/manage.py migrate --noinput
       - name: Apply changes
         run: |
           ssh -o UserKnownHostsFile=./known_hosts -p $PORT $USER@$HOST supervisorctl reread
