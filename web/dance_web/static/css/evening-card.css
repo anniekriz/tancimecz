@@ -201,3 +201,7 @@
     margin-top: 10px;
     flex-shrink: 0;
 }
+
+.workshop-long-title .event-title {
+    line-height: 38px;
+}

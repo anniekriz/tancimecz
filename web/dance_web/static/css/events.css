@@ -25,6 +25,11 @@
     object-fit: cover;
 }
 
+.workshop-long-title .workshop-content {
+    height: 307px;
+    margin-top: -4px;
+}
+
 
 .search-container {
     text-align: center;

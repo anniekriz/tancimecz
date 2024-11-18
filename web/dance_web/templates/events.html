@@ -35,7 +35,7 @@
     {% else %}
     <!-- a link workshopu -->
     <div class="workshop-card event-card">
-        <div class="event-card-inner">
+        <div class="event-card-inner {% if event.title2 %}workshop-long-title{% endif %}">
             <div class="event-title">{{ event.title }}{% if event.title2 %}<br>{{ event.title2}}{% endif %}</div>
             <div class="event-date">
                 {% with event|date_format as date %}
