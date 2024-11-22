@@ -31,7 +31,8 @@ urlpatterns = [
     path('o-nas/', views.o_nas, name="o_nas"),
     path('search_lectors/', views.search_result_lectors, name="search_lectors"),
     path('lector/<slug:slug>/', views.lector_page, name='lector_page'),
-    path('event/<int:id>/', views.evening_page, name='evening_page')
+    path('event/<int:id>/', views.evening_page, name='evening_page'),
+    path('workshop/<int:id>/', views.workshop_page, name='workshop_page')
 ] 
 
 urlpatterns += staticfiles_urlpatterns()

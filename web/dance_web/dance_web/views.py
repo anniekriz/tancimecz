@@ -92,6 +92,18 @@ def evening_page(request, id):
     }
     return render(request, 'evening_page.html', context)
 
+def workshop_page(request, id):
+    workshops = Workshop.objects.all().order_by('start')
+    workshop = Workshop.objects.get(id=id)
+    lectors = Lector.objects.all()
+    
+    context = {
+        'events': workshops,
+        'event': workshop,
+        'lectors': lectors
+    }
+    return render(request, 'workshop_page.html', context)
+
 def search_result(request):
     form = Search(request.GET)
     events = Event.objects.all()

@@ -380,7 +380,7 @@
     text-align: center;
 }
 
-.workshop-date {
+/* .workshop-date {
     background-color: #3C3F0F;
     color: #ffffff;
     border-radius: 15px;
@@ -393,7 +393,7 @@
     rotate: 11deg;
     z-index: 1;
     line-height: 80px;
-}
+} */
 
 .workshop-content {
     width: 246px;
