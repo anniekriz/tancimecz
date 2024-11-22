@@ -1,6 +1,6 @@
 {% load custom_filters %}
-<a href="{{ workshop.link }}">
-    <div class="workshop-card event-card">
+<div class="workshop-card event-card">
+    <a href="{% url 'workshop_page' id=event.id %}" style="text-decoration: none;">
         <div class="event-card-inner">
             <div class="event-title">{{ event.title }}{% if event.title2 %}<br>{{ event.title2}}{% endif %}</div>
             <div class="event-date">
@@ -29,5 +29,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</a>
+    </a>
+</div>
