@@ -2,9 +2,12 @@
     background-color: #55768F;
 }
 
+.menu-item2 a {
+    color: #67F0FC!important;
+}
+
 .section-container {
     color: #000006;
-    padding-left: 100px;
 }
 
 .evening-town {
