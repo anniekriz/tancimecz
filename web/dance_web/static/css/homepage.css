@@ -1,4 +1,9 @@
 /* Header */
+
+.menu-item1 a {
+    color: #67F0FC!important;
+}
+
 .header-image-container {
     position: relative;
     width: 100%;
