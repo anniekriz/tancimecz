@@ -26,10 +26,9 @@
     </div>
 </div>
 <div class="section-container">
-    {% if lector.email or lector.phone or lector.link %}
     <div class="lector-detail-contact">
-        {% if lector.email %}
         <div class="lector-detail-email">
+            {% if lector.email %}
             {{ lector.email }}
             {% endif %}
         </div>
@@ -43,7 +42,6 @@
             <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
             {% endif %}
         </div>
-        {% endif %}
     </div>
     <div class="events-grid">
         {% for event in combined|filter_past_events %}
