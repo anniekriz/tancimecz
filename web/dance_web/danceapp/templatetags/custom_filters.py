@@ -74,14 +74,20 @@ def date_format(event):
             endTime = None
     else:
         if start.month == end.month:
-            date = f"{start.day}–{end.strftime('%d.%m.')}".replace('.0', '.')
+            date = f"{start.day}.–{end.day}.{end.month}."
         else:
             date = f"{start.day}.{start.month}.–{end.day}.{end.month}."
         day = f"{DAYS_SHORT[start.weekday()]}-{DAYS_SHORT[end.weekday()]}"
         startTime = None
         endTime = None
 
-    return {'date': date, 'day': day, 'startTime': startTime, 'endTime': endTime}
+    return {
+        'date': date,
+        'day': day,
+        'startTime': startTime,
+        'endTime': endTime
+    }
+
 
 @register.filter
 def is_instance(obj, class_name):

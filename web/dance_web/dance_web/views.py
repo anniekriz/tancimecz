@@ -69,7 +69,8 @@ def lector_page(request, slug):
     next_lector = lectors[lector_index + 1] if lector_index < len(lectors) - 1 else None
     events = Event.objects.filter(parent__lector=lector).order_by('date')
     workshops = Workshop.objects.filter(lector=lector).order_by('start')
-    combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x.start)
+    combined = list(set(chain(events, workshops)))  # Ensure combined list is unique
+    combined.sort(key=lambda x: getattr(x, 'date', getattr(x, 'start', None)))
     context = {
         'workshops': workshops,
         'events': events,
@@ -91,6 +92,18 @@ def evening_page(request, id):
         'lectors': lectors
     }
     return render(request, 'evening_page.html', context)
+
+def workshop_page(request, id):
+    workshops = Workshop.objects.all().order_by('start')
+    workshop = Workshop.objects.get(id=id)
+    lectors = Lector.objects.all()
+    
+    context = {
+        'events': workshops,
+        'event': workshop,
+        'lectors': lectors
+    }
+    return render(request, 'workshop_page.html', context)
 
 def search_result(request):
     form = Search(request.GET)

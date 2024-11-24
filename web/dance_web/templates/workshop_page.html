@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% load static %}
+
+{% block title %}{{ event.title }}{% if event.title2 %} {{ event.title2}}{% endif %}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/workshop_page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="section-container">
+        <div class="workshop-text">
+        {% if event.image %}
+        <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
+        {% endif %}
+            <div class="workshop-title">{{ event.title }}{% if event.title2 %} {{ event.title2}}{% endif %}</div>
+            <div class="workshop-date">
+                {% with event|date_format as date %}
+                {{ date.day }} {{ date.date }}
+                {% endwith %}
+            </div>
+            {% if event.startTime %}
+            <div class="workshop-time">{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}</div>
+            {% endif %}
+            <div class="workshop-content event-content">
+                <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
+                <div class="workshop-description">
+                    {{ event.description }}
+                </div>
+                {% for lector in event.lector.all %}
+                <div class="lector">
+                    <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
+                        <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
+                        <div class="name">
+                            {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -6,6 +6,7 @@ a {
     color: #3C3F0F;
 }
 
+/* Navigation */
 .lector-navigation {
     position: relative;
     width: 100%;
@@ -39,6 +40,7 @@ a {
     text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Lector detail */
 .lector-detail {
     display: inline-block;
     margin-top: 120px;
@@ -69,59 +71,94 @@ a {
     vertical-align: top;
 }
 
-.contact {
-    margin-top: 20px;
-    position: relative;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #3C3F0F;
-    width: 100%;
-    display: flex;
-}
-
-.email, .phone, .link {
+/* Contact */
+.lector-detail-contact {
     font-family: 'Raleway', sans-serif;
-    font-size: 1.3em;
-    line-height: 1.4;
-    vertical-align: top;
-    width: 33%;
-    vertical-align: bottom;
+    font-size: 1.5em;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #000006;
 }
 
-.email {
-    text-align: left;
+.lector-detail-email {
+    text-align: left; 
 }
 
-.phone {
+.lector-detail-phone {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
     text-align: center;
 }
 
-.link {
+.lector-detail-link {
+    margin-left: auto;
     text-align: right;
 }
 
-.archiv {
-    display: flex;
-    justify-content: center;
-    margin-top: 0px;
-}
-
-.archiv-button {
-    padding: 10px 20px;
-    background-color: #3C3F0F;
-    color: #ffffff;
-    border-radius: 20px;
-    font-size: 1em;
-    font-family: 'Raleway', sans-serif;
-    cursor: pointer;
-}
-
-    .archiv-button:hover {
-        background-color: #FFF8F0;
-        color: #3C3F0F;
-        border: 1px solid #3C3F0F;
+    .lector-detail-link a:hover {
+        color: #006090;
     }
+
+/* Events */
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: auto;
+    width: 1170px;
+    margin-top: 44px;
+}
 
 .no-events {
     color: #000006;
     font-family: 'Roboto', sans-serif;
+}
+
+/* Workshop specific styles - same as in event.css */
+
+.workshop-card {
+    height: 432px;
+    grid-row: span 2;
+}
+
+.workshop-content {
+    height: 333px;
+}
+
+.workshop-image {
+    width: 206px;
+    max-height: 140px;
+    object-fit: cover;
+}
+
+.workshop-long-title .workshop-content {
+    height: 307px;
+    margin-top: -4px;
+}
+
+@media (max-width: 1200px) {
+    .events-grid {
+        grid-template-columns: repeat(4, 1fr); 
+        width: 930px;
+    }
+}
+
+@media (max-width: 960px) {
+    .events-grid {
+        grid-template-columns: repeat(3, 1fr); 
+        width: 694px;
+    }
+}
+
+@media (max-width: 720px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        width: 460px;
+    }
 }

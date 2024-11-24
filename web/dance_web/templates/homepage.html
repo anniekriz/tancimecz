@@ -2,10 +2,10 @@
 {% load custom_filters %}
 {% load static %}
 
-{% block title %}Homepage{% endblock %}
+{% block title %}Tančíme{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/evening-card.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/event-card.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
 {% endblock %}
 
@@ -32,12 +32,6 @@
 </div>
 <div id="sections" class="section-container">
     <div id="workshops" class="section">
-        <!--<div class="workshop-more">
-            <a href="{% url 'events' %}?filter=WORKSHOP">
-                <div class="workshop-arrow-text">Všechny</div>
-            </a>
-        </div>-->
-        <!--<div class="workshop-line-with-arrow"></div>-->
         {% if workshops|filter_past_events %}
         <div class="workshop-cards">
             {% for workshop in workshops|filter_past_events|slice:":4" %}

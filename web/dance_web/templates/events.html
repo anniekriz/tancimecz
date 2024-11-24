@@ -5,7 +5,7 @@
 {% block title %}Events{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/evening-card.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/event-card.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
 {% endblock %}
 
@@ -19,7 +19,7 @@
 <div class="filter section-container">
     <form method="get" action="{% url 'events' %}">
         <button type="submit" name="filter" value="ALL" class="button {% if selected_filter == 'ALL' %}active{% endif %}">Všechny</button>
-        <button type="submit" name="filter" value="WORKSHOP" class="button {% if selected_filter == 'WORKSHOP' %}active{% endif %}">Vícedenní tance</button>
+        <button type="submit" name="filter" value="WORKSHOP" class="button {% if selected_filter == 'WORKSHOP' %}active{% endif %}">Větší události</button>
         <button type="submit" name="filter" value="EVENT" class="button {% if selected_filter == 'EVENT' %}active{% endif %}">Taneční večery</button>
     </form>
 </div>
@@ -28,42 +28,12 @@
         <button type="submit" class="archiv-button">Archiv událostí</button>
     </form>
 </div> -->
-<div class="events-grid" section-container>
+<div class="events-grid"> 
     {% for event in combined|filter_past_events %}
     {% if event|is_instance:'Event' %}
     {% include "evening_card.html" with event=event %}
     {% else %}
-    <!-- a link workshopu -->
-    <div class="workshop-card event-card">
-        <div class="event-card-inner {% if event.title2 %}workshop-long-title{% endif %}">
-            <div class="event-title">{{ event.title }}{% if event.title2 %}<br>{{ event.title2}}{% endif %}</div>
-            <div class="event-date">
-                {% with event|date_format as date %}
-                {{ date.day }} {{ date.date }}
-                {% endwith %}
-            </div>
-            <div class="workshop-content event-content">
-                {% if event.image %}
-                <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}">
-                {% endif %}
-                <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
-                {% if event.startTime %}
-                <div class="workshop-time">{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}</div>
-                {% endif %}
-                <div class="workshop-description">
-                    {{ event.description }} 
-                </div>
-                <div class="workshop-lectors">
-                    {% for lector in event.lector.all %}
-                    <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
-                        <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                        <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
-                    </a>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include "workshop_card.html" with event=event %}
     {% endif %}
     {% endfor %}
 </div>
