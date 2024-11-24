@@ -22,7 +22,7 @@
     <div class="lector-detail-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
     <img src="{{ lector.image.url }}" alt="{{ lector.image }}">
     <div class="lector-detail-description">
-        {{ lector.description }}
+        {{ lector.description|safe }}
     </div>
 </div>
 <div class="section-container">

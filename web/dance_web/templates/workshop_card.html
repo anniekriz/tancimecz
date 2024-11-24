@@ -27,7 +27,7 @@
             {% endif %}
             <div class="workshop-description">
                 <a href="{% url 'workshop_page' id=event.id %}">
-                    {{ event.description }}
+                    {{ event.description|safe }}
                 </a>
             </div>
             <div class="workshop-lectors">
