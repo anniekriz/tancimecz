@@ -1,6 +1,8 @@
 from django.db import models
 import datetime
 from django.contrib.auth.models import User
+from threading import Lock
+
 
 class Lector(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Uživatel")
@@ -27,7 +29,7 @@ class Location(models.Model):
     town = models.CharField(max_length=50, verbose_name="Město/Obec")
     address = models.CharField(max_length=100, verbose_name="Adresa (ulice a ČP)")
     description = models.CharField(max_length=100, null=True, blank=True, verbose_name="Popis (jak se k nám dostat)")
-    lector = models.ForeignKey('Lector', on_delete=models.PROTECT, verbose_name="Lektor")
+    lector = models.ManyToManyField(Lector, verbose_name="Lektor")
 
     def __str__(self):
         return f"{self.town}, {self.address}"
@@ -59,20 +61,21 @@ class EventGroup(models.Model):
         return self.description[:75] + '...' if len(self.description) > 75 else self.description
 
 class Event(models.Model):
-    parent = models.ForeignKey(EventGroup, verbose_name="Event Group", on_delete=models.PROTECT)
+    parent = models.ForeignKey('EventGroup', verbose_name="Event Group", on_delete=models.PROTECT)
     date = models.DateField(verbose_name="Datum", default=datetime.date.today)
     description = models.TextField(verbose_name="Dodatečný popis (nepovinné)", null=True, blank=True)
 
+    _lock = Lock()
     town_to_number = {}
     next_number = 1
 
     def __str__(self):
-        startTime = self.parent.startTime.strftime('%H:%M')
+        if not self.parent:
+            return f"Event on {self.date.strftime('%d.%m.%Y')}"
+        startTime = self.parent.startTime.strftime('%H:%M') if self.parent.startTime else 'N/A'
         endTime = self.parent.endTime.strftime('%H:%M') if self.parent.endTime else 'N/A'
         date = self.date.strftime('%d.%m. %Y')
-        if self.parent.endTime:
-            return f"{self.parent.location.town} {date} {startTime}-{endTime}"
-        return f"{self.parent.location.town} {date} {startTime}"
+        return f"{self.parent.location.town} {date} {startTime}-{endTime}" if self.parent.endTime else f"{self.parent.location.town} {date} {startTime}"
     
     class Meta:
         verbose_name = "Taneční večer"
@@ -85,23 +88,23 @@ class Event(models.Model):
     @property
     def colorNumber(self):
         town_name = self.parent.location.town
-        
-        if town_name not in Event.town_to_number:
-            Event.town_to_number[town_name] = Event.next_number
-            Event.next_number = (Event.next_number % 6) + 1
-        
+        with Event._lock:
+            if town_name not in Event.town_to_number:
+                Event.town_to_number[town_name] = Event.next_number
+                Event.next_number = (Event.next_number % 6) + 1
         return Event.town_to_number[town_name]
+
 
 class Workshop(models.Model):
     title = models.CharField(verbose_name="Název - 1. řádek", max_length=101)
     title2 = models.CharField(verbose_name="Název - 2. řádek (nepovinné)", max_length=101, null=True, blank=True)
     link = models.CharField(verbose_name="Odkaz (nepovinné)", max_length=256, null=True, blank=True)
-    location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
+    location = models.ForeignKey('Location', verbose_name="Místo konání", on_delete=models.PROTECT)
     start = models.DateField(verbose_name="Začátek", default=datetime.date.today)
     end = models.DateField(verbose_name="Konec", default=datetime.date.today)
-    startTime = models.TimeField(verbose_name="Začátek (nepovinné)", default='18:00',null=True, blank=True)
-    endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='20:00', null=True, blank=True)
-    lector = models.ManyToManyField(Lector, verbose_name="Lektor/Lektoři")
+    startTime = models.TimeField(verbose_name="Začátek (nepovinné)", null=True, blank=True, default=None)
+    endTime = models.TimeField(verbose_name="Konec (nepovinné)", null=True, blank=True, default=None)
+    lector = models.ManyToManyField('Lector', verbose_name="Lektor/Lektoři")
     description = models.TextField(verbose_name="Popis")
     image = models.ImageField(verbose_name="Obrázek", upload_to='images/', null=True, blank=True)
     price = models.CharField(verbose_name="Cena (nepovinné)", max_length=50, null=True, blank=True)
@@ -112,6 +115,11 @@ class Workshop(models.Model):
     class Meta:
         verbose_name = "Workshop"
         verbose_name_plural = "Workshopy"
+
+    def clean(self):
+        super().clean()
+        if self.start > self.end:
+            raise ValidationError("The start date cannot be later than the end date.")
 
 class EventLector(models.Model):
     eventId = models.ForeignKey(Event, on_delete=models.CASCADE)

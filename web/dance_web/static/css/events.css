@@ -49,13 +49,14 @@
     font-size: 1.5em;
     cursor: pointer;
     border: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
     font-family: 'Ysabeau SC', sans-serif;
-    background-color: #FFF8F0;
+    background-color: rgba(0,0,0,0);
 }
 
     .filter button:hover {
         color: #006090;
+        transform: scale(1.05)
     }
 
 /* .archiv-button {
