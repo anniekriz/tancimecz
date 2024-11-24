@@ -27,18 +27,20 @@
             <div class="workshop-content event-content">
                 <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
                 <div class="workshop-description">
-                    {{ event.description }}
+                    {{ event.description|safe }}
                 </div>
-                {% for lector in event.lector.all %}
-                <div class="lector">
-                    <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
-                        <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
-                        <div class="name">
-                            {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
-                        </div>
-                    </a>
+                <div class="lectors">
+                    {% for lector in event.lector.all %}
+                    <div class="lector">
+                        <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
+                            <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
+                            <div class="name">
+                                {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
