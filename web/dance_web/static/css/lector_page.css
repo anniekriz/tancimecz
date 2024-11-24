@@ -71,35 +71,38 @@ a {
     vertical-align: top;
 }
 
+/* Contact */
 .lector-detail-contact {
-    margin-top: 20px;
-    position: relative;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #3C3F0F;
-    width: 100%;
-    display: flex;
-}
-
-.lector-detail-email, .lector-detail-phone, .lector-detail-link {
     font-family: 'Raleway', sans-serif;
-    font-size: 1.3em;
-    line-height: 1.4;
-    vertical-align: top;
-    width: 33%;
-    vertical-align: bottom;
+    font-size: 1.5em;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #000006;
 }
 
 .lector-detail-email {
-    text-align: left;
+    text-align: left; 
 }
 
 .lector-detail-phone {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
     text-align: center;
 }
 
 .lector-detail-link {
+    margin-left: auto;
     text-align: right;
 }
+
+    .lector-detail-link a:hover {
+        color: #006090;
+    }
 
 /* Events */
 
