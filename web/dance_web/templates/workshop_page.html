@@ -21,7 +21,7 @@
         {% if event.image %}
         <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
         {% endif %}
-        <div class="workshop-content">
+        <div class="workshop-text">
             <div class="workshop-title">{{ event.title }}{% if event.title2 %} {{ event.title2}}{% endif %}</div>
             <div class="workshop-date">
                 {% with event|date_format as date %}
