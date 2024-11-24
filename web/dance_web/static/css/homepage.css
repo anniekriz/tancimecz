@@ -17,14 +17,6 @@
     object-fit: cover;
 }
 
-.header-image1480 {
-    display: inline-block;
-}
-
-.header-image2880 {
-    display: none;
-}
-
 .hands-image-container {
     /*background-color: #FFFFFF;*/
     position: relative;
@@ -49,14 +41,6 @@
     position: absolute;
     z-index: 2;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 248, 240, 1) 100%);
-}
-
-.hands-image1480 {
-    display: inline-block;
-}
-
-.hands-image2880 {
-    display: none;
 }
 
 .header-text {
@@ -417,14 +401,6 @@
 
 
 @media (min-width: 1480px) {
-    .hands-image1480 {
-        display: none;
-    }
-
-    .hands-image2880 {
-        display: inline-block;
-    }
-
     .hands-image {
         width: 100%;
     }
@@ -451,14 +427,6 @@
         position: absolute;
         top: 53%;
         transform: translate(-50%, -50%);
-    }
-
-    .header-image1480 {
-        display: none;
-    }
-
-    .header-image2880 {
-        display: inline-block;
     }
 
     .hands-image-container {

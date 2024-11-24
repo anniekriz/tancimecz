@@ -11,8 +11,10 @@
 
 {% block content %}
 <div class="header-image-container">
-    <img class="header-image header-image1480" src="static/images/kruh1480.jpg" />
-    <img class="header-image header-image2880" src="static/images/kruh2880.jpg" />
+    <picture>
+        <source media="(min-width: 1492px)" srcset="static/images/kruh2880.jpg">
+        <img class="header-image" src="static/images/kruh1480.jpg" />
+    </picture>
     <div class="header-text">
         <span class="first-line">„Umíš-li mluvit, umíš zpívat,</span> <br>
         <span class="second-line">umíš-li chodit, umíš tančit...“</span>
@@ -27,8 +29,10 @@
 </div>
 <div class="hands-image-container">
     <div class="hands-image-mask"></div>
-    <img class="hands-image hands-image1480" src="static/images/ruce1480.jpg"/>
-    <img class="hands-image hands-image2880" src="static/images/ruce2880.jpg"/>
+    <picture>
+        <source media="(min-width: 1480px)" srcset="static/images/ruce2880.jpg">
+        <img class="hands-image" src="static/images/ruce1480.jpg" />
+    </picture>
 </div>
 <div id="sections" class="section-container">
     <div id="workshops" class="section">
