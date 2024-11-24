@@ -99,21 +99,21 @@
 
 @media (max-width: 1200px) {
     .events-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+        grid-template-columns: repeat(4, 1fr); 
         width: 930px;
     }
 }
 
 @media (max-width: 960px) {
     .events-grid {
-        grid-template-columns: repeat(3, 1fr); /* 4 equal-width columns */
+        grid-template-columns: repeat(3, 1fr); 
         width: 694px;
     }
 }
 
 @media (max-width: 720px) {
     .events-grid {
-        grid-template-columns: repeat(2, 1fr); /* 4 equal-width columns */
+        grid-template-columns: repeat(2, 1fr); 
         width: 460px;
     }
 }
