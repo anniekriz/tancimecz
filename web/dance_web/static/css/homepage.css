@@ -169,7 +169,7 @@
     text-decoration: none;
     margin-right: 185px; /* Space between the arrow and text */
     white-space: nowrap; /* Prevent wrapping */
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
     margin-bottom: 0px; /* Space between the text and the arrow */
     text-align: left;
     justify-self: right;
@@ -184,6 +184,7 @@
 
 .workshop-arrow-text:hover {
     transform: scale(1.05); /* Slight hover effect */
+    color: #006090;
 }
 
 .event-more {
@@ -199,7 +200,7 @@
     text-decoration: none;
     margin-left: 10px; /* Space between the arrow and text */
     white-space: nowrap; /* Prevent wrapping */
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
     margin-bottom: 0px; /* Space between the text and the arrow */
     width: 100px;
     text-align: left;
@@ -212,6 +213,7 @@
 
 .event-arrow-text:hover {
     transform: scale(1.05); /* Slight hover effect */
+    color: #006090;
 }
 
 .line-with-arrow {
