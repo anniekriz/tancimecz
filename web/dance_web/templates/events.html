@@ -28,7 +28,7 @@
         <button type="submit" class="archiv-button">Archiv událostí</button>
     </form>
 </div> -->
-<div class="events-grid" section-container>
+<div class="events-grid"> 
     {% for event in combined|filter_past_events %}
     {% if event|is_instance:'Event' %}
     {% include "evening_card.html" with event=event %}

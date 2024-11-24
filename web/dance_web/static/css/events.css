@@ -11,7 +11,7 @@
 }
 
 .workshop-card {
-    height: 432px; 
+    height: 432px;
     grid-row: span 2;
 }
 
@@ -31,76 +31,6 @@
 }
 
 
-.search-container {
-    text-align: center;
-    margin-top: 30px;
-    padding: 10px;
-}
-
-    .search-container input[type="text"] {
-        padding: 10px;
-        background-color: #ffffff;
-        color: #434343;
-        border: none;
-        border-radius: 10px;
-        font-size: 1em;
-        width: 80%;
-        max-width: 400px;
-        margin-right: 10px;
-        outline: 1px solid #3C3F0F
-    }
-
-/* .search-container button {
-    padding: 10px 20px; 
-    background-color: #ffffff; 
-    color: #3C3F0F; 
-    border: none; 
-    border-radius: 20px; 
-    font-size: 1em; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease, color 0.3s ease; 
-    outline: 1px solid #3C3F0F
-} */
-
-.filter button {
-    padding: 10px 20px;
-    color: #000006;
-    font-size: 1.5em;
-    cursor: pointer;
-    border: none;
-    transition: color 0.3s ease;
-    font-family: 'Ysabeau SC', sans-serif;
-    background-color: #FFF8F0;
-}
-
-    .filter button:hover {
-        color: #006090;
-    }
-
-/* .archiv-button {
-    background-color: #3C3F0F; 
-    color: #ffffff;
-    padding: 10px 20px;  
-    border: none; 
-    border-radius: 20px; 
-    font-size: 1em; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease, color 0.3s ease; 
-    margin-left: 20px;
-} */
-
-/* .search-container button:hover, .filter button:hover {
-    background-color: #3C3F0F; 
-    color: #ffffff; 
-} */
-
-/* .archiv-button:hover {
-    outline: 1px solid #3C3F0F;
-    background-color: #ffffff; 
-    color: #3C3F0F; 
-} */
 
 .filter {
     margin-top: 120px;
@@ -109,30 +39,42 @@
     text-align: left;
 }
 
-.archiv {
-    margin-top: 30px;
-    right: -540px;
-    top: -68px;
-    position: relative;
+.filter button {
+    padding: 10px 20px;
+    color: #000006;
+    font-size: 1.5em;
+    cursor: pointer;
+    border: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-family: 'Ysabeau SC', sans-serif;
+    background-color: rgba(0,0,0,0);
 }
+
+    .filter button:hover {
+        color: #006090;
+        transform: scale(1.05)
+    }
+
+
+
 
 @media (max-width: 1200px) {
     .events-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+        grid-template-columns: repeat(4, 1fr); 
         width: 930px;
     }
 }
 
 @media (max-width: 960px) {
     .events-grid {
-        grid-template-columns: repeat(3, 1fr); /* 4 equal-width columns */
+        grid-template-columns: repeat(3, 1fr); 
         width: 694px;
     }
 }
 
 @media (max-width: 720px) {
     .events-grid {
-        grid-template-columns: repeat(2, 1fr); /* 4 equal-width columns */
+        grid-template-columns: repeat(2, 1fr); 
         width: 460px;
     }
 }
