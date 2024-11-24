@@ -67,9 +67,10 @@ def lector_page(request, slug):
     lector_index = list(lectors).index(lector)
     prev_lector = lectors[lector_index - 1] if lector_index > 0 else None
     next_lector = lectors[lector_index + 1] if lector_index < len(lectors) - 1 else None
-    events = Event.objects.filter(parent__lector=lector).order_by('date')
-    workshops = Workshop.objects.filter(lector=lector).order_by('start')
-    combined = sorted(chain(events, workshops), key=lambda x: x.date if hasattr(x, 'date') else x.start)
+    events = Event.objects.all().order_by('date')
+    workshops = Workshop.objects.all().order_by('start')
+    combined = list(set(chain(events, workshops))) 
+    combined.sort(key=lambda x: getattr(x, 'date', getattr(x, 'start', None)))
     context = {
         'workshops': workshops,
         'events': events,
