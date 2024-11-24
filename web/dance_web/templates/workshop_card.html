@@ -1,33 +1,43 @@
 {% load custom_filters %}
 <div class="workshop-card event-card">
-    <a href="{% url 'workshop_page' id=event.id %}" style="text-decoration: none;">
-        <div class="event-card-inner">
+    <div class="event-card-inner {% if event.title2 %}workshop-long-title{% endif %}">
+        <a href="{% url 'workshop_page' id=event.id %}">
             <div class="event-title">{{ event.title }}{% if event.title2 %}<br>{{ event.title2}}{% endif %}</div>
             <div class="event-date">
                 {% with event|date_format as date %}
                 {{ date.day }} {{ date.date }}
                 {% endwith %}
             </div>
-            <div class="workshop-content event-content">
-                {% if event.image %}
+        </a>
+        <div class="workshop-content event-content">
+            {% if event.image %}
+            <a href="{% url 'workshop_page' id=event.id %}">
                 <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
-                {% endif %}
-                <div class="workshop-address"><div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }} </div>
-                {% if event.startTime %}
+            </a>
+            {% endif %}
+            <a href="{% url 'workshop_page' id=event.id %}">
+                <div class="workshop-address">
+                    <div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }}
+                </div>
+            </a>
+            {% if event.startTime %}
+            <a href="{% url 'workshop_page' id=event.id %}">
                 <div class="workshop-time">{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}</div>
-                {% endif %}
-                <div class="workshop-description">
+            </a>
+            {% endif %}
+            <div class="workshop-description">
+                <a href="{% url 'workshop_page' id=event.id %}">
                     {{ event.description }}
-                </div>
-                <div class="workshop-lectors">
-                    {% for lector in event.lector.all %}
-                    <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
-                        <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                        <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
-                    </a>
-                    {% endfor %}
-                </div>
+                </a>
+            </div>
+            <div class="workshop-lectors">
+                {% for lector in event.lector.all %}
+                <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
+                    <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                    <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
+                </a>
+                {% endfor %}
             </div>
         </div>
-    </a>
+    </div>
 </div>

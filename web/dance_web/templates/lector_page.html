@@ -5,6 +5,7 @@
 {% block title %}{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}{% endblock %}
 
 {% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/event-card.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/lector_page.css' %}">
 {% endblock %}
