@@ -2,36 +2,7 @@
     background-color: #55768F;
 }
 
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 10px; 
-    margin: auto; 
-    width: 1170px;
-}
-
-.workshop-card {
-    height: 432px;
-    grid-row: span 2;
-}
-
-.workshop-content {
-    height: 333px;
-}
-
-.workshop-image {
-    width: 206px;
-    max-height: 140px;
-    object-fit: cover;
-}
-
-.workshop-long-title .workshop-content {
-    height: 307px;
-    margin-top: -4px;
-}
-
-
-
+/* Menu */
 .filter {
     margin-top: 120px;
     margin-bottom: 30px;
@@ -55,6 +26,34 @@
         transform: scale(1.05)
     }
 
+/* Workshop & Event Cards */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: auto;
+    width: 1170px;
+}
+
+.workshop-card {
+    height: 432px;
+    grid-row: span 2;
+}
+
+.workshop-content {
+    height: 333px;
+}
+
+.workshop-image {
+    width: 206px;
+    max-height: 140px;
+    object-fit: cover;
+}
+
+.workshop-long-title .workshop-content {
+    height: 307px;
+    margin-top: -4px;
+}
 
 
 
