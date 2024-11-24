@@ -27,19 +27,19 @@
 </div>
 <div class="section-container">
     {% if lector.email or lector.phone or lector.link %}
-    <div class="contact">
-        <div class="email">
+    <div class="lector-detail-contact">
+        <div class="lector-detail-email">
             {% if lector.email %}
             <div class="email">
                 {{ lector.email }}
                 {% endif %}
             </div>
-            <div class="phone">
+            <div class="lector-detail-phone">
                 {% if lector.phone %}
                 {{ lector.phone }}
                 {% endif %}
             </div>
-            <div class="link">
+            <div class="lector-detail-link">
                 {% if lector.link %}
                 <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
                 {% endif %}
@@ -59,12 +59,5 @@
     {% if not combined|filter_past_events %}
     <div class="no-events section-container">Lektor momentálně nepořádá žádné akce.</div>
     {% endif %}
-    <!-- {% if not combined|filter_past_events %}
-    <div class="archiv">
-        <form method="get" action="{% url 'past_events' %}">
-            <button type="submit" class="archiv-button">Archiv událostí</button>
-        </form>
-    </div>
-    {% endif %} -->
 </div>
 {% endblock %}
