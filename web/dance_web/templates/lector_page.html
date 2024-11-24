@@ -26,26 +26,22 @@
     </div>
 </div>
 <div class="section-container">
-    {% if lector.email or lector.phone or lector.link %}
     <div class="lector-detail-contact">
         <div class="lector-detail-email">
             {% if lector.email %}
-            <div class="email">
-                {{ lector.email }}
-                {% endif %}
-            </div>
-            <div class="lector-detail-phone">
-                {% if lector.phone %}
-                {{ lector.phone }}
-                {% endif %}
-            </div>
-            <div class="lector-detail-link">
-                {% if lector.link %}
-                <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
-                {% endif %}
-            </div>
+            {{ lector.email }}
+            {% endif %}
         </div>
-        {% endif %}
+        <div class="lector-detail-phone">
+            {% if lector.phone %}
+            {{ lector.phone }}
+            {% endif %}
+        </div>
+        <div class="lector-detail-link">
+            {% if lector.link %}
+            <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
+            {% endif %}
+        </div>
     </div>
     <div class="events-grid">
         {% for event in combined|filter_past_events %}
