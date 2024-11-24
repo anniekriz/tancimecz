@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Tančíme.cz{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/ikona2.png' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     {% block extra_css %}{% endblock %}
     <script src="{% static 'js/script.js' %}" defer></script>
@@ -24,9 +25,9 @@
                 <span></span>
             </div>
             <div class="menu" id="menu">
-                <div class="menu-item"><a href="{% url 'homepage' %}">Úvod</a></div>
-                <div class="menu-item"><a href="{% url 'events' %}">Kdy a kde</a></div>
-                <div class="menu-item"><a href="{% url 'lectors' %}">S kým</a></div>
+                <div class="menu-item menu-item1"><a href="{% url 'homepage' %}">Úvod</a></div>
+                <div class="menu-item menu-item2"><a href="{% url 'events' %}">Kdy a kde</a></div>
+                <div class="menu-item menu-item3"><a href="{% url 'lectors' %}">S kým</a></div>
             </div>
         </div>
         </div>

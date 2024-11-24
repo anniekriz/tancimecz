@@ -2,6 +2,10 @@
     background-color: #55768F;
 }
 
+.menu-item2 a {
+    color: #67F0FC!important;
+}
+
 /* Menu */
 .filter {
     margin-top: 120px;
@@ -24,6 +28,10 @@
     .filter button:hover {
         color: #006090;
         transform: scale(1.05)
+    }
+
+    .filter .button.active {
+        color: #006090;
     }
 
 /* Workshop & Event Cards */

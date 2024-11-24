@@ -5,7 +5,7 @@
 {% block title %}{{ event.parent.location.town }}{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/event_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/evening_page.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -27,7 +27,7 @@
         </div>
         <div class="evening-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
         <div class="evening-description">
-            {{ event.parent.description }}
+            {{ event.parent.description|safe }}
             {{ eventdescription }}
         </div>
         {% for lector in event.parent.lector.all %}
