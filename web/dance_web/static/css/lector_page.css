@@ -121,7 +121,38 @@ a {
         border: 1px solid #3C3F0F;
     }
 
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: auto;
+    width: 1170px;
+    margin-top: 30px;
+}
+
 .no-events {
     color: #000006;
     font-family: 'Roboto', sans-serif;
+}
+
+/* Workshop specific styles - same as in event.css */
+
+.workshop-card {
+    height: 432px;
+    grid-row: span 2;
+}
+
+.workshop-content {
+    height: 333px;
+}
+
+.workshop-image {
+    width: 206px;
+    max-height: 140px;
+    object-fit: cover;
+}
+
+.workshop-long-title .workshop-content {
+    height: 307px;
+    margin-top: -4px;
 }
