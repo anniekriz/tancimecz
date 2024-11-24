@@ -4,8 +4,7 @@
 
 .section-container {
     color: #000006;
-    padding-left: 100px;
-    width: 100%;
+    width: 1200px;
 }
 
 .workshop-image {
@@ -18,6 +17,8 @@
 
 .workshop-text {
     margin-top: 150px;
+    margin-left: 0px;
+    padding-left: 0px;
 }
 
 .workshop-title {
