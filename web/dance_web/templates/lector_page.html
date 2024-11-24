@@ -47,9 +47,8 @@
         </div>
         {% endif %}
     </div>
-    {% if events|filter_past_events %}
     <div class="events-grid">
-        {% for event in events|filter_past_events %}
+        {% for event in combined|filter_past_events %}
         {% if event|is_instance:'Event' %}
         {% include "evening_card.html" with event=event %}
         {% else %}
@@ -57,7 +56,6 @@
         {% endif %}
         {% endfor %}
     </div>
-    {% endif %}
     {% if not combined|filter_past_events %}
     <div class="no-events section-container">Lektor momentálně nepořádá žádné akce.</div>
     {% endif %}
