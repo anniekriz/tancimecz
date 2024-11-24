@@ -7,7 +7,7 @@ class Lector(models.Model):
     firstName = models.CharField(max_length=50, verbose_name="Jméno")
     lastName = models.CharField(max_length=50, null=True, blank=True, verbose_name="Příjmení")
     slug = models.SlugField(max_length=100, unique=True)
-    image = models.ImageField(upload_to='images/', null=True, blank=True, verbose_name="Fotka")
+    image = models.ImageField(upload_to='images/', verbose_name="Fotka")
     description = models.TextField(verbose_name="Popis")
     phone = models.CharField(max_length=50, null=True, blank=True, verbose_name="Telefon")
     email = models.EmailField(null=True, blank=True, verbose_name="E-mail")
