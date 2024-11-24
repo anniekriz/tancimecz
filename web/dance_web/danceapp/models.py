@@ -27,7 +27,7 @@ class Location(models.Model):
     town = models.CharField(max_length=50, verbose_name="Město/Obec")
     address = models.CharField(max_length=100, verbose_name="Adresa (ulice a ČP)")
     description = models.CharField(max_length=100, null=True, blank=True, verbose_name="Popis (jak se k nám dostat)")
-    lector = models.ForeignKey('Lector', on_delete=models.PROTECT, verbose_name="Lektor")
+    lector = models.ManyToManyField(Lector, verbose_name="Lektor")
 
     def __str__(self):
         return f"{self.town}, {self.address}"
