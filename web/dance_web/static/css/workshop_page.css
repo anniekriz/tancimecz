@@ -11,6 +11,13 @@
 .workshop-image {
     margin-top: 150px;
     max-height: 500px;
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.workshop-content {
+    margin-top: 150px;
 }
 
 .workshop-title {
