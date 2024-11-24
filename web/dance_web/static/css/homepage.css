@@ -156,52 +156,40 @@
     align-items: center;
 }
 
-.workshop-line-with-arrow {
-    border-top: 1px solid #000006; /* Line thickness and color */
-    max-width: 1200px; /* Length of the line */
-    margin: 0px; /* Center the line horizontally */
-    position: relative; /* For positioning the arrow */
-    top: -268px;
-}
-
-    .workshop-line-with-arrow::after {
-        content: '→'; /* Unicode arrow or you can use a custom icon */
-        font-size: 20px; /* Adjust arrow size */
-        position: absolute;
-        right: -18px; /* Position arrow to the end of the line */
-        top: -13.5px; /* Adjust vertically to align with the line */
-        color: #000006; /* Arrow color */
-    }
-
 .workshop-more {
+    margin: 20px 0; /* Add spacing around */
     position: relative;
-    width: 40px;
+    width: 1200px;
 }
 
 .workshop-arrow-text {
-    position: relative;
     font-family: 'Ysabeau SC', sans-serif;
     font-size: 1.5em;
-    left: 1120px;
-    bottom: 272px;
-    transition: transform 0.3s ease;
+    color: #000006;
+    text-decoration: none;
+    margin-right: 185px; /* Space between the arrow and text */
+    white-space: nowrap; /* Prevent wrapping */
+    transition: transform 0.3s ease, color 0.3s ease;
+    margin-bottom: 0px; /* Space between the text and the arrow */
+    text-align: left;
+    justify-self: right;
+    width: 100px;
+    position: relative;
 }
 
 .workshop-more a {
     text-decoration: none;
-    color: #000006;
+    color: inherit; /* Inherit the color */
 }
 
 .workshop-arrow-text:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slight hover effect */
+    color: #006090;
 }
 
 .event-more {
     margin: 20px 0; /* Add spacing around */
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Aligns text to start of the arrow */
     width: 1200px;
 }
 
@@ -212,8 +200,9 @@
     text-decoration: none;
     margin-left: 10px; /* Space between the arrow and text */
     white-space: nowrap; /* Prevent wrapping */
-    transition: transform 0.3s ease;
-    margin-bottom: 5px; /* Space between the text and the arrow */
+    transition: transform 0.3s ease, color 0.3s ease;
+    margin-bottom: 0px; /* Space between the text and the arrow */
+    width: 100px;
     text-align: left;
 }
 
@@ -224,6 +213,7 @@
 
 .event-arrow-text:hover {
     transform: scale(1.05); /* Slight hover effect */
+    color: #006090;
 }
 
 .line-with-arrow {
