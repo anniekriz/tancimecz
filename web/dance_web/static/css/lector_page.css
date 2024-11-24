@@ -156,3 +156,24 @@ a {
     height: 307px;
     margin-top: -4px;
 }
+
+@media (max-width: 1200px) {
+    .events-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+        width: 930px;
+    }
+}
+
+@media (max-width: 960px) {
+    .events-grid {
+        grid-template-columns: repeat(3, 1fr); /* 4 equal-width columns */
+        width: 694px;
+    }
+}
+
+@media (max-width: 720px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr); /* 4 equal-width columns */
+        width: 460px;
+    }
+}
