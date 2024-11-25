@@ -73,7 +73,7 @@
     text-align: left;
     line-height: 1.4;
     vertical-align: top;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left; 
     width: 100%;
     color: #3C3F0F;
@@ -90,13 +90,15 @@
     justify-content: left;  
     gap: 20px; 
     padding: 0 20px;
-    margin-top: 40px;
+    margin-top: 0px;
+    border-top: 1px solid #000006;
 }
 
 .lector {
     flex: 0 1 150px;  
     max-width: 200px;
     padding: 10px;
+    margin-top: 20px;
     transition: transform 0.3s;
     box-sizing: border-box;
     text-align: center;  
