@@ -50,13 +50,15 @@
     justify-content: left;  
     gap: 20px; 
     padding: 0 20px;
-    margin-top: 40px;
+    margin-top: 10px;
+    border-top: 1px solid #000006;
 }
 
 .lector {
     flex: 0 1 150px;  
     max-width: 200px;
     padding: 10px;
+    margin-top: 20px;
     transition: transform 0.3s;
     box-sizing: border-box;
     text-align: center;  
@@ -80,7 +82,6 @@
     margin-bottom: 8px;
     color: #3C3F0F;
     font-family: 'Raleway', sans-serif;
-    margin-left: 20px;
 }
 
 .name a {
