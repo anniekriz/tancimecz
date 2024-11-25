@@ -3,6 +3,7 @@ from django import forms
 from .forms import EventGroupForm
 from .widgets import CustomTimeWidget
 from .models import Event, Lector, Location, EventGroup, Workshop
+from django.utils.html import format_html
 
 admin.site.register(Location)
 
@@ -94,6 +95,23 @@ class WorkshopAdmin(admin.ModelAdmin):
         return ", ".join([f"{lector.firstName} {lector.lastName or ''}" for lector in obj.lector.all()])
     display_lectors.short_description = 'Lectors'
 
+@admin.action(description='Kopírovat vybrané položky')
+def duplicate_workshops(modeladmin, request, queryset):
+    for obj in queryset:
+        obj.id = None  # Reset the primary key to duplicate
+        obj.save()
+
+class WorkshopAdmin(admin.ModelAdmin):
+    list_display = ('title', 'start', 'end', 'location', 'render_actions')
+    actions = [duplicate_workshops]  # Keep this as a list of actions
+
+    def render_actions(self, obj):  # Rename this method
+        return format_html(
+            '<a class="button" href="{}">Kopírovat</a>',
+            f"/admin/danceapp/workshop/{obj.id}/change/",
+        )
+    render_actions.short_description = 'Actions'  # Set the column name in the admin list
+    
 admin.site.register(Workshop, WorkshopAdmin)
 
 class LectorAdmin(admin.ModelAdmin):
@@ -118,3 +136,6 @@ class LectorAdmin(admin.ModelAdmin):
             return qs.none()
 
 admin.site.register(Lector, LectorAdmin)
+
+
+
