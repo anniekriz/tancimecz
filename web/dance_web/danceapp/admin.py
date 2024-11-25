@@ -11,11 +11,30 @@ class EventInline(admin.TabularInline):
     model = Event
     extra = 0  # Number of empty event forms to display
 
+@admin.action(description="Kopírovat vybrané taneční večery")
+def duplicate_event_groups(modeladmin, request, queryset):
+    for obj in queryset:
+        old_lectors = obj.lector.all()
+        obj.id = None  # Reset the primary key to duplicate
+        obj.save()
+
+        obj.lector.set(old_lectors)  # Restore the Many-to-Many relationships
+        obj.save()  # Save again after setting Lectors
+
+        # Duplicate related Events
+        related_events = obj.event_set.all()  # Use `event_set` if no `related_name` is set in the model
+        for event in related_events:
+            event.id = None  # Reset the primary key
+            event.parent = obj  # Associate with the new EventGroup
+            event.save()
+
+
 class EventGroupAdmin(admin.ModelAdmin):
     inlines = [EventInline]
     form = EventGroupForm  
-    list_display = ('location', 'startTime', 'endTime', 'short_description')
+    list_display = ('location', 'startTime', 'endTime', 'short_description', 'render_actions')
     search_fields = ('location__name', 'description')
+    actions = [duplicate_event_groups] 
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EventGroupAdmin, self).get_form(request, obj, **kwargs)
@@ -26,8 +45,17 @@ class EventGroupAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(lector__user=request.user)
+    
+    def render_actions(self, obj):
+        return format_html(
+            '<a class="button" href="{}">Kopírovat</a>',
+            f"/admin/danceapp/eventgroup/{obj.id}/change/",
+        )
+    render_actions.short_description = 'Akce'  # Set the column name in the admin list
+
 
 admin.site.register(EventGroup, EventGroupAdmin)
+
 
 class EventAdmin(admin.ModelAdmin):
     change_form_template = 'admin/change_form.html'
@@ -98,8 +126,12 @@ class WorkshopAdmin(admin.ModelAdmin):
 @admin.action(description='Kopírovat vybrané položky')
 def duplicate_workshops(modeladmin, request, queryset):
     for obj in queryset:
+        old_lectors = obj.lector.all()
         obj.id = None  # Reset the primary key to duplicate
         obj.save()
+
+        obj.lector.set(old_lectors)  # Restore the Many-to-Many relationships
+        obj.save()  # Save again after setting Lectors
 
 class WorkshopAdmin(admin.ModelAdmin):
     list_display = ('title', 'start', 'end', 'location', 'render_actions')
@@ -110,7 +142,7 @@ class WorkshopAdmin(admin.ModelAdmin):
             '<a class="button" href="{}">Kopírovat</a>',
             f"/admin/danceapp/workshop/{obj.id}/change/",
         )
-    render_actions.short_description = 'Actions'  # Set the column name in the admin list
+    render_actions.short_description = 'Kopírovat'  # Set the column name in the admin list
     
 admin.site.register(Workshop, WorkshopAdmin)
 
