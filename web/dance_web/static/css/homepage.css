@@ -113,7 +113,7 @@
 .text1 {
     position: absolute;
     font-family: 'Raleway', sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
     text-align: left;
     width: 400px;
     left: 354px;
@@ -124,7 +124,7 @@
 .text2 {
     position: relative;
     font-family: 'Raleway', sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
     text-align: right;
     right: 164px;
 }
