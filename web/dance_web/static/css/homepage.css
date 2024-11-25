@@ -29,7 +29,7 @@
 
 .hands-image {
     position: absolute;
-    top: 0;
+    top: -60px;
     left: 50%;
     transform: translateX(-50%); /* Center the image horizontally */
     z-index: 1;
@@ -73,7 +73,6 @@
 }
 
 #events {
-    margin-top: -22px;
     padding-top: 0px;
 }
 
@@ -152,7 +151,8 @@
     }
 
 .block2 {
-    margin-top: 40px;
+    margin-top: 10px;
+    margin-bottom: 8px;
     align-items: center;
 }
 
@@ -204,6 +204,8 @@
     margin-bottom: 0px; /* Space between the text and the arrow */
     width: 100px;
     text-align: left;
+    position: relative;
+    top: -6px;
 }
 
 .event-more a {
@@ -223,7 +225,7 @@
 }
 
 .workshop-cards {
-    padding-top: 40px;
+    margin-top: -50px;
     display: flex;
     justify-content: center;
 }
@@ -233,7 +235,6 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 17px;
     justify-content: center;
-    padding-top: 40px;
 }
 
 .about-content {
