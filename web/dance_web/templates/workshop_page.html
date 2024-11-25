@@ -34,9 +34,11 @@
                 <div class="workshop-description">
                     {{ event.description|safe }}
                 </div>
+                {% if event.link %}
                 <div class="workshop-link">
                     <a href="{{ event.link }}" target="_blank">{{ event.link }}</a>
                 </div>
+                {% endif %}
                 <div class="lectors">
                     {% for lector in event.lector.all %}
                     <div class="lector">
