@@ -12,7 +12,7 @@
 }
 
 .workshop-image {
-    width: 50%;
+    width: 45%;
     float: right;
     margin-left: 20px;
     margin-bottom: 15px;
@@ -67,19 +67,38 @@
     width: 100%;
 }
 
+.workshop-link {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.3em;
+    text-align: left;
+    line-height: 1.4;
+    vertical-align: top;
+    margin-bottom: 10px;
+    text-align: left; 
+    width: 100%;
+    color: #3C3F0F;
+}
+
+.workshop-link a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .lectors {
     display: flex;
     flex-wrap: wrap;
     justify-content: left;  
     gap: 20px; 
     padding: 0 20px;
-    margin-top: 40px;
+    margin-top: 0px;
+    border-top: 1px solid #000006;
 }
 
 .lector {
     flex: 0 1 150px;  
     max-width: 200px;
     padding: 10px;
+    margin-top: 20px;
     transition: transform 0.3s;
     box-sizing: border-box;
     text-align: center;  
@@ -103,7 +122,6 @@
     margin-bottom: 8px;
     color: #3C3F0F;
     font-family: 'Raleway', sans-serif;
-    margin-left: 20px;
 }
 
 .name a {

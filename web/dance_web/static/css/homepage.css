@@ -1,7 +1,7 @@
 /* Header */
 
 .menu-item1 a {
-    color: #67F0FC!important;
+    color: #67F0FC !important;
 }
 
 .header-image-container {
@@ -100,6 +100,7 @@
     margin-left: 350px;
     position: absolute;
     top: 190px;
+    white-space: nowrap;
 }
 
 .title2 {
@@ -116,6 +117,7 @@
     font-size: 1.1em;
     text-align: left;
     width: 400px;
+    max-width: 42%;
     left: 354px;
     padding-bottom: 10px;
     top: 280px;
@@ -139,7 +141,7 @@
 
 .block1-image-container {
     width: 96%;
-    max-width: 1200px;
+    max-width: 100%;
     text-align: left;
     position: relative;
     top: -212px;
@@ -159,7 +161,7 @@
 .workshop-more {
     margin: 20px 0; /* Add spacing around */
     position: relative;
-    width: 1200px;
+    width: 100%;
 }
 
 .workshop-arrow-text {
@@ -190,7 +192,7 @@
 .event-more {
     margin: 20px 0; /* Add spacing around */
     position: relative;
-    width: 1200px;
+    width: 100%;
 }
 
 .event-arrow-text {
@@ -219,7 +221,7 @@
 }
 
 .line-with-arrow {
-    width: 1200px; /* Total width of the arrow and line */
+    width: 100%; /* Total width of the arrow and line */
     height: 10px; /* Height of the SVG */
     display: inline-block;
 }
@@ -240,7 +242,6 @@
 .about-content {
     margin: 0 auto;
     padding-top: 30px;
-    display: flex;
     padding-bottom: 20px;
 }
 
@@ -258,10 +259,12 @@
 
 .about-dances-image {
     padding-right: 20px;
+    float: left;
 }
 
 .about-us-image {
-    padding-left: 20px;
+    padding-right: 20px;
+    float: right;
 }
 
 .lectors {
@@ -360,27 +363,29 @@
     text-align: center;
 }
 
-/* .workshop-date {
-    background-color: #3C3F0F;
-    color: #ffffff;
-    border-radius: 15px;
-    width: 100px;
-    height: 80px;
-    position: relative;
-    top: -20px;
-    left: 220px;
-    display: block;
-    rotate: 11deg;
-    z-index: 1;
-    line-height: 80px;
-} */
-
 .workshop-content {
     width: 246px;
 }
 
 .workshop-image {
     width: 264px;
+}
+
+.lidi {
+    margin-top: 100px;
+    position: relative;
+    top: 300px;
+    margin-top: -200px;
+    width: 100%;
+}
+
+.footer-text1 {
+    margin-bottom: 20px;
+    top: 230px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.3em;
+    color: #000006;
+    position: relative;
 }
 
 
@@ -390,6 +395,138 @@
     }
 }
 
+@media (max-width: 1000px) {
+    .header-text {
+        top: 150px;
+        width: 70%;
+        left: 15%;
+    }
+
+    .title1 {
+        font-size: 2.2em;
+        margin-left: 330px;
+    }
+
+    .title2 {
+        font-size: 2.2em;
+    }
+
+    .text1 {
+        top: 250px;
+        left: 334px;
+    }
+
+    .logo_image {
+        width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .header-text {
+        top: 150px;
+        width: 80%;
+        text-align: center;
+        left: 10%;
+        font-size: 2.3em;
+    }
+
+    .title1 {
+        font-size: 1.2em;
+        margin-left: 330px;
+    }
+
+    .title1 {
+        font-size: 1.2em;
+    }
+
+    .title2 {
+        right: 10px;
+    }
+
+    .text1 {
+        font-size: 0.9em;
+        top: 230px;
+        left: 332px;
+    }
+
+    .text2 {
+        right: 10px;
+    }
+
+    .lectors {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 15px;
+    }
+
+    .lector {
+        width: 80px;
+        height: 80px;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+    }
+
+    .about-dances-image, .about-us-image {
+        padding-right: 0px;
+        width: 100%;
+        position: relative;
+        height: max-content;
+        margin-bottom: 7px;
+    }
+
+    .about-content {
+        display: block;
+        padding-top: 6px;
+    }
+
+    .about-text {
+        font-size: 1em;
+    }
+
+    .footer-text1 {
+        top: 250px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 530px) {
+    .header-text {
+        top: 150px;
+        width: 94%;
+        text-align: center;
+        left: 3%;
+        font-size: 2em;
+    }
+
+    .menu-toggle {
+        right: 4px;
+    }
+
+    .title1 {
+        display: none;
+    }
+
+    .text1 {
+        display: none;
+    }
+
+    .block2 {
+        display: none;
+    }
+
+    .block1-image-container img {
+        left: 5%;
+        width: 90%;
+        position: relative;
+        z-index: 4;
+    }
+
+    .footer-text1 {
+        top: 280px;
+        font-size: 0.8em;
+    }
+}
 
 @media (min-width: 1480px) {
     .hands-image {
@@ -425,18 +562,3 @@
     }
 }
 
-.lidi {
-    margin-top: 100px;
-    position: relative;
-    top: 300px;
-    margin-top: -200px;
-}
-
-.footer-text1 {
-    margin-bottom: 20px;
-    top: 230px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.3em;
-    color: #000006;
-    position: relative;
-}
