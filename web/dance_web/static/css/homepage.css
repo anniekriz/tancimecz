@@ -261,13 +261,17 @@
     }
 
 .about-dances-image {
-    padding-right: 20px;
+    margin-right: 20px;
     float: left;
+    max-width: 40%;
+    height: auto;
 }
 
 .about-us-image {
-    padding-right: 20px;
+    margin-left: 20px;
     float: right;
+    max-width: 40%;
+    height: auto;
 }
 
 .lectors {
@@ -437,21 +441,27 @@
     }
 
     .about-dances-image, .about-us-image {
-        padding-right: 0px;
+        margin: 0px;
         width: 100%;
         position: relative;
         height: max-content;
         margin-bottom: 7px;
+        float: none;
+        display: block;
+        max-width: 100%;
+        order: 2;
     }
 
     .about-content {
-        display: block;
         padding-top: 6px;
+        display: flex; 
+        flex-direction: column; 
     }
 
     .about-text {
         font-size: 1em;
         margin-top: 10px;
+        order: 1;
     }
 
     .footer-text1 {
