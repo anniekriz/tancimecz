@@ -12,10 +12,10 @@
 
     <div class="section-container">
         <div class="workshop-text">
-        {% if event.image %}
-        <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
-        {% endif %}
             <div class="workshop-title">{{ event.title }}{% if event.title2 %} {{ event.title2}}{% endif %}</div>
+            {% if event.image %}
+            <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
+            {% endif %}
             <div class="workshop-date">
                 {% with event|date_format as date %}
                 {{ date.day }} {{ date.date }}
