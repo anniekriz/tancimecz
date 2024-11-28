@@ -88,3 +88,9 @@
     border-bottom: none;
 }
 
+@media(max-width: 760px) {
+    .evening-town {
+        padding-top: 120px;
+    }
+}
+
