@@ -43,6 +43,8 @@
             {% endif %}
         </div>
     </div>
+</div>
+<div id="events" class="section-container">
     <div class="events-grid">
         {% for event in combined|filter_past_events %}
         {% if event|is_instance:'Event' %}

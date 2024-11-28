@@ -35,12 +35,16 @@
     }
 
 /* Workshop & Event Cards */
+#events {
+    padding-top: 0px;
+    text-align: center;
+}
+
 .events-grid {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     margin: auto;
-    width: 1170px;
 }
 
 .workshop-card {
@@ -68,20 +72,37 @@
 @media (max-width: 1200px) {
     .events-grid {
         grid-template-columns: repeat(4, 1fr); 
-        width: 930px;
     }
 }
 
 @media (max-width: 960px) {
     .events-grid {
         grid-template-columns: repeat(3, 1fr); 
-        width: 694px;
     }
 }
 
 @media (max-width: 720px) {
     .events-grid {
         grid-template-columns: repeat(2, 1fr); 
-        width: 460px;
+    }
+
+    .filter button {
+        font-size: 1.2em;
+        padding-top: 0px;
+        padding-right: 5px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .events-grid {
+        grid-template-columns: repeat(1, 1fr); 
+    }
+}
+
+@media (max-width: 416px) {
+    .filter button {
+        display: block; 
     }
 }
