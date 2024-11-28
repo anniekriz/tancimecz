@@ -1,5 +1,5 @@
 {% load custom_filters %}
-<div class="workshop-card event-card">
+<div class="workshop-card event-card workshop-card-{{ index }}">
     <div class="event-card-inner {% if event.title2 %}workshop-long-title{% endif %}">
         <a href="{% url 'workshop_page' id=event.id %}">
             <div class="event-title">{{ event.title }}{% if event.title2 %}<br>{{ event.title2}}{% endif %}</div>

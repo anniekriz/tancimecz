@@ -174,5 +174,14 @@ a {
         width: 250px;
     }
 
+    .footer-logo {
+        width: 150px;
+    }
+
+   .footer-text2 {
+        font-size: 0.7em;
+    }
+
+
 }
 
