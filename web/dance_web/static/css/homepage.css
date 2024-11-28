@@ -389,6 +389,9 @@
 }
 
 
+@media (max-width: 1268px) {
+}
+
 @media (max-width: 1150px) {
     .header-text {
         left: 410px;
@@ -488,7 +491,10 @@
         top: 250px;
         font-size: 1em;
     }
-}
+
+    .workshop-arrow-text {
+      margin-right: 165px;
+    }
 
 @media (max-width: 530px) {
     .header-text {
@@ -511,13 +517,18 @@
         display: none;
     }
 
+    .block1 {
+        height: 0px;
+        padding: 0px;
+    }
+
     .block2 {
         display: none;
     }
 
     .block1-image-container img {
-        left: 5%;
-        width: 90%;
+        left: 15%;
+        width: 70%;
         position: relative;
         z-index: 4;
     }
@@ -525,6 +536,18 @@
     .footer-text1 {
         top: 280px;
         font-size: 0.8em;
+    }
+}
+
+@media (max-width: 375px) {
+    .header-text {
+        font-size: 1.4em;
+    }
+
+    .block1-image-container img {
+        left: 10%;
+        width: 80%;
+        position: relative;
     }
 }
 
@@ -561,4 +584,3 @@
         background-image: url("/static/images/ruce2880.jpg");
     }
 }
-
