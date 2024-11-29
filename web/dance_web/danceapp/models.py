@@ -43,7 +43,7 @@ class EventGroup(models.Model):
     location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
     startTime = models.TimeField(verbose_name="Začátek", default='18:00')
     endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='20:00', null=True, blank=True)
-    description = models.TextField(verbose_name="Popis")
+    description = models.TextField(verbose_name="Popis (nepovinné)", null=True, blank=True)
     image = models.ImageField(verbose_name="Obrázek", upload_to='images/', null=True, blank=True)
 
     def __str__(self):
