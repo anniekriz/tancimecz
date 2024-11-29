@@ -208,3 +208,41 @@
 .workshop-long-title .event-title {
     line-height: 38px;
 }
+
+
+
+@media (max-width: 500px) {
+ 
+    .workshop-card {
+        height: auto;
+    }
+
+    .workshop-content, .workshop-long-title .workshop-content {
+        height: auto;
+    }
+
+    .workshop-description {
+        display: none;
+    }
+
+    .workshop-card {
+        height: auto!important;
+    }
+
+    .workshop-content, .workshop-long-title .workshop-content {
+        height: auto!important;
+    }
+
+    .evening-card {
+        height: 58px;
+        width: 92%;
+    }
+
+    .event-title {
+        font-size: 1.8em;
+    }
+
+    .event-date {
+        font-size: 1em;
+    }
+}

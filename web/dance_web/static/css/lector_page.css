@@ -3,7 +3,7 @@
 }
 
 .menu-item3 a {
-    color: #67F0FC!important;
+    color: #67F0FC !important;
 }
 
 a {
@@ -25,7 +25,6 @@ a {
     color: #3C3F0F;
     position: absolute;
     top: 20px;
-    z-index: 10;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform-origin: center;
 }
@@ -88,7 +87,7 @@ a {
 }
 
 .lector-detail-email {
-    text-align: left; 
+    text-align: left;
     margin-bottom: 10px;
 }
 
@@ -112,12 +111,15 @@ a {
 
 /* Events */
 
+#events {
+    text-align: center;
+}
+
 .events-grid {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     margin: auto;
-    width: 1170px;
     margin-top: 44px;
 }
 
@@ -150,21 +152,57 @@ a {
 
 @media (max-width: 1200px) {
     .events-grid {
-        grid-template-columns: repeat(4, 1fr); 
-        width: 930px;
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (max-width: 960px) {
     .events-grid {
-        grid-template-columns: repeat(3, 1fr); 
-        width: 694px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 760px) {
+    .lector-detail img {
+        width: 100%;
+        margin-bottom: 15px;
+        margin-top: 6px;
+    }
+
+    .lector-detail-name {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .lector-detail-description {
+        font-size: 1em;
+    }
+
+    .lector-navigation {
+        top: 60px;
+    }
+
+    .left-arrow {
+        left: 10px;
+    }
+
+    .right-arrow {
+        right: 10px;
+    }
+
+    .lector-detail-contact {
+        font-size: 0.6em;
     }
 }
 
 @media (max-width: 720px) {
     .events-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        width: 460px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .events-grid {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
