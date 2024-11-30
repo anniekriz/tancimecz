@@ -30,6 +30,8 @@ ALLOWED_HOSTS = [
     'tancimecz-7440.rostiapp.cz',
     '127.0.0.1',
     'localhost',
+    'tancime.cz',
+    '*.tancime.cz'
 ]
 
 
