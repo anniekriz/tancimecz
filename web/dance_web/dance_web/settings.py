@@ -27,11 +27,10 @@ SECRET_KEY = 'django-insecure-kmr*p#zk5+wn3$q39u7n)@%ffy2cnil2!jmpga7y_x#z&)ebh)
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'tancimecz-7440.rostiapp.cz',
     '127.0.0.1',
     'localhost',
     'tancime.cz',
-    '*.tancime.cz'
+    'www.tancime.cz'
 ]
 
 
