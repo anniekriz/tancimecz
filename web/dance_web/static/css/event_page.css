@@ -31,6 +31,7 @@
     font-family: 'Pompiere', sans-serif;
     font-size: 2.4em;
     padding-bottom: 20px;
+    padding-top: 6px;
     text-align: left;
 }
 
@@ -62,51 +63,11 @@
 }
 
 /* Lectors */
-.lectors {
+.lector-list {
+    padding-top: 34px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-    gap: 20px;
-    padding: 0 20px;
-    margin-top: 0px;
     border-top: 1px solid #000006;
 }
-
-.lector {
-    flex: 0 1 150px;
-    max-width: 200px;
-    padding: 10px;
-    margin-top: 20px;
-    transition: transform 0.3s;
-    box-sizing: border-box;
-    text-align: center;
-    display: inline-block;
-}
-
-    .lector:hover {
-        transform: scale(1.05);
-    }
-
-    .lector img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 10px;
-        border: 1px solid #3C3F0F;
-    }
-
-
-.lector-name {
-    font-size: 1.2em;
-    margin-bottom: 8px;
-    color: #3C3F0F;
-    font-family: 'Raleway', sans-serif;
-}
-
-    .lectorname a {
-        border-bottom: none;
-    }
 
 /* RD */
 @media(max-width: 760px) {
@@ -115,7 +76,7 @@
     }
 }
 
-@media(max-width: 630px) {
+@media(max-width: 642px) {
     .event-image {
         width: 100%;
         float: none;
