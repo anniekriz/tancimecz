@@ -5,38 +5,28 @@
 {% block title %}S kým{% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/lector_list.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/lectors.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="section-container">
-    <div class="section">
+    <div class="lector-list">
         <!-- All lectors -->
-        <div class="lectors">
-            {%for lector in lectors%}
-            <div class="lector">
-                <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
-                    <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
-                    <div class="name">
-                        {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
+        {% include "lector_list.html" with lectors=lectors %}
     </div>
     <!-- Ludmila -->
     <div class="lector_ludmila">
         <div class="lector">
             <a href="{% url 'lector_page' slug=lector_ludmila.slug %}" style="text-decoration: none;">
                 <img src="{{ lector_ludmila.image.url }}" alt="{{ lector_ludmila.firstName }}">
-                <div class="name">
+                <div class="lector-name">
                     {{lector_ludmila.firstName}}&nbsp;{{lector_ludmila.lastName}}
                 </div>
-                <div class="name ludmila-inmem">
+                <div class="lector-name ludmila-inmem">
                     In Memoriam<br />
                 </div>
-                <div class="name ludmila-inmem">
+                <div class="lector-name ludmila-inmem">
                     15.5.1946&ndash;6.2.2024
                 </div>
             </a>

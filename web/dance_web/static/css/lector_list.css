@@ -1,0 +1,41 @@
+.lectors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    margin-top: 130px;
+}
+
+.lector {
+    flex: 0 1 150px;
+    max-width: 200px;
+    padding: 10px;
+    transition: transform 0.3s;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+    .lector:hover {
+        transform: scale(1.05);
+    }
+
+    .lector img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 1px solid #3C3F0F;
+    }
+
+.lector-name {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: #3C3F0F;
+    font-family: 'Raleway', sans-serif;
+}
+
+    .lector-name a {
+        border-bottom: none;
+    }
