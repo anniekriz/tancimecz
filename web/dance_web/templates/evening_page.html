@@ -33,7 +33,7 @@
         {% endif %}
         {% if event.description %}
             <div class="evening-description">  
-                {{ event.description }}
+                {{ event.description|safe }}
             </div>
         {% endif %}
         <div class="lectors">
