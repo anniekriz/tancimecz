@@ -5,11 +5,13 @@ from django.db.models import Q
 from django.utils import timezone
 from itertools import chain
 
+ludmila_id = 25
+
 def homepage(request):
     events = Event.objects.all().order_by('date')
     workshops = Workshop.objects.all().order_by('start')
-    lectors = Lector.objects.all().order_by('lastName','firstName')
-    
+    lectors = Lector.objects.all().exclude(id=ludmila_id).order_by('lastName','firstName')
+
     context = {
         'events': events,
         'lectors': lectors,
@@ -37,8 +39,6 @@ def event_list(request):
         combined = list(set(chain(events, workshops)))  # Ensure combined list is unique
         combined.sort(key=lambda x: getattr(x, 'date', getattr(x, 'start', None)))
         context = {
-            'workshops': workshops,
-            'events': events,
             'combined': combined,
             'selected_filter': selected_filter
         }
@@ -58,7 +58,6 @@ def past_events(request):
     return render(request, 'past_events.html', context)
 
 def lector_list(request):
-    ludmila_id = 25
     lectors = Lector.objects.all().exclude(id=ludmila_id).order_by('lastName','firstName')
     lector_ludmila = Lector.objects.all().filter(id=ludmila_id).first()    
     return render(request, 'lectors.html', {"lector_ludmila": lector_ludmila, "lectors": lectors})
@@ -70,13 +69,11 @@ def lector_page(request, slug):
     lector_index = list(lectors).index(lector)
     prev_lector = lectors[lector_index - 1] if lector_index > 0 else None
     next_lector = lectors[lector_index + 1] if lector_index < len(lectors) - 1 else None
-    events = Event.objects.filter(parent__lector=lector).order_by('date')
-    workshops = Workshop.objects.filter(lector=lector).order_by('start')
+    events = Event.objects.filter(parent__lector=lector)
+    workshops = Workshop.objects.filter(lector=lector)
     combined = list(set(chain(events, workshops)))  # Ensure combined list is unique
     combined.sort(key=lambda x: getattr(x, 'date', getattr(x, 'start', None)))
     context = {
-        'workshops': workshops,
-        'events': events,
         'combined': combined,
         'lector': lector,
         'prev_lector': prev_lector,
@@ -85,26 +82,18 @@ def lector_page(request, slug):
     return render(request, 'lector_page.html', context)
 
 def evening_page(request, id):
-    events = Event.objects.all().order_by('date')
     event = Event.objects.get(id=id)
-    lectors = Lector.objects.all().order_by('lastName','firstName')
     
     context = {
-        'events': events,
         'event': event,
-        'lectors': lectors
     }
     return render(request, 'evening_page.html', context)
 
 def workshop_page(request, id):
-    workshops = Workshop.objects.all().order_by('start')
     workshop = Workshop.objects.get(id=id)
-    lectors = Lector.objects.all().order_by('lastName','firstName')
     
     context = {
-        'events': workshops,
         'event': workshop,
-        'lectors': lectors
     }
     return render(request, 'workshop_page.html', context)
 
