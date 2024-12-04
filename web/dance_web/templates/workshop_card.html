@@ -32,10 +32,17 @@
             </div>
             <div class="workshop-lectors">
                 {% for lector in event.lector.all %}
+                {% if forloop.counter < 4 %}
                 <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
                     <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
                     <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
                 </a>
+                {% endif %}
+                {% if forloop.counter == 4 %}
+                <a href="{% url 'workshop_page' id=event.id %}">
+                    <div class="event-lector-others">a další...</div>
+                </a>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
