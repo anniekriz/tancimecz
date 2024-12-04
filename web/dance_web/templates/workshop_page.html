@@ -12,7 +12,7 @@
 
 {% block content %}
 
-<div class="event-detail section-container">
+<div class="section-container event-detail">
     <div class="event-title">{{ event.title }}{% if event.title2 %} {{ event.title2}}{% endif %}</div>
     {% if event.image %}
     <img class="event-image" src="{{ event.image.url }}" alt="{{ event.title }}" />

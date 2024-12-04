@@ -18,14 +18,14 @@
     <a href="{% url 'lector_page' slug=next_lector.slug %}" class="nav-arrow right-arrow">→</a>
     {% endif %}
 </div>
-<div class="section-container lector-detail">
-    <div class="lector-detail-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
-    <img src="{{ lector.image.url }}" alt="{{ lector.image }}">
-    <div class="lector-detail-description">
-        {{ lector.description|safe }}
-    </div>
-</div>
 <div class="section-container">
+    <div class="lector-detail">
+        <div class="lector-detail-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
+        <img src="{{ lector.image.url }}" alt="{{ lector.image }}">
+        <div class="lector-detail-description">
+            {{ lector.description|safe }}
+        </div>
+    </div>
     <div class="lector-detail-contact">
         <div class="lector-detail-email">
             {% if lector.email %}
@@ -43,29 +43,29 @@
             {% endif %}
         </div>
     </div>
-</div>
-<div id="events" class="section-container">
-    {% if lector.id == 25 %}
-    <div class="ludmila-inmem section-container">
-        <div>
-            IN MEMORIAM
+    <div id="events">
+        {% if lector.id == 25 %}
+        <div class="ludmila-inmem">
+            <div>
+                IN MEMORIAM
+            </div>
+            <div>
+                15.5.1946&ndash;6.2.2024
+            </div>
+        </div>    {%else%}
+        <div class="events-grid">
+            {% for event in combined|filter_past_events %}
+            {% if event|is_instance:'Event' %}
+            {% include "evening_card.html" with event=event %}
+            {% else %}
+            {% include "workshop_card.html" with event=event %}
+            {% endif %}
+            {% endfor %}
         </div>
-        <div>
-            15.5.1946&ndash;6.2.2024
-        </div>
-    </div>    {%else%}
-    <div class="events-grid">
-        {% for event in combined|filter_past_events %}
-        {% if event|is_instance:'Event' %}
-        {% include "evening_card.html" with event=event %}
-        {% else %}
-        {% include "workshop_card.html" with event=event %}
+        {% if not combined|filter_past_events %}
+        <div class="no-events section-container">Lektor momentálně nevede žádné tance.</div>
         {% endif %}
-        {% endfor %}
+        {%endif%}
     </div>
-    {% if not combined|filter_past_events %}
-    <div class="no-events section-container">Lektor momentálně nevede žádné tance.</div>
-    {% endif %}
-    {%endif%}
 </div>
-{% endblock %}
+    {% endblock %}
