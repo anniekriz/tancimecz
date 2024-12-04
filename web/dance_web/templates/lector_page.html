@@ -45,6 +45,15 @@
     </div>
 </div>
 <div id="events" class="section-container">
+    {% if lector.id == 25 %}
+    <div class="ludmila-inmem section-container">
+        <div>
+            IN MEMORIAM
+        </div>
+        <div>
+            15.5.1946&ndash;6.2.2024
+        </div>
+    </div>    {%else%}
     <div class="events-grid">
         {% for event in combined|filter_past_events %}
         {% if event|is_instance:'Event' %}
@@ -57,5 +66,6 @@
     {% if not combined|filter_past_events %}
     <div class="no-events section-container">Lektor momentálně nevede žádné tance.</div>
     {% endif %}
+    {%endif%}
 </div>
 {% endblock %}
