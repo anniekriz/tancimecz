@@ -10,25 +10,26 @@
 {% endblock %}
 
 {% block content %}
-<!-- <div class="search-container">
-    <form method="get" action="{% url 'search' %}">
-        <input type="text" name="query" placeholder="Hledat..." value="{{ request.GET.query }}">
-        <button type="submit">Hledat</button>
-    </form>
-</div> -->
-<div class="filter section-container">
-    <form method="get" action="{% url 'events' %}">
-        <button type="submit" name="filter" value="ALL" class="button {% if selected_filter == 'ALL' %}active{% endif %}">Všechny</button>
-        <button type="submit" name="filter" value="WORKSHOP" class="button {% if selected_filter == 'WORKSHOP' %}active{% endif %}">Větší události</button>
-        <button type="submit" name="filter" value="EVENT" class="button {% if selected_filter == 'EVENT' %}active{% endif %}">Taneční večery</button>
-    </form>
-</div>
-<!-- <div class="archiv">
-    <form method="get" action="{% url 'past_events' %}">
-        <button type="submit" class="archiv-button">Archiv událostí</button>
-    </form>
-</div> -->
-<div id="events" class="section-container">
+<div class="section-container">
+
+    <!-- <div class="search-container">
+        <form method="get" action="{% url 'search' %}">
+            <input type="text" name="query" placeholder="Hledat..." value="{{ request.GET.query }}">
+            <button type="submit">Hledat</button>
+        </form>
+    </div> -->
+    <div class="filter">
+        <form method="get" action="{% url 'events' %}">
+            <button type="submit" name="filter" value="ALL" class="button {% if selected_filter == 'ALL' %}active{% endif %}">Všechny</button>
+            <button type="submit" name="filter" value="WORKSHOP" class="button {% if selected_filter == 'WORKSHOP' %}active{% endif %}">Větší události</button>
+            <button type="submit" name="filter" value="EVENT" class="button {% if selected_filter == 'EVENT' %}active{% endif %}">Taneční večery</button>
+        </form>
+    </div>
+    <!-- <div class="archiv">
+        <form method="get" action="{% url 'past_events' %}">
+            <button type="submit" class="archiv-button">Archiv událostí</button>
+        </form>
+    </div> -->
     <div class="events-grid">
         {% for event in combined|filter_past_events %}
         {% if event|is_instance:'Event' %}

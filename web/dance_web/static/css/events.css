@@ -12,6 +12,7 @@
     margin-bottom: 30px;
     border-bottom: 1px solid #000006;
     text-align: left;
+    width: 100%;
 }
 
 .filter button {
@@ -35,10 +36,6 @@
     }
 
 /* Workshop & Event Cards */
-#events {
-    padding-top: 0px;
-    text-align: center;
-}
 
 .events-grid {
     display: inline-grid;
