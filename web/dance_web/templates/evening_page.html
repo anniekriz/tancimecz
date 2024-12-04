@@ -26,15 +26,15 @@
             {% endwith %}
         </div>
         <div class="evening-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
-        {% if event.parent.description or event.description%}
-        <div class="evening-description">
-            {% if event.parent.description %}
+        {% if event.parent.description %}
+            <div class="evening-description">
                 {{ event.parent.description|safe }}
-            {% endif %}
-            {% if event.description%}
-                {{ eventdescription }}
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
+        {% if event.description %}
+            <div class="evening-description">  
+                {{ event.description }}
+            </div>
         {% endif %}
         <div class="lectors">
             {% for lector in event.parent.lector.all %}
