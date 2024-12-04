@@ -50,11 +50,12 @@ a {
 }
 
     .lector-detail img {
-        width: 40%;
+        max-width: 40%;
         margin-right: 16px;
         margin-bottom: 2px;
         vertical-align: top;
         float: left;
+        max-height: 60vh;
     }
 
 .lector-detail-name {
