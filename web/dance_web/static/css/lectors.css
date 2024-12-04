@@ -23,6 +23,14 @@
     margin-top: 130px;
 }
 
+.lector_ludmila {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #000006;
+}
+
 .lector {
     flex: 0 1 150px;  
     max-width: 200px;
@@ -54,5 +62,9 @@
 
 .name a {
     border-bottom: none;
+}
+
+.ludmila-inmem {
+    font-size: 1em;
 }
 

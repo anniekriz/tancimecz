@@ -8,7 +8,7 @@ from itertools import chain
 def homepage(request):
     events = Event.objects.all().order_by('date')
     workshops = Workshop.objects.all().order_by('start')
-    lectors = Lector.objects.all()
+    lectors = Lector.objects.all().order_by('lastName','firstName')
     
     context = {
         'events': events,
@@ -58,8 +58,11 @@ def past_events(request):
     return render(request, 'past_events.html', context)
 
 def lector_list(request):
-    lectors = Lector.objects.all().order_by()
-    return render(request, 'lectors.html', {'lectors': lectors})
+    ludmila_id = 25
+    lectors = Lector.objects.all().exclude(id=ludmila_id).order_by('lastName','firstName')
+    lector_ludmila = Lector.objects.all().filter(id=ludmila_id).first()    
+    return render(request, 'lectors.html', {"lector_ludmila": lector_ludmila, "lectors": lectors})
+
 
 def lector_page(request, slug):
     lectors = Lector.objects.all().order_by('id')
@@ -84,7 +87,7 @@ def lector_page(request, slug):
 def evening_page(request, id):
     events = Event.objects.all().order_by('date')
     event = Event.objects.get(id=id)
-    lectors = Lector.objects.all()
+    lectors = Lector.objects.all().order_by('lastName','firstName')
     
     context = {
         'events': events,
@@ -96,7 +99,7 @@ def evening_page(request, id):
 def workshop_page(request, id):
     workshops = Workshop.objects.all().order_by('start')
     workshop = Workshop.objects.get(id=id)
-    lectors = Lector.objects.all()
+    lectors = Lector.objects.all().order_by('lastName','firstName')
     
     context = {
         'events': workshops,

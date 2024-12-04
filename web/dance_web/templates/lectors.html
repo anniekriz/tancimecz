@@ -11,6 +11,7 @@
 {% block content %}
 <div class="section-container">
     <div class="section">
+        <!-- All lectors -->
         <div class="lectors">
             {%for lector in lectors%}
             <div class="lector">
@@ -21,7 +22,24 @@
                     </div>
                 </a>
             </div>
-            {%endfor%}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Ludmila -->
+    <div class="lector_ludmila">
+        <div class="lector">
+            <a href="{% url 'lector_page' slug=lector_ludmila.slug %}" style="text-decoration: none;">
+                <img src="{{ lector_ludmila.image.url }}" alt="{{ lector_ludmila.firstName }}">
+                <div class="name">
+                    {{lector_ludmila.firstName}}&nbsp;{{lector_ludmila.lastName}}
+                </div>
+                <div class="name ludmila-inmem">
+                    In Memoriam<br />
+                </div>
+                <div class="name ludmila-inmem">
+                    15.5.1946&ndash;6.2.2024
+                </div>
+            </a>
         </div>
     </div>
 </div>
