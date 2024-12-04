@@ -5,48 +5,32 @@
 {% block title %}{{ event.parent.location.town }}{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/evening_page.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/event_page.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/lector_list.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/evening_page.css' %}">
 {% endblock %}
 
 {% block content %}
-    <!-- <div class="lector-navigation">
-        {% if prev_lector %}
-            <a href="{% url 'lector_page' slug=prev_lector.slug %}" class="nav-arrow left-arrow">←</a>
-        {% endif %}
-        {% if next_lector %}
-            <a href="{% url 'lector_page' slug=next_lector.slug %}" class="nav-arrow right-arrow">→</a>
-        {% endif %}
-    </div> -->
-    <div class="section-container">
-        <!-- <img src="{{ parent.image.url }}" alt="{{ parent.image }}"> -->
-        <div class="evening-town">{{ event.parent.location.town }}</div>
-        <div class="event-date">
-            {% with event|date_format as date %}
-            {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}&ndash;{{ date.endTime }} {% endif %}
-            {% endwith %}
-        </div>
-        <div class="evening-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
-        {% if event.parent.description %}
-            <div class="evening-description">
-                {{ event.parent.description|safe }}
-            </div>
-        {% endif %}
-        {% if event.description %}
-            <div class="evening-description">  
-                {{ event.description|safe }}
-            </div>
-        {% endif %}
-        <div class="lectors">
-            {% for lector in event.parent.lector.all %}
-            <div class="lector">
-                <a href="{% url 'lector_page' slug=lector.slug %}" style="text-decoration: none;">
-                    <img src="{{ lector.image.url }}" alt="{{ lector.firstName }}">
-                    <div class="name">
-                        {{lector.firstName}} {%if lector.lastName%} <br>{{lector.lastName}} {%endif%}
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
+<div class="event-detail section-container">
+    <div class="event-title">{{ event.parent.location.town }}</div>
+    <div class="event-date">
+        {% with event|date_format as date %}
+        {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}&ndash;{{ date.endTime }} {% endif %}
+        {% endwith %}
     </div>
+    <div class="event-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
+    {% if event.parent.description %}
+    <div class="evening-description">
+        {{ event.parent.description|safe }}
+    </div>
+    {% endif %}
+    {% if event.description %}
+    <div class="event-description">
+        {{ event.description|safe }}
+    </div>
+    {% endif %}
+    <div class="lector-list">
+        {% include "lector_list.html" with lectors=event.parent.lector.all %}
+    </div>
+</div>
 {% endblock %}

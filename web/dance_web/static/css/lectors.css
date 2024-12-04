@@ -6,20 +6,12 @@
     color: #67F0FC!important;
 }
 
-.section {
+.lector-list {
     padding-top: 20px;
     max-width: 1200px;
-    margin: 0 auto; 
+    margin: 0 auto;
     display: flex;
-    justify-content: center;  
-}
-
-.lectors {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;  
-    gap: 20px; 
-    padding: 0 20px;
+    justify-content: center;
     margin-top: 130px;
 }
 
@@ -31,40 +23,12 @@
     border-top: 1px solid #000006;
 }
 
-.lector {
-    flex: 0 1 150px;  
-    max-width: 200px;
-    padding: 10px;
-    transition: transform 0.3s;
-    box-sizing: border-box;
-    text-align: center;  
-}
-
-.lector:hover {
-    transform: scale(1.05);
-}
-
-.lector img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 1px solid #3C3F0F;
-}
-
-.name {
-    font-size: 1.2em;
-    margin-bottom: 8px;
-    color: #3C3F0F;
-    font-family: 'Raleway', sans-serif;
-}
-
-.name a {
-    border-bottom: none;
-}
-
 .ludmila-inmem {
     font-size: 1em;
 }
 
+@media(max-width: 760px) {
+    .lector-list {
+        margin-top: 120px;
+    }
+}
