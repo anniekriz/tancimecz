@@ -4,13 +4,14 @@ from danceapp.forms import Search, Search_lectors
 from django.db.models import Q
 from django.utils import timezone
 from itertools import chain
+from django.db.models import Count
 
 ludmila_id = 25
 
 def homepage(request):
     events = Event.objects.all().order_by('date')
     workshops = Workshop.objects.all().order_by('start')
-    lectors = Lector.objects.all().exclude(id=ludmila_id).order_by('lastName','firstName')
+    lectors = Lector.objects.annotate(event_count=Count('eventgroup__event', distinct=True) + Count('workshop', distinct=True)).exclude(id=ludmila_id).order_by('-event_count', 'lastName', 'firstName')
 
     context = {
         'events': events,
