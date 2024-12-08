@@ -27,6 +27,11 @@
         </div>
     </div>
     <div class="lector-detail-contact">
+        <div class="lector-detail-fb">
+            {% if lector.link %}
+            <img class="lector-details-fb-image" src="{% static 'images/fb.png' %}" alt="fb" width="20px"/><a href="{{ lector.fb }}" target="_blank">Facebook</a>
+            {% endif %}
+        </div>
         <div class="lector-detail-email">
             {% if lector.email %}
             {{ lector.email }}
