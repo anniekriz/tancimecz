@@ -56,6 +56,7 @@ class EventGroup(models.Model):
     class Meta:
         verbose_name = "Taneční večer"
         verbose_name_plural = "Taneční večery"
+        ordering = ['-startTime']
 
     def short_description(self):
         return self.description[:75] + '...' if len(self.description) > 75 else self.description
@@ -80,6 +81,7 @@ class Event(models.Model):
     class Meta:
         verbose_name = "Taneční večer"
         verbose_name_plural = "Taneční večery"
+        ordering = ['-date']
     
     @property
     def endTime(self):
@@ -115,6 +117,7 @@ class Workshop(models.Model):
     class Meta:
         verbose_name = "Workshop"
         verbose_name_plural = "Workshopy"
+        ordering = ['-start']
 
     def clean(self):
         super().clean()
