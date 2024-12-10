@@ -333,11 +333,17 @@
     opacity: 1; /* Show the name overlay */
 }
 
-.logo_image {
-    width: 700px;
+.logo_image1 {
+    margin-right: 30px;
+    margin-top: 10px;
+    height: 80px;
 }
 
-
+.logo_image2 {
+    margin-left: 30px;
+    margin-top: 10px;
+    height: 100px;
+}
 
 .lidi {
     margin-top: 100px;
