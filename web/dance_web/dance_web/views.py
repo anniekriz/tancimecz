@@ -5,13 +5,17 @@ from django.db.models import Q
 from django.utils import timezone
 from itertools import chain
 from django.db.models import Count
+from django.utils.timezone import now
 
 ludmila_id = 25
+
+future_events_filter = Q(eventgroup__event__date__gte=now().date())
+future_workshops_filter = Q(workshop__start__gte=now().date())
 
 def homepage(request):
     events = Event.objects.all().order_by('date')
     workshops = Workshop.objects.all().order_by('start')
-    lectors = Lector.objects.annotate(event_count=Count('eventgroup__event', distinct=True) + Count('workshop', distinct=True)).exclude(id=ludmila_id).order_by('-event_count', 'lastName', 'firstName')
+    lectors = Lector.objects.annotate(event_count=Count('eventgroup__event', filter=future_events_filter, distinct=True) + Count('workshop', filter=future_workshops_filter, distinct=True)*2).exclude(id=ludmila_id).order_by('-event_count', 'lastName', 'firstName')
 
     context = {
         'events': events,
