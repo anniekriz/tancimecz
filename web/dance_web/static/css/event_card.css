@@ -204,6 +204,7 @@
     text-overflow: ellipsis;
     flex-grow: 1;
     font-size: 0.7em;
+    max-height: 300px;
 }
 
 .workshop-lectors {

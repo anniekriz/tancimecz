@@ -27,11 +27,6 @@
         </div>
     </div>
     <div class="lector-detail-contact">
-        <!-- <div class="lector-detail-fb">
-            {% if lector.link %}
-            <img class="lector-details-fb-image" src="{% static 'images/fb.png' %}" alt="fb" width="20px"/><a href="{{ lector.fb }}" target="_blank">Facebook</a>
-            {% endif %}
-        </div> -->
         <div class="lector-detail-email">
             {% if lector.email %}
             {{ lector.email }}
@@ -42,10 +37,17 @@
             {{ lector.phone }}
             {% endif %}
         </div>
-        <div class="lector-detail-link">
-            {% if lector.link %}
-            <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
-            {% endif %}
+        <div class="lector-detail-rightgroup {% if not lector.phone %}lector-detail-rightgroup-ifnophone{% endif %}">
+            <div class="lector-detail-fb">
+                {% if lector.fb %}
+                <a href="{{ lector.fb }}" target="_blank"><img class="lector-details-fb-image" src="{% static 'images/fb.png' %}" alt="fb" width="20px" /><div>Facebook</div></a>
+                {% endif %}
+            </div>
+            <div class="lector-detail-link">
+                {% if lector.link %}
+                <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div id="events">
