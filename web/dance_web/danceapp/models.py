@@ -5,6 +5,11 @@ from threading import Lock
 from django.core.exceptions import ValidationError
 
 
+class OrderedLectorManager(models.Manager):
+    def get_queryset(self):
+        # Order by EventLector.order
+        return super().get_queryset().order_by('eventlector__order')
+
 
 class Lector(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Uživatel")
@@ -17,6 +22,9 @@ class Lector(models.Model):
     email = models.EmailField(null=True, blank=True, verbose_name="E-mail")
     link = models.CharField(max_length=256, null=True, blank=True, verbose_name="Odkaz na stránku")
     fb = models.CharField(max_length=256, null=True, blank=True, verbose_name="Facebook")
+
+    objects = models.Manager()  # Default manager
+    ordered_objects = OrderedLectorManager()  # Custom manager for ordering
 
     class Meta:
         verbose_name = "Lektor"
@@ -62,6 +70,11 @@ class EventGroup(models.Model):
 
     def short_description(self):
         return self.description[:75] + '...' if len(self.description) > 75 else self.description
+    
+    @property
+    def ordered_lectors(self):
+        # Fetch lectors via EventLector and order them by `EventLector.order`
+        return Lector.objects.filter(eventlector__eventId=self).order_by('eventlector__order')
 
 class Event(models.Model):
     parent = models.ForeignKey('EventGroup', verbose_name="Event Group", on_delete=models.PROTECT)
