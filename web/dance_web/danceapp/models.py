@@ -19,7 +19,6 @@ class Lector(models.Model):
     fb = models.CharField(max_length=256, null=True, blank=True, verbose_name="Facebook")
 
     class Meta:
-        ordering = ['firstName'] #řazení lektorů podle abecedy
         verbose_name = "Lektor"
         verbose_name_plural = "Lektoři"
 
@@ -130,7 +129,7 @@ class Workshop(models.Model):
 class EventLector(models.Model):
     eventId = models.ForeignKey(EventGroup, on_delete=models.CASCADE)
     lectorId = models.ForeignKey(Lector, on_delete=models.CASCADE)
-    order = models.PositiveIntegerField(verbose_name="Order", default=0)
+    order = models.PositiveIntegerField(verbose_name="Pořadí", default=0)
 
     class Meta:
         verbose_name = "Lektor"
@@ -140,9 +139,9 @@ class EventLector(models.Model):
             models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector')
         ]
 
-    def clean(self):
-        # Ensure order values are unique within the same EventGroup
-        if EventLector.objects.filter(eventId=self.eventId, order=self.order).exclude(pk=self.pk).exists():
-            raise ValidationError(f"Číslo {self.order} už má jiný lektor")
+    # def clean(self):
+    #     # Ensure order values are unique within the same EventGroup
+    #     if EventLector.objects.filter(eventId=self.eventId, order=self.order).exclude(pk=self.pk).exists():
+    #         raise ValidationError(f"Číslo {self.order} už má jiný lektor")
      
 
