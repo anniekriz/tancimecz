@@ -2,6 +2,15 @@
 
 from django.db import migrations, models
 
+def copy_lectors_to_eventgroup(apps, schema_editor):
+    EventGroup = apps.get_model('danceapp', 'EventGroup')
+    EventLector = apps.get_model('danceapp', 'EventLector')
+    Lector = apps.get_model('danceapp', 'Lector')
+
+    for event_group in EventGroup.objects.all():
+        lectors_old = event_group.lectorOld.all()  # Get all old lectors
+        for order, lector in enumerate(lectors_old, start=1):  # Add them to EventLector
+            EventLector.objects.create(eventId=event_group, lectorId=lector, order=order)
 
 class Migration(migrations.Migration):
 
@@ -20,4 +29,8 @@ class Migration(migrations.Migration):
             name='lectorOld',
             field=models.ManyToManyField(related_name='event_groups_old', to='danceapp.Lector', verbose_name='LektorOld'),
         ),
+        migrations.RunPython(copy_lectors_to_eventgroup),
     ]
+
+
+

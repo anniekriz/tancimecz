@@ -3,6 +3,15 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
+def copy_lectors_to_workshop(apps, schema_editor):
+    Workshop = apps.get_model('danceapp', 'Workshop')
+    EventLector = apps.get_model('danceapp', 'EventLector')
+    Lector = apps.get_model('danceapp', 'Lector')
+
+    for workshop in Workshop.objects.all():
+        lectors_old = workshop.lectorOld.all()  # Get all old lectors
+        for order, lector in enumerate(lectors_old, start=1):  # Add them to EventLector
+            EventLector.objects.create(workshopId=workshop, lectorId=lector, order=order)
 
 class Migration(migrations.Migration):
 
@@ -16,4 +25,7 @@ class Migration(migrations.Migration):
             name='eventId',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='danceapp.eventgroup'),
         ),
+        migrations.RunPython(copy_lectors_to_workshop),
     ]
+
+
