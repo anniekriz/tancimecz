@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="workshop-lectors">
-                {% for lector in event.lector.all %}
+                {% for lector in event.ordered_lectors %}
                 {% if forloop.counter < 4 %}
                 <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
                     <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />

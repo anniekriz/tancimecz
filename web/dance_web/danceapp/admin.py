@@ -107,6 +107,7 @@ admin.site.register(Event, EventAdmin)
 admin.site.unregister(Event)
 
 class WorkshopAdmin(admin.ModelAdmin):
+    inlines = [LectorInline]
     change_form_template = 'admin/change_form.html'
     list_display = ('title', 'title2', 'start', 'end', 'location')
     list_filter = ('start', 'end', 'location')
@@ -146,6 +147,7 @@ def duplicate_workshops(modeladmin, request, queryset):
         obj.save()  # Save again after setting Lectors
 
 class WorkshopAdmin(admin.ModelAdmin):
+    inlines = [LectorInline]
     list_display = ('title', 'start', 'end', 'location', 'render_actions')
     actions = [duplicate_workshops]  # Keep this as a list of actions
 

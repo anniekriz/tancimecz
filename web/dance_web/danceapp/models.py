@@ -121,7 +121,7 @@ class Workshop(models.Model):
     end = models.DateField(verbose_name="Konec", default=datetime.date.today)
     startTime = models.TimeField(verbose_name="Začátek (nepovinné)", null=True, blank=True, default=None)
     endTime = models.TimeField(verbose_name="Konec (nepovinné)", null=True, blank=True, default=None)
-    lector = models.ManyToManyField('Lector', verbose_name="Lektor/Lektoři")
+    lector = models.ManyToManyField(Lector, through='EventLector', verbose_name="Lektor")
     description = models.TextField(verbose_name="Popis")
     image = models.ImageField(verbose_name="Obrázek", upload_to='images/', null=True, blank=True)
     price = models.CharField(verbose_name="Cena (nepovinné)", max_length=50, null=True, blank=True)
@@ -138,9 +138,15 @@ class Workshop(models.Model):
         super().clean()
         if self.start > self.end:
             raise ValidationError("The start date cannot be later than the end date.")
+        
+    @property
+    def ordered_lectors(self):
+        # Fetch lectors via EventLector and order them by `EventLector.order`
+        return Lector.objects.filter(eventlector__workshopId=self).order_by('eventlector__order')
 
 class EventLector(models.Model):
-    eventId = models.ForeignKey(EventGroup, on_delete=models.CASCADE)
+    eventId = models.ForeignKey(EventGroup, on_delete=models.CASCADE, null=True, blank=True)
+    workshopId = models.ForeignKey(Workshop, on_delete=models.CASCADE, null=True, blank=True)
     lectorId = models.ForeignKey(Lector, on_delete=models.CASCADE)
     order = models.PositiveIntegerField(verbose_name="Pořadí", default=0)
 
@@ -149,7 +155,8 @@ class EventLector(models.Model):
         verbose_name_plural = "Lektoři"
         ordering = ['order']
         constraints = [
-            models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector')
+            models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector'),
+            models.UniqueConstraint(fields=['workshopId', 'lectorId'], name='un_workshoplector'),
         ]
 
     # def clean(self):
