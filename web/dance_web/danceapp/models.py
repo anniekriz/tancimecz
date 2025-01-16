@@ -2,6 +2,8 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from threading import Lock
+from django.core.exceptions import ValidationError
+
 
 
 class Lector(models.Model):
@@ -40,7 +42,7 @@ class Location(models.Model):
         verbose_name_plural = "Místa konání"
 
 class EventGroup(models.Model):
-    lector = models.ManyToManyField(Lector, verbose_name="Lektor")
+    lector = models.ManyToManyField(Lector, through='EventLector', verbose_name="Lektor")
     location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
     startTime = models.TimeField(verbose_name="Začátek", default='18:00')
     endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='20:00', null=True, blank=True)
@@ -126,11 +128,21 @@ class Workshop(models.Model):
             raise ValidationError("The start date cannot be later than the end date.")
 
 class EventLector(models.Model):
-    eventId = models.ForeignKey(Event, on_delete=models.CASCADE)
+    eventId = models.ForeignKey(EventGroup, on_delete=models.CASCADE)
     lectorId = models.ForeignKey(Lector, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(verbose_name="Order", default=0)
+
     class Meta:
-     constraints = [
-          models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector')
-    ]
+        verbose_name = "Lektor"
+        verbose_name_plural = "Lektoři"
+        ordering = ['order']
+        constraints = [
+            models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector')
+        ]
+
+    def clean(self):
+        # Ensure order values are unique within the same EventGroup
+        if EventLector.objects.filter(eventId=self.eventId, order=self.order).exclude(pk=self.pk).exists():
+            raise ValidationError(f"Číslo {self.order} už má jiný lektor")
      
 
