@@ -2,6 +2,13 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from threading import Lock
+from django.core.exceptions import ValidationError
+
+
+class OrderedLectorManager(models.Manager):
+    def get_queryset(self):
+        # Order by EventLector.order
+        return super().get_queryset().order_by('eventlector__order')
 
 
 class Lector(models.Model):
@@ -16,8 +23,10 @@ class Lector(models.Model):
     link = models.CharField(max_length=256, null=True, blank=True, verbose_name="Odkaz na stránku")
     fb = models.CharField(max_length=256, null=True, blank=True, verbose_name="Facebook")
 
+    objects = models.Manager()  # Default manager
+    ordered_objects = OrderedLectorManager()  # Custom manager for ordering
+
     class Meta:
-        ordering = ['firstName'] #řazení lektorů podle abecedy
         verbose_name = "Lektor"
         verbose_name_plural = "Lektoři"
 
@@ -40,7 +49,7 @@ class Location(models.Model):
         verbose_name_plural = "Místa konání"
 
 class EventGroup(models.Model):
-    lector = models.ManyToManyField(Lector, verbose_name="Lektor")
+    lector = models.ManyToManyField(Lector, through='EventLector', verbose_name="Lektor")
     location = models.ForeignKey(Location, verbose_name="Místo konání", on_delete=models.PROTECT)
     startTime = models.TimeField(verbose_name="Začátek", default='18:00')
     endTime = models.TimeField(verbose_name="Konec (nepovinné)", default='20:00', null=True, blank=True)
@@ -61,6 +70,11 @@ class EventGroup(models.Model):
 
     def short_description(self):
         return self.description[:75] + '...' if len(self.description) > 75 else self.description
+    
+    @property
+    def ordered_lectors(self):
+        # Fetch lectors via EventLector and order them by `EventLector.order`
+        return Lector.objects.filter(eventlector__eventId=self).order_by('eventlector__order')
 
 class Event(models.Model):
     parent = models.ForeignKey('EventGroup', verbose_name="Event Group", on_delete=models.PROTECT)
@@ -107,7 +121,7 @@ class Workshop(models.Model):
     end = models.DateField(verbose_name="Konec", default=datetime.date.today)
     startTime = models.TimeField(verbose_name="Začátek (nepovinné)", null=True, blank=True, default=None)
     endTime = models.TimeField(verbose_name="Konec (nepovinné)", null=True, blank=True, default=None)
-    lector = models.ManyToManyField('Lector', verbose_name="Lektor/Lektoři")
+    lector = models.ManyToManyField(Lector, through='EventLector', verbose_name="Lektor")
     description = models.TextField(verbose_name="Popis")
     image = models.ImageField(verbose_name="Obrázek", upload_to='images/', null=True, blank=True)
     price = models.CharField(verbose_name="Cena (nepovinné)", max_length=50, null=True, blank=True)
@@ -124,13 +138,30 @@ class Workshop(models.Model):
         super().clean()
         if self.start > self.end:
             raise ValidationError("The start date cannot be later than the end date.")
+        
+    @property
+    def ordered_lectors(self):
+        # Fetch lectors via EventLector and order them by `EventLector.order`
+        return Lector.objects.filter(eventlector__workshopId=self).order_by('eventlector__order')
 
 class EventLector(models.Model):
-    eventId = models.ForeignKey(Event, on_delete=models.CASCADE)
+    eventId = models.ForeignKey(EventGroup, on_delete=models.CASCADE, null=True, blank=True)
+    workshopId = models.ForeignKey(Workshop, on_delete=models.CASCADE, null=True, blank=True)
     lectorId = models.ForeignKey(Lector, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(verbose_name="Pořadí", default=0)
+
     class Meta:
-     constraints = [
-          models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector')
-    ]
+        verbose_name = "Lektor"
+        verbose_name_plural = "Lektoři"
+        ordering = ['order']
+        constraints = [
+            models.UniqueConstraint(fields=['eventId', 'lectorId'], name='un_eventlector'),
+            models.UniqueConstraint(fields=['workshopId', 'lectorId'], name='un_workshoplector'),
+        ]
+
+    # def clean(self):
+    #     # Ensure order values are unique within the same EventGroup
+    #     if EventLector.objects.filter(eventId=self.eventId, order=self.order).exclude(pk=self.pk).exists():
+    #         raise ValidationError(f"Číslo {self.order} už má jiný lektor")
      
 

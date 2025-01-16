@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from danceapp.models import Event, Lector, Workshop
+from danceapp.models import Event, Lector, Workshop, EventLector
 from danceapp.forms import Search, Search_lectors
 from django.db.models import Q
 from django.utils import timezone
@@ -67,7 +67,6 @@ def lector_list(request):
     lector_ludmila = Lector.objects.all().filter(id=ludmila_id).first()    
     return render(request, 'lectors.html', {"lector_ludmila": lector_ludmila, "lectors": lectors})
 
-
 def lector_page(request, slug):
     lectors = Lector.objects.all().order_by('id')
     lector = Lector.objects.get(slug=slug)
@@ -88,9 +87,13 @@ def lector_page(request, slug):
 
 def evening_page(request, id):
     event = Event.objects.get(id=id)
+    # event_group = event.parent
+    # event_lectors = EventLector.objects.filter(eventId=event_group).order_by('order')
+    # lectors = [event_lector.lectorId for event_lector in event_lectors]  # Extract Lector objects from EventLector
     
     context = {
         'event': event,
+        # 'lectors': lectors,
     }
     return render(request, 'evening_page.html', context)
 

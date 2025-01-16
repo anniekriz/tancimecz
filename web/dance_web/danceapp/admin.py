@@ -2,14 +2,21 @@ from django.contrib import admin
 from django import forms
 from .forms import EventGroupForm
 from .widgets import CustomTimeWidget
-from .models import Event, Lector, Location, EventGroup, Workshop
+from .models import Event, Lector, Location, EventGroup, Workshop, EventLector
 from django.utils.html import format_html
+
 
 admin.site.register(Location)
 
 class EventInline(admin.TabularInline):
     model = Event
     extra = 0  # Number of empty event forms to display
+
+class LectorInline(admin.TabularInline):
+    model = EventLector
+    extra = 0
+    fields = ('lectorId', 'order')  
+    ordering = ['order']
 
 @admin.action(description="Kopírovat vybrané taneční večery")
 def duplicate_event_groups(modeladmin, request, queryset):
@@ -30,7 +37,7 @@ def duplicate_event_groups(modeladmin, request, queryset):
 
 
 class EventGroupAdmin(admin.ModelAdmin):
-    inlines = [EventInline]
+    inlines = [LectorInline, EventInline]
     form = EventGroupForm  
     list_display = ('location', 'startTime', 'endTime', 'short_description', 'render_actions')
     search_fields = ('location__name', 'description')
@@ -39,6 +46,11 @@ class EventGroupAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super(EventGroupAdmin, self).get_form(request, obj, **kwargs)
         return form
+    
+    def get_lectors(self, obj):
+        lectors = EventLector.objects.filter(eventId=obj).order_by('order')
+        return ", ".join([f"{el.lectorId.firstName} {el.lectorId.lastName} (Order: {el.order})" for el in lectors])
+    get_lectors.short_description = 'Lectors'
     
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -95,6 +107,7 @@ admin.site.register(Event, EventAdmin)
 admin.site.unregister(Event)
 
 class WorkshopAdmin(admin.ModelAdmin):
+    inlines = [LectorInline]
     change_form_template = 'admin/change_form.html'
     list_display = ('title', 'title2', 'start', 'end', 'location')
     list_filter = ('start', 'end', 'location')
@@ -134,6 +147,7 @@ def duplicate_workshops(modeladmin, request, queryset):
         obj.save()  # Save again after setting Lectors
 
 class WorkshopAdmin(admin.ModelAdmin):
+    inlines = [LectorInline]
     list_display = ('title', 'start', 'end', 'location', 'render_actions')
     actions = [duplicate_workshops]  # Keep this as a list of actions
 
