@@ -30,7 +30,7 @@
     </div>
     {% endif %}
     <div class="lector-list">
-        {% include "lector_list.html" with lectors=event.parent.lector.all %}
+        {% include "lector_list.html" with lectors=event.parent.ordered_lectors %}
     </div>
 </div>
 {% endblock %}

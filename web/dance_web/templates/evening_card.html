@@ -11,7 +11,7 @@
             <div class="evening-content event-content">
                 <div class="evening-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
                 <div class="evening-lectors">
-                    {% for lector in event.parent.lector.all %}
+                    {% for lector in event.parent.ordered_lectors %}
                     <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
                         <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
                         <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
