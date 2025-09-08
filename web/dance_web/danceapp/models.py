@@ -108,7 +108,7 @@ class Event(models.Model):
         with Event._lock:
             if town_name not in Event.town_to_number:
                 Event.town_to_number[town_name] = Event.next_number
-                Event.next_number = (Event.next_number % 6) + 1
+                Event.next_number = (Event.next_number % 10) + 1
         return Event.town_to_number[town_name]
 
 
