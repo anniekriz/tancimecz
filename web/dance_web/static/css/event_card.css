@@ -161,6 +161,30 @@
     border: 1px solid #DA8D46;
 }
 
+.evening-card-color7 {
+    background-color: #6F8FAF;
+    color: #ffffff;
+    border: 1px solid #6F8FAF;
+}
+
+.evening-card-color8 {
+    background-color: #eac006;
+    color: #000006;
+    border: 1px solid #eac006;
+}
+
+.evening-card-color9 {
+    background-color: #7d7810;
+    color: #ffffff;
+    border: 1px solid #7d7810;
+}
+
+.evening-card-color10 {
+    background-color: #284463;
+    color: #ffffff;
+    border: 1px solid #284463;
+}
+
 /* Specific styles for Workshop event card ****************************************************************************************************/
 
 .workshop-card {
