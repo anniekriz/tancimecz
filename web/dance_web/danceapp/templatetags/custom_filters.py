@@ -92,3 +92,13 @@ def date_format(event):
 @register.filter
 def is_instance(obj, class_name):
     return obj.__class__.__name__ == class_name
+
+@register.filter
+def flag_emoji(iso_code: str) -> str:
+    """
+    Convert ISO 3166-1 alpha-2 (e.g. 'SK') to flag emoji.
+    Returns '' if CZ or invalid.
+    """
+    if not iso_code or len(iso_code) != 2 or iso_code.upper() == 'CZ':
+        return ''
+    return ''.join(chr(0x1F1E6 + ord(c.upper()) - ord('A')) for c in iso_code)

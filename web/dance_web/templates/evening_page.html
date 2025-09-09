@@ -18,7 +18,7 @@
         {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}&ndash;{{ date.endTime }} {% endif %}
         {% endwith %}
     </div>
-    <div class="event-address">{{ event.parent.location.name }} <br> {{ event.parent.location.address }} </div>
+    <div class="event-address">{% if event.parent.location.name %} {{ event.parent.location.name }} <br> {% endif %}  {{ event.parent.location.address }} </div>
     {% if event.parent.description %}
     <div class="event-description">
         {{ event.parent.description|safe }}
