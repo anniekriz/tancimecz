@@ -3,7 +3,6 @@ import datetime
 from django.contrib.auth.models import User
 from threading import Lock
 from django.core.exceptions import ValidationError
-from django_countries.fields import CountryField
 
 
 class OrderedLectorManager(models.Manager):
