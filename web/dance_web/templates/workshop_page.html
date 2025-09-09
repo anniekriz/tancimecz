@@ -26,7 +26,7 @@
     <div class="workshop-content event-content">
         {% if event.location.country and event.location.country != 'CZ' %}
         <div class="event-country">
-            {% static 'images/flags/'|add:event.location.country|add:'.png' as flag_src %}
+            {% static 'images/flags/'|add:event.location.country|add:'.jpg' as flag_src %}
             <img class="flag" src="{{ flag_src }}" alt="{{ event.location.country|country_name }}">
             <span class="country-name">{{ event.location.country|country_name }}</span>
         </div>

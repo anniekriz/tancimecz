@@ -7,7 +7,7 @@
             <div class="event-title">
                 {{ event.parent.location.town }}
                 {% if event.parent.location.country and event.parent.location.country != 'CZ' %}
-                {% static 'images/flags/'|add:event.parent.location.country|add:'.png' as flag_src %}
+                {% static 'images/flags/'|add:event.parent.location.country|add:'.jpg' as flag_src %}
                 <img class="event-flag" src="{{ flag_src }}" alt="{{ event.parent.location.country }}">
                 {% endif %}
             </div>
