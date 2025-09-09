@@ -19,7 +19,7 @@
       <a href="{% url 'workshop_page' id=event.id %}" class="workshop-media">
         <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
         {% if event.location.country and event.location.country != 'CZ' %}
-          {% static 'images/flags/'|add:event.location.country|add:'.png' as flag_src %}
+          {% static 'images/flags/'|add:event.location.country|add:'.jpg' as flag_src %}
           <img class="flag-badge" src="{{ flag_src }}" alt="{{ event.location.country }}">
         {% endif %}
       </a>
