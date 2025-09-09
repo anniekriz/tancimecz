@@ -19,10 +19,18 @@
     {% endif %}
     <div class="event-date">
         {% with event|date_format as date %}
-        {{ date.day }} {{ date.date }} {% if event.startTime %}{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}{% endif %}
+        {{ date.day }} {{ date.date }} {% if event.startTime %}{{ event.startTime }}{% if event.endTime %}&ndash;{{
+        event.endTime }}{% endif %}{% endif %}
         {% endwith %}
     </div>
     <div class="workshop-content event-content">
+        {% if event.location.country and event.location.country != 'CZ' %}
+        <div class="event-country">
+            {% static 'images/flags/'|add:event.location.country|add:'.png' as flag_src %}
+            <img class="flag" src="{{ flag_src }}" alt="{{ event.location.country|country_name }}">
+            <span class="country-name">{{ event.location.country|country_name }}</span>
+        </div>
+        {% endif %}
         <div class="event-address">
             <div class="workshop-address-town">
                 {{ event.location.town }}

@@ -11,14 +11,14 @@
     overflow: hidden;
 }
 
-    .event-card:hover {
-        transform: scale(1.03);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+.event-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 
-    .event-card a {
-        color: inherit;
-    }
+.event-card a {
+    color: inherit;
+}
 
 
 .event-card-inner {
@@ -32,6 +32,19 @@
     padding-bottom: 5px;
     margin-right: -6px;
     white-space: nowrap;
+}
+
+.event-flag {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    height: 26px;
+    width: auto;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+    border: solid 1px rgba(255, 255, 255, 0.5) ;
+    border-radius: 3px;
 }
 
 .event-date {
@@ -64,10 +77,10 @@
     height: 29px;
 }
 
-    .event-lector:hover {
-        color: #006090;
-        font-weight: bold;
-    }
+.event-lector:hover {
+    color: #006090;
+    font-weight: bold;
+}
 
 .event-lector-image {
     width: 24px;
@@ -103,17 +116,13 @@
     border: 1px solid #FFF8F0;
 }
 
-.evening-address {
-}
+.evening-address {}
 
-.evening-address-town {
-}
+.evening-address-town {}
 
-.evening-time {
-}
+.evening-time {}
 
-.evening-description {
-}
+.evening-description {}
 
 .evening-lectors {
     display: flex;
@@ -199,13 +208,33 @@
     flex-direction: column;
 }
 
+.workshop-media {
+    position: relative;
+    display: block;
+}
+
 .workshop-image {
+    display: block;
+    width: 100%;
     border-radius: 10px 10px 0px 0px;
     position: relative;
     z-index: 1;
     margin: -9px;
     margin-bottom: 8px;
     flex-shrink: 0;
+}
+
+.flag-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    height: 28px;
+    width: auto;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+    border: solid 1px white;
+    border-radius: 3px;
 }
 
 .workshop-address {
@@ -242,12 +271,13 @@
 
 
 @media (max-width: 500px) {
- 
+
     .workshop-card {
         height: auto;
     }
 
-    .workshop-content, .workshop-long-title .workshop-content {
+    .workshop-content,
+    .workshop-long-title .workshop-content {
         height: auto;
     }
 
@@ -256,11 +286,12 @@
     }
 
     .workshop-card {
-        height: auto!important;
+        height: auto !important;
     }
 
-    .workshop-content, .workshop-long-title .workshop-content {
-        height: auto!important;
+    .workshop-content,
+    .workshop-long-title .workshop-content {
+        height: auto !important;
     }
 
     .evening-card {

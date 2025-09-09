@@ -1,50 +1,63 @@
+{% load static %}
 {% load custom_filters %}
+
 <div class="workshop-card event-card workshop-card-{{ index }}">
-    <div class="event-card-inner {% if event.title2 %}workshop-long-title{% endif %}">
-        <a href="{% url 'workshop_page' id=event.id %}">
-            <div class="event-title">{{ event.title }}{% if event.title2 %}<br>{{ event.title2}}{% endif %}</div>
-            <div class="event-date">
-                {% with event|date_format as date %}
-                {{ date.day }} {{ date.date }}
-                {% endwith %}
-            </div>
-        </a>
-        <div class="workshop-content event-content">
-            {% if event.image %}
-            <a href="{% url 'workshop_page' id=event.id %}">
-                <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
-            </a>
-            {% endif %}
-            <a href="{% url 'workshop_page' id=event.id %}">
-                <div class="workshop-address">
-                    <div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }}
-                </div>
-            </a>
-            {% if event.startTime %}
-            <a href="{% url 'workshop_page' id=event.id %}">
-                <div class="workshop-time">{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}</div>
-            </a>
-            {% endif %}
-            <div class="workshop-description">
-                <a href="{% url 'workshop_page' id=event.id %}">
-                    {{ event.description|safe }}
-                </a>
-            </div>
-            <div class="workshop-lectors">
-                {% for lector in event.ordered_lectors %}
-                {% if forloop.counter < 4 %}
-                <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
-                    <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                    <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
-                </a>
-                {% endif %}
-                {% if forloop.counter == 4 %}
-                <a href="{% url 'workshop_page' id=event.id %}">
-                    <div class="event-lector-others">a další...</div>
-                </a>
-                {% endif %}
-                {% endfor %}
-            </div>
+  <div class="event-card-inner {% if event.title2 %}workshop-long-title{% endif %}">
+    <a href="{% url 'workshop_page' id=event.id %}">
+      <div class="event-title">
+        {{ event.title }}{% if event.title2 %}<br>{{ event.title2 }}{% endif %}
+      </div>
+      <div class="event-date">
+        {% with event|date_format as date %}
+          {{ date.day }} {{ date.date }}
+        {% endwith %}
+      </div>
+    </a>
+
+    <div class="workshop-content event-content">
+      {% if event.image %}
+      <a href="{% url 'workshop_page' id=event.id %}" class="workshop-media">
+        <img class="workshop-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
+        {% if event.location.country and event.location.country != 'CZ' %}
+          {% static 'images/flags/'|add:event.location.country|add:'.png' as flag_src %}
+          <img class="flag-badge" src="{{ flag_src }}" alt="{{ event.location.country }}">
+        {% endif %}
+      </a>
+      {% endif %}
+
+      <a href="{% url 'workshop_page' id=event.id %}">
+        <div class="workshop-address">
+          <div class="workshop-address-town">{{ event.location.town }}</div>{{ event.location.address }}
         </div>
+      </a>
+
+      {% if event.startTime %}
+      <a href="{% url 'workshop_page' id=event.id %}">
+        <div class="workshop-time">{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}</div>
+      </a>
+      {% endif %}
+
+      <div class="workshop-description">
+        <a href="{% url 'workshop_page' id=event.id %}">
+          {{ event.description|safe }}
+        </a>
+      </div>
+
+      <div class="workshop-lectors">
+        {% for lector in event.ordered_lectors %}
+          {% if forloop.counter < 4 %}
+            <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
+              <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+              <div class="event-lector-name">{{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}</div>
+            </a>
+          {% endif %}
+          {% if forloop.counter == 4 %}
+            <a href="{% url 'workshop_page' id=event.id %}">
+              <div class="event-lector-others">a další...</div>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
+  </div>
 </div>
