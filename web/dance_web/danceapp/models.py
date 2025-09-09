@@ -36,7 +36,8 @@ class Lector(models.Model):
     
 class Location(models.Model):
     coordinates = models.CharField(max_length=50, verbose_name="Souřadnice")
-    country = CountryField(default='CZ', verbose_name="Země")
+    COUNTRIES = [('CZ','Česko'), ('DE','Německo'), ('SK','Slovensko'), ('AT','Rakousko'), ('PL','Polsko'), ('NL', 'Nizozemsko'), ('UK', 'Velká Británie'), ('FR', 'Francie')]
+    country = models.CharField(max_length=2, choices=COUNTRIES, default='CZ')
     name = models.CharField(max_length=50, null=True, blank=True, verbose_name="Název místa (nepovinné)")
     town = models.CharField(max_length=50, verbose_name="Město/Obec")
     address = models.CharField(max_length=100, verbose_name="Adresa (ulice a ČP)")
