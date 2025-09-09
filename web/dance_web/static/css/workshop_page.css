@@ -16,17 +16,31 @@
     font-weight: 700;
 }
 
-.workshop-content {
+.event-country {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2px;
 }
 
-.workshop-address-town {
-  display: flex;
-  align-items: center;   
-  gap: 6px;             
+.event-country .flag {
+    height: 1.6em;
+    width: auto;
+    flex-shrink: 0;
+    border-radius: 3px;
 }
 
-.flag-inline {
-  height: 20px;
-  width: auto;
-  flex-shrink: 0;
+.flag {
+    height: 40px;
+    width: auto;
+    flex-shrink: 0;
+    border-radius: 3px;
+}
+
+.country-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    line-height: 1.6;
+    text-align: left;
+    font-weight: 500;
 }

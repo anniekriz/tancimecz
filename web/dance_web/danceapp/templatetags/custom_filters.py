@@ -102,3 +102,19 @@ def flag_emoji(iso_code: str) -> str:
     if not iso_code or len(iso_code) != 2 or iso_code.upper() == 'CZ':
         return ''
     return ''.join(chr(0x1F1E6 + ord(c.upper()) - ord('A')) for c in iso_code)
+
+COUNTRY_NAMES = {
+    "DE": "NĚMECKO",
+    "AT": "RAKOUSKO",
+    "SK": "SLOVENSKO",
+    "PL": "POLSKO",
+    "FR": "FRANCIE",
+    "NL": "NIZOZEMSKO",
+    "UK": "VELKÁ BRITÁNIE",
+}
+
+@register.filter
+def country_name(code):
+    if not code:
+        return ""
+    return COUNTRY_NAMES.get(code.upper(), code)

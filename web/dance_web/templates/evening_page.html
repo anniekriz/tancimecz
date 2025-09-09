@@ -18,7 +18,14 @@
         {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}&ndash;{{ date.endTime }} {% endif %}
         {% endwith %}
     </div>
-    <div class="event-address">{% if event.parent.location.name %} {{ event.parent.location.name }} <br> {% endif %}  {{ event.parent.location.address }} </div>
+    {% if event.parent.location.country and event.parent.location.country != 'CZ' %}
+    <div class="event-country">
+        {% static 'images/flags/'|add:event.parent.location.country|add:'.png' as flag_src %}
+        <img class="flag" src="{{ flag_src }}" alt="{{ event.location.country|country_name }}">
+        <span class="country-name">{{ event.parent.location.country|country_name }}</span>
+    </div>
+    {% endif %}
+    <div class="event-address">{% if event.parent.location.name %} {{ event.parent.location.name }} <br> {% endif %} {{ event.parent.location.address }} </div>
     {% if event.parent.description %}
     <div class="event-description">
         {{ event.parent.description|safe }}
