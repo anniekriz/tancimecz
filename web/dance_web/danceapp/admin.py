@@ -15,7 +15,7 @@ class EventInline(admin.TabularInline):
 class LectorInline(admin.TabularInline):
     model = EventLector
     extra = 0
-    fields = ('lectorId', 'order')  
+    fields = ('lectorId', 'order')
     ordering = ['order']
 
 @admin.action(description="Kopírovat vybrané taneční večery")
@@ -38,26 +38,26 @@ def duplicate_event_groups(modeladmin, request, queryset):
 
 class EventGroupAdmin(admin.ModelAdmin):
     inlines = [LectorInline, EventInline]
-    form = EventGroupForm  
+    form = EventGroupForm
     list_display = ('location', 'startTime', 'endTime', 'short_description', 'render_actions')
     search_fields = ('location__name', 'description')
-    actions = [duplicate_event_groups] 
+    actions = [duplicate_event_groups]
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EventGroupAdmin, self).get_form(request, obj, **kwargs)
         return form
-    
+
     def get_lectors(self, obj):
         lectors = EventLector.objects.filter(eventId=obj).order_by('order')
         return ", ".join([f"{el.lectorId.firstName} {el.lectorId.lastName} (Order: {el.order})" for el in lectors])
     get_lectors.short_description = 'Lectors'
-    
+
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         if request.user.is_superuser:
             return qs
         return qs.filter(lector__user=request.user)
-    
+
     def render_actions(self, obj):
         return format_html(
             '<a class="button" href="{}">Kopírovat</a>',
@@ -106,13 +106,27 @@ admin.site.register(Event, EventAdmin)
 
 admin.site.unregister(Event)
 
+
+@admin.action(description='Kopírovat vybrané položky')
+def duplicate_workshops(modeladmin, request, queryset):
+    for obj in queryset:
+        old_lectors = obj.lector.all()
+        obj.id = None  # Reset the primary key to duplicate
+        obj.save()
+
+        obj.lector.set(old_lectors)  # Restore the Many-to-Many relationships
+        obj.save()  # Save again after setting Lectors
+
+
 class WorkshopAdmin(admin.ModelAdmin):
     inlines = [LectorInline]
     change_form_template = 'admin/change_form.html'
-    list_display = ('title', 'title2', 'start', 'end', 'location')
+    list_display = ('title', 'title2', 'start', 'end', 'location', 'render_actions')
     list_filter = ('start', 'end', 'location')
     search_fields = ('title', 'title2', 'location__name', 'description')
+    actions = [duplicate_workshops]
 
+    # >>> Only-lec-tor visibility in admin list <<<
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         if request.user.is_superuser:
@@ -123,6 +137,7 @@ class WorkshopAdmin(admin.ModelAdmin):
         except Lector.DoesNotExist:
             return qs.none()
 
+    # Keep auto-assigning the current user's Lector on create
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         if not change:
@@ -136,29 +151,16 @@ class WorkshopAdmin(admin.ModelAdmin):
         return ", ".join([f"{lector.firstName} {lector.lastName or ''}" for lector in obj.lector.all()])
     display_lectors.short_description = 'Lectors'
 
-@admin.action(description='Kopírovat vybrané položky')
-def duplicate_workshops(modeladmin, request, queryset):
-    for obj in queryset:
-        old_lectors = obj.lector.all()
-        obj.id = None  # Reset the primary key to duplicate
-        obj.save()
-
-        obj.lector.set(old_lectors)  # Restore the Many-to-Many relationships
-        obj.save()  # Save again after setting Lectors
-
-class WorkshopAdmin(admin.ModelAdmin):
-    inlines = [LectorInline]
-    list_display = ('title', 'start', 'end', 'location', 'render_actions')
-    actions = [duplicate_workshops]  # Keep this as a list of actions
-
-    def render_actions(self, obj):  # Rename this method
+    def render_actions(self, obj):
         return format_html(
             '<a class="button" href="{}">Kopírovat</a>',
             f"/admin/danceapp/workshop/{obj.id}/change/",
         )
-    render_actions.short_description = 'Kopírovat'  # Set the column name in the admin list
-    
+    render_actions.short_description = 'Kopírovat'
+
+
 admin.site.register(Workshop, WorkshopAdmin)
+
 
 class LectorAdmin(admin.ModelAdmin):
     list_display = ('firstName', 'lastName')
@@ -166,7 +168,7 @@ class LectorAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(LectorAdmin, self).get_form(request, obj, **kwargs)
-        if not request.user.is_superuser: 
+        if not request.user.is_superuser:
             form.base_fields['user'].widget = forms.HiddenInput()
             form.base_fields['slug'].widget = forms.HiddenInput()
         return form
@@ -182,6 +184,3 @@ class LectorAdmin(admin.ModelAdmin):
             return qs.none()
 
 admin.site.register(Lector, LectorAdmin)
-
-
-
