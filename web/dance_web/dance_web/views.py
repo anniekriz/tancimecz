@@ -7,6 +7,7 @@ from itertools import chain
 from django.db.models import Count
 from django.utils.timezone import now
 from django.core.paginator import Paginator
+from collections import OrderedDict
 
 ludmila_id = 25
 
@@ -54,6 +55,15 @@ def event_list(request):
 def past_events(request):
     selected_filter = request.GET.get('filter', 'ALL')
     page_number = request.GET.get('page', 1)
+    prev_year = request.GET.get('last_year')
+    # Only suppress the first year heading when the request comes from the
+    # AJAX loader. When a user navigates directly to a later page we still
+    # want to show the year divider, even if ``last_year`` is in the query
+    # string.
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        prev_year = int(prev_year) if prev_year else None
+    else:
+        prev_year = None
     today = timezone.now().date()
 
     if selected_filter == 'WORKSHOP':
@@ -69,11 +79,23 @@ def past_events(request):
     paginator = Paginator(items, 20)  # show 20 items per page
     page_obj = paginator.get_page(page_number)
 
+    grouped = OrderedDict()
+    for item in page_obj.object_list:
+        year = item.date.year if hasattr(item, 'date') else item.start.year
+        grouped.setdefault(year, []).append(item)
+
+    last_year = None
+    if page_obj.object_list:
+        last_item = page_obj.object_list[-1]
+        last_year = last_item.date.year if hasattr(last_item, 'date') else last_item.start.year
+
     context = {
-        'combined': page_obj.object_list,
+        'grouped_events': grouped,
         'selected_filter': selected_filter,
         'show_past': True,
         'page_obj': page_obj,
+        'last_year': last_year,
+        'prev_year': prev_year,
     } 
     
     return render(request, 'events.html', context)

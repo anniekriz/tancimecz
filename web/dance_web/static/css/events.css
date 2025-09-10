@@ -40,6 +40,19 @@
     transform: scale(1.05);
 }
 
+.year-divider {
+    grid-column: 1 / -1;
+    font-family: 'Ysabeau SC', sans-serif;
+    text-align: left;
+    margin: 0px 0px 5px 0px;
+    font-size: 2em;
+    font-weight: 300;
+    /* border-bottom: 1px solid #006090;
+    border-top: 1px solid #006090; */
+    /* padding-bottom: 8px; */
+    color: #006090;
+}
+
 .filter button {
     padding: 10px 20px;
     color: #000006;
