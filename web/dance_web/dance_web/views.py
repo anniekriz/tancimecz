@@ -79,14 +79,15 @@ def past_events(request):
     paginator = Paginator(items, 20)  # show 20 items per page
     page_obj = paginator.get_page(page_number)
 
+    page_items = list(page_obj.object_list)
     grouped = OrderedDict()
-    for item in page_obj.object_list:
+    for item in page_items:
         year = item.date.year if hasattr(item, 'date') else item.start.year
         grouped.setdefault(year, []).append(item)
 
     last_year = None
-    if page_obj.object_list:
-        last_item = page_obj.object_list[-1]
+    if page_items:
+        last_item = page_items[-1]
         last_year = last_item.date.year if hasattr(last_item, 'date') else last_item.start.year
 
     context = {
@@ -96,8 +97,8 @@ def past_events(request):
         'page_obj': page_obj,
         'last_year': last_year,
         'prev_year': prev_year,
-    } 
-    
+    }
+
     return render(request, 'events.html', context)
 
 def lector_list(request):
