@@ -6,6 +6,7 @@ from django.utils import timezone
 from itertools import chain
 from django.db.models import Count
 from django.utils.timezone import now
+from django.core.paginator import Paginator
 
 ludmila_id = 25
 
@@ -51,16 +52,31 @@ def event_list(request):
     return render(request, 'events.html', context)
 
 def past_events(request):
-    now = timezone.now().date()
-    past_events = Event.objects.filter(date__lt=now)
-    past_workshops = Workshop.objects.filter(end__lt=now)
-    
-    combined = list(past_events) + list(past_workshops)
-    
+    selected_filter = request.GET.get('filter', 'ALL')
+    page_number = request.GET.get('page', 1)
+    today = timezone.now().date()
+
+    if selected_filter == 'WORKSHOP':
+        items = Workshop.objects.filter(end__lt=today).order_by('-start')
+    elif selected_filter == 'EVENT':
+        items = Event.objects.filter(date__lt=today).order_by('-date')
+    else:
+        events = Event.objects.filter(date__lt=today).order_by('-date')
+        workshops = Workshop.objects.filter(end__lt=today).order_by('-start')
+        items = list(chain(events, workshops))
+        items.sort(key=lambda x: getattr(x, 'date', getattr(x, 'start', None)), reverse=True)
+
+    paginator = Paginator(items, 20)  # show 20 items per page
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'combined': combined,
-    }
-    return render(request, 'past_events.html', context)
+        'combined': page_obj.object_list,
+        'selected_filter': selected_filter,
+        'show_past': True,
+        'page_obj': page_obj,
+    } 
+    
+    return render(request, 'events.html', context)
 
 def lector_list(request):
     lectors = Lector.objects.all().exclude(id=ludmila_id).order_by('lastName','firstName')
