@@ -6,6 +6,8 @@ from django.utils import timezone
 from itertools import chain
 from django.db.models import Count
 from django.utils.timezone import now
+from django.core.paginator import Paginator
+from collections import OrderedDict
 
 ludmila_id = 25
 
@@ -51,16 +53,53 @@ def event_list(request):
     return render(request, 'events.html', context)
 
 def past_events(request):
-    now = timezone.now().date()
-    past_events = Event.objects.filter(date__lt=now)
-    past_workshops = Workshop.objects.filter(end__lt=now)
-    
-    combined = list(past_events) + list(past_workshops)
-    
+    selected_filter = request.GET.get('filter', 'ALL')
+    page_number = request.GET.get('page', 1)
+    prev_year = request.GET.get('last_year')
+    # Only suppress the first year heading when the request comes from the
+    # AJAX loader. When a user navigates directly to a later page we still
+    # want to show the year divider, even if ``last_year`` is in the query
+    # string.
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        prev_year = int(prev_year) if prev_year else None
+    else:
+        prev_year = None
+    today = timezone.now().date()
+
+    if selected_filter == 'WORKSHOP':
+        items = Workshop.objects.filter(end__lt=today).order_by('-start')
+    elif selected_filter == 'EVENT':
+        items = Event.objects.filter(date__lt=today).order_by('-date')
+    else:
+        events = Event.objects.filter(date__lt=today).order_by('-date')
+        workshops = Workshop.objects.filter(end__lt=today).order_by('-start')
+        items = list(chain(events, workshops))
+        items.sort(key=lambda x: getattr(x, 'date', getattr(x, 'start', None)), reverse=True)
+
+    paginator = Paginator(items, 20)  # show 20 items per page
+    page_obj = paginator.get_page(page_number)
+
+    page_items = list(page_obj.object_list)
+    grouped = OrderedDict()
+    for item in page_items:
+        year = item.date.year if hasattr(item, 'date') else item.start.year
+        grouped.setdefault(year, []).append(item)
+
+    last_year = None
+    if page_items:
+        last_item = page_items[-1]
+        last_year = last_item.date.year if hasattr(last_item, 'date') else last_item.start.year
+
     context = {
-        'combined': combined,
+        'grouped_events': grouped,
+        'selected_filter': selected_filter,
+        'show_past': True,
+        'page_obj': page_obj,
+        'last_year': last_year,
+        'prev_year': prev_year,
     }
-    return render(request, 'past_events.html', context)
+
+    return render(request, 'events.html', context)
 
 def lector_list(request):
     lectors = Lector.objects.all().exclude(id=ludmila_id).order_by('lastName','firstName')

@@ -49,6 +49,18 @@ def show_past_events(events):
     return past_events
 
 @register.filter
+def event_year(event):
+    """Return the relevant year for an event or workshop."""
+    if hasattr(event, 'date'):
+        return event.date.year
+    if hasattr(event, 'start'):
+        start = event.start
+        if isinstance(start, timezone.datetime):
+            start = timezone.localtime(start)
+        return start.year
+    return ""
+
+@register.filter
 def date_format(event):
     if hasattr(event, 'start') and hasattr(event, 'end'):
         start = timezone.localtime(event.start) if isinstance(event.start, timezone.datetime) else event.start

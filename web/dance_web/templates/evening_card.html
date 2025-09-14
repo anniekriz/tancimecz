@@ -20,7 +20,7 @@
 
             <div class="evening-content event-content">
                 <div class="evening-address">
-                    {% if event.parent.location.name %} {{ event.parent.location.name }} <br> {% endif %} {{ event.parent.location.address }}
+                    {% if event.parent.location.name %} <div>{{ event.parent.location.name }}</div> {% endif %} <div>{{ event.parent.location.address }}</div>
                 </div>
                 <div class="evening-lectors">
                     {% for lector in event.parent.ordered_lectors %}
