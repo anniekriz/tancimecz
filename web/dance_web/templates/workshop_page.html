@@ -19,8 +19,7 @@
     {% endif %}
     <div class="event-date">
         {% with event|date_format as date %}
-        {{ date.day }} {{ date.date }} {% if event.startTime %}{{ event.startTime }}{% if event.endTime %}&ndash;{{
-        event.endTime }}{% endif %}{% endif %}
+        {{ date.day }} {{ date.date }} {% if event.startTime %}{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}{% endif %}
         {% endwith %}
     </div>
     <div class="workshop-content event-content">
