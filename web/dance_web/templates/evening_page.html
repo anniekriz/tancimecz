@@ -14,8 +14,8 @@
 <div class="event-detail section-container">
     <div class="event-title">{{ event.parent.location.town }}</div>
     <div class="event-date">
-        {% with event|date_format as date %}
-        {{ date.day }} {{ date.date }} {{ date.startTime }}{% if date.endTime %}&ndash;{{ date.endTime }} {% endif %}
+        {% with event|date_format_year as date %}
+        {{ date.day }} {{ date.date }}  {{ date.startTime }}{% if date.endTime %}&ndash;{{ date.endTime }} {% endif %}
         {% endwith %}
     </div>
     {% if event.parent.location.country and event.parent.location.country != 'CZ' %}

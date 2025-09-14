@@ -18,8 +18,8 @@
     <img class="event-image" src="{{ event.image.url }}" alt="{{ event.title }}" />
     {% endif %}
     <div class="event-date">
-        {% with event|date_format as date %}
-        {{ date.day }} {{ date.date }} {% if event.startTime %}{{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}{% endif %}
+        {% with event|date_format_year as date %}
+        {{ date.day }} {{ date.date }} {% if event.startTime %} {{ event.startTime }}{% if event.endTime %}&ndash;{{ event.endTime }}{% endif %}{% endif %}
         {% endwith %}
     </div>
     <div class="workshop-content event-content">
