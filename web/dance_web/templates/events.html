@@ -27,16 +27,20 @@
             <button type="submit" name="filter" value="EVENT"
                 class="button {% if selected_filter == 'EVENT' %}active{% endif %}">Taneční večery</button>
         </form>
-         {% if show_past %}
-         <form method="get" action="{% url 'events' %}">
-             <button type="submit" class="button archiv-button">Aktuální události</button>
-             </form>
-         {% else %}
-        <form method="get" action="{% url 'past_events' %}">
-             <button type="submit" class="button archiv-button">Proběhlé události</button>
-        </form>
-         {% endif %}
-        
+        {% if show_past %}
+          <form method="get" action="{% url 'events' %}">
+            {# keep the current filter when leaving archive #}
+            <input type="hidden" name="filter" value="{{ selected_filter }}">
+            <button type="submit" class="button archiv-button">Budoucí události</button>
+          </form>
+        {% else %}
+          <form method="get" action="{% url 'past_events' %}">
+            {# keep the current filter when entering archive #}
+            <input type="hidden" name="filter" value="{{ selected_filter }}">
+            <button type="submit" class="button archiv-button">Proběhlé události</button>
+          </form>
+        {% endif %}    
+
     </div>
     <div class="events-grid">
          {% if show_past %}
@@ -63,13 +67,13 @@
         {% endif %}
     </div>
      {% if show_past %}
-     {% if page_obj.has_next %}
-     <div class="load-more">
-         <a class="load-more-button"
-            href="?{% if selected_filter != 'ALL' %}filter={{ selected_filter }}&amp;{% endif %}page={{ page_obj.next_page_number }}&amp;last_year={{ last_year }}">Načíst
-            další</a>
-         </div>
-     {% endif %}
+        {% if page_obj.has_next %}
+        <div class="load-more">
+            <a class="load-more-button"
+                href="?{% if selected_filter != 'ALL' %}filter={{ selected_filter }}&amp;{% endif %}page={{ page_obj.next_page_number }}&amp;last_year={{ last_year }}">Načíst
+                další</a>
+            </div>
+        {% endif %}
      {% endif %}
 </div>
 {% if show_past %}
