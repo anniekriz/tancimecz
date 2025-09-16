@@ -21,7 +21,7 @@ class Lector(models.Model):
     phone = models.CharField(max_length=50, null=True, blank=True, verbose_name="Telefon")
     email = models.EmailField(null=True, blank=True, verbose_name="E-mail")
     link = models.CharField(max_length=256, null=True, blank=True, verbose_name="Odkaz na stránku")
-    fb = models.CharField(max_length=256, null=True, blank=True, verbose_name="Facebook")
+    fb = models.CharField(max_length=256, null=True, blank=True, verbose_name="Facebook (odkaz)")
 
     objects = models.Manager()  # Default manager
     ordered_objects = OrderedLectorManager()  # Custom manager for ordering

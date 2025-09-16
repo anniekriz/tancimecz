@@ -114,20 +114,25 @@ a {
 }
 
 .lector-detail-fb {
+    margin: 0px;
+    padding: 0px;
+    transition: transform 0.25s ease;
+    position: relative;
+    bottom: -6px;
 }
-
-    .lector-detail-fb a:hover {
-        color: #006090;
-    }
 
 .lector-detail-fb img {
-    margin-right: 4px;
+    object-fit: fit;
+    width: 35px;
+    transition: transform 0.25s ease;
 }
+    
+    .lector-detail-fb img:hover {
+        transform: scale(1.1);
+    }
 
 .lector-detail-fb div {
     display: inline-block;
-    position: relative;
-    top: -2px;
 }
 
 .lector-detail-link {

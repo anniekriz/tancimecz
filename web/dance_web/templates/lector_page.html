@@ -38,11 +38,11 @@
             {% endif %}
         </div>
         <div class="lector-detail-rightgroup {% if not lector.phone %}lector-detail-rightgroup-ifnophone{% endif %}">
+            {% if lector.fb %}
             <div class="lector-detail-fb">
-                {% if lector.fb %}
-                <a href="{{ lector.fb }}" target="_blank"><img class="lector-details-fb-image" src="{% static 'images/fb.png' %}" alt="fb" width="20px" /><div>Facebook</div></a>
-                {% endif %}
+                <a href="{{ lector.fb }}" target="_blank"><img class="lector-details-fb-image" src="{% static 'images/facebook-icon.jpg' %}" alt="fb" width="40px"/></a>
             </div>
+            {% endif %}
             <div class="lector-detail-link">
                 {% if lector.link %}
                 <a href="{{ lector.link }}" target="_blank">{{ lector.link }}</a>
