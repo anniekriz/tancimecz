@@ -11,22 +11,33 @@
 
 {% block content %}
 <div class="section-container">
-
-    <!-- <div class="search-container">
-         <form method="get" action="{% url 'search' %}">
-             <input type="text" name="query" placeholder="Hledat..." value="{{ request.GET.query }}">
-             <button type="submit">Hledat</button>
-         </form>
-     </div> -->
+    
     <div class="filter">
-         <form method="get" action="{% if show_past %}{% url 'past_events' %}{% else %}{% url 'events' %}{% endif %}">
+        {# RIGHT: search #}
+        <div class="search-container">
+            <form method="get" action="{% url 'search' %}" class="search-form">
+                <input type="text" name="query" placeholder="Hledat…" value="{{ query|default:'' }}" required>
+                <input type="hidden" name="filter" value="{{ selected_filter|default:'ALL' }}">
+                <input type="hidden" name="show_past" value="{% if show_past %}1{% else %}0{% endif %}">
+                <button type="submit" aria-label="Hledat">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        {# LEFT: filter tabs #}
+        <form method="get" action="{% if show_past %}{% url 'past_events' %}{% else %}{% url 'events' %}{% endif %}">
             <button type="submit" name="filter" value="ALL"
-                class="button {% if selected_filter == 'ALL' %}active{% endif %}">Všechny</button>
+            class="button {% if selected_filter == 'ALL' %}active{% endif %}">Všechny</button>
             <button type="submit" name="filter" value="WORKSHOP"
-                class="button {% if selected_filter == 'WORKSHOP' %}active{% endif %}">Větší události</button>
+            class="button {% if selected_filter == 'WORKSHOP' %}active{% endif %}">Větší události</button>
             <button type="submit" name="filter" value="EVENT"
-                class="button {% if selected_filter == 'EVENT' %}active{% endif %}">Taneční večery</button>
+            class="button {% if selected_filter == 'EVENT' %}active{% endif %}">Taneční večery</button>
         </form>
+        
         {% if show_past %}
           <form method="get" action="{% url 'events' %}">
             {# keep the current filter when leaving archive #}
@@ -40,44 +51,61 @@
             <button type="submit" class="button archiv-button">Proběhlé události</button>
           </form>
         {% endif %}    
-
     </div>
-    <div class="events-grid">
-         {% if show_past %}
-            {% for year, events in grouped_events.items %}
-                {% if not forloop.first or year != prev_year %}
-                    <h2 class="year-divider">{{ year }}</h2>
-                {% endif %}
-                {% for event in events %}
-                    {% if event|is_instance:'Event' %}
-                        {% include "evening_card.html" with event=event %}
+
+        {% if is_search %}
+            {% if combined %}
+                <div class="events-grid">
+                {% for item in combined %}
+                    {% if item|is_instance:'Event' %}
+                        {% include "evening_card.html" with event=item %}
                     {% else %}
-                        {% include "workshop_card.html" with event=event %}
+                        {% include "workshop_card.html" with event=item %}
                     {% endif %}
                 {% endfor %}
-            {% endfor %}
+                </div>
+            {% else %}
+                <p>Nic nenalezeno.</p>
+            {% endif %}
         {% else %}
-            {% for event in combined|filter_past_events %}
+        {# existing listing logic (future/past + filters) #}
+        <div class="events-grid">
+            {% if show_past %}
+            {% for year, events in grouped_events.items %}
+                {% if not forloop.first or year != prev_year %}
+                <h2 class="year-divider">{{ year }}</h2>
+                {% endif %}
+                {% for event in events %}
                 {% if event|is_instance:'Event' %}
                     {% include "evening_card.html" with event=event %}
                 {% else %}
                     {% include "workshop_card.html" with event=event %}
                 {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endif %}
-    </div>
-     {% if show_past %}
-        {% if page_obj.has_next %}
-        <div class="load-more">
+            {% else %}
+            {% for event in combined|filter_past_events %}
+                {% if event|is_instance:'Event' %}
+                {% include "evening_card.html" with event=event %}
+                {% else %}
+                {% include "workshop_card.html" with event=event %}
+                {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        {% if show_past and page_obj.has_next %}
+            <div class="load-more">
             <a class="load-more-button"
-                href="?{% if selected_filter != 'ALL' %}filter={{ selected_filter }}&amp;{% endif %}page={{ page_obj.next_page_number }}&amp;last_year={{ last_year }}">Načíst
-                další</a>
+                href="?{% if selected_filter != 'ALL' %}filter={{ selected_filter }}&amp;{% endif %}page={{ page_obj.next_page_number }}&amp;last_year={{ last_year }}">
+                Načíst další
+            </a>
             </div>
         {% endif %}
-     {% endif %}
-</div>
-{% if show_past %}
+    {% endif %}
+    </div>
 
-<script src="{% static 'js/events.js' %}"></script>
-{% endif %}
+    {% if show_past %}
+    <script src="{% static 'js/events.js' %}"></script>
+    {% endif %}
 {% endblock %}
