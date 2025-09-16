@@ -24,12 +24,19 @@
                 </div>
                 <div class="evening-lectors">
                     {% for lector in event.parent.ordered_lectors %}
-                    <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
-                        <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
-                        <div class="event-lector-name">
-                            {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}
-                        </div>
-                    </a>
+                        {% if forloop.counter == 1 or forloop.counter == 2 and event.parent.ordered_lectors|length == 2 %}
+                            <a class="event-lector" href="{% url 'lector_page' slug=lector.slug %}">
+                                <img class="event-lector-image" src="{{ lector.image.url }}" alt="lector" />
+                                <div class="event-lector-name">
+                                    {{ lector.firstName }}{% if lector.lastName %} {{ lector.lastName }}{% endif %}
+                                </div>
+                            </a>
+                        {% endif %}
+                        {% if forloop.counter == 2 and event.parent.ordered_lectors|length > 2 %}
+                            <a href="{% url 'evening_page' id=event.id %}">
+                                <div class="event-lector-others">a další...</div>
+                            </a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
