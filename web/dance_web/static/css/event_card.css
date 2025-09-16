@@ -112,12 +112,15 @@
 }
 
 .evening-content {
-    height: 97px;
+    height: 102px;
     border: 1px solid #FFF8F0;
+    padding-top: 4px;
+    padding-bottom: 6px;
 }
 
 .evening-address {
     font-size: 1em;
+    height: 44px;
 }
 
 .evening-address div {
