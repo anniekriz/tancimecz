@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from danceapp.models import Event, Lector, Workshop, EventLector
 from danceapp.forms import Search, Search_lectors
 from django.db.models import Q
@@ -8,6 +8,9 @@ from django.db.models import Count
 from django.utils.timezone import now
 from django.core.paginator import Paginator
 from collections import OrderedDict
+from itertools import chain
+from datetime import datetime, date, time as dtime
+from django.urls import reverse
 
 ludmila_id = 25
 
@@ -32,13 +35,17 @@ def event_list(request):
         combined = Workshop.objects.all().order_by('start')
         context = {
             'combined': combined,
-            'selected_filter': selected_filter
+            'selected_filter': selected_filter,
+            "query": "",
+            "is_search": False,
         }
     elif selected_filter == 'EVENT':
         combined = Event.objects.all().order_by('date')
         context = {
             'combined': combined,
-            'selected_filter': selected_filter
+            'selected_filter': selected_filter,
+            "query": "",
+            "is_search": False,
         }
     else:
         events = Event.objects.all().order_by('date')
@@ -47,7 +54,9 @@ def event_list(request):
         combined.sort(key=lambda x: getattr(x, 'date', getattr(x, 'start', None)))
         context = {
             'combined': combined,
-            'selected_filter': selected_filter
+            'selected_filter': selected_filter,
+            "query": "",
+            "is_search": False,
         }
 
     return render(request, 'events.html', context)
@@ -97,6 +106,8 @@ def past_events(request):
         'page_obj': page_obj,
         'last_year': last_year,
         'prev_year': prev_year,
+        "query": "",
+        "is_search": False,
     }
 
     return render(request, 'events.html', context)
@@ -144,29 +155,156 @@ def workshop_page(request, id):
     }
     return render(request, 'workshop_page.html', context)
 
+from itertools import chain
+from datetime import datetime, date, time as dtime
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils import timezone
+
+# ------ pomocné: převod na datetime kvůli řazení ------
+def get_start_dt(obj):
+    """
+    Event -> date (+ parent.startTime pokud je), Workshop -> start (+ startTime)
+    Fallbacky drží pořadí i když čas chybí.
+    """
+    tz = timezone.get_current_timezone()
+
+    # Event
+    if hasattr(obj, "date"):
+        d = obj.date
+        t = None
+        if getattr(obj, "parent", None) and getattr(obj.parent, "startTime", None):
+            t = obj.parent.startTime
+        if not t:
+            t = dtime.min
+        return timezone.make_aware(datetime.combine(d, t), tz)
+
+    # Workshop
+    if hasattr(obj, "start"):
+        d = obj.start
+        t = getattr(obj, "startTime", None) or dtime.min
+        return timezone.make_aware(datetime.combine(d, t), tz)
+
+    # fallback
+    return timezone.make_aware(datetime.max, tz)
+
+# ------ pomocné: poskládání "textu" pro hledání ------
+def _str_if(v):
+    if v is None:
+        return ""
+    if isinstance(v, (datetime, )):
+        return v.strftime("%Y-%m-%d %H:%M")
+    if isinstance(v, date):
+        return v.strftime("%d.%m.%Y")
+    if isinstance(v, dtime):
+        return v.strftime("%H:%M")
+    return str(v)
+
+def event_haystack(e):
+    parts = []
+
+    # samotný Event
+    parts.append(_str_if(getattr(e, "description", "")))
+    parts.append(_str_if(getattr(e, "date", "")))
+
+    # parent (EventGroup)
+    p = getattr(e, "parent", None)
+    if p:
+        parts.append(_str_if(getattr(p, "description", "")))
+        parts.append(_str_if(getattr(p, "startTime", "")))
+        parts.append(_str_if(getattr(p, "endTime", "")))
+
+        # location
+        loc = getattr(p, "location", None)
+        if loc:
+            for name in ("town", "name", "street", "address"):
+                if hasattr(loc, name):
+                    parts.append(_str_if(getattr(loc, name)))
+
+        # lectors (ManyToMany přes through)
+        if hasattr(p, "lector"):
+            for lec in p.lector.all():
+                for name in ("firstName", "lastName", "name"):
+                    if hasattr(lec, name):
+                        parts.append(_str_if(getattr(lec, name)))
+
+    return " ".join(parts)
+
+def workshop_haystack(w):
+    parts = [
+        _str_if(getattr(w, "title", "")),
+        _str_if(getattr(w, "title2", "")),
+        _str_if(getattr(w, "description", "")),
+        _str_if(getattr(w, "price", "")),
+        _str_if(getattr(w, "start", "")),
+        _str_if(getattr(w, "end", "")),
+        _str_if(getattr(w, "startTime", "")),
+        _str_if(getattr(w, "endTime", "")),
+    ]
+    loc = getattr(w, "location", None)
+    if loc:
+        for name in ("town", "name", "street", "address"):
+            if hasattr(loc, name):
+                parts.append(_str_if(getattr(loc, name)))
+
+    if hasattr(w, "lector"):
+        for lec in w.lector.all():
+            for name in ("firstName", "lastName", "name"):
+                if hasattr(lec, name):
+                    parts.append(_str_if(getattr(lec, name)))
+
+    return " ".join(parts)
+
+def contains_casefold(haystack: str, needle: str) -> bool:
+    return needle.casefold() in haystack.casefold()
+
+
+# ------ samotné vyhledávání ------
+from django.db.models import Prefetch
+# importuj si Event, Workshop, Lector, Location
+
 def search_result(request):
-    form = Search(request.GET)
-    events = Event.objects.all()
-    workshops = Workshop.objects.all()
+    query = (request.GET.get("query") or "").strip()
+    selected_filter = (request.GET.get("filter") or "ALL").upper()
+    show_past = request.GET.get("show_past") == "1"
 
-    if 'query' in request.GET:
-        if form.is_valid():
-            query = form.cleaned_data.get('query')
-            events = Event.objects.filter(
-                Q(parent__description__icontains=query) |
-                Q(parent__lector__firstName__icontains=query) |
-                Q(parent__lector__lastName__icontains=query) |
-                Q(parent__location__town__icontains=query)
-            ).distinct()
-            workshops = Workshop.objects.filter(
-                Q(title__icontains=query) |
-                Q(lector__firstName__icontains=query) |
-                Q(lector__lastName__icontains=query) |
-                Q(description__icontains=query) |
-                Q(location__town__icontains=query)
-            ).distinct()
+    # prázdný dotaz -> zpět na normální stránku (zachovej filtr)
+    if not query:
+        url = reverse("past_events" if show_past else "events")
+        return redirect(f"{url}?filter={selected_filter}") if selected_filter and selected_filter != "ALL" else redirect(url)
 
-    return render(request, 'events.html', {'form': form, 'events': events, 'workshops': workshops})
+    today = timezone.localdate()
+
+    # ---- Eventy ----
+    e_qs = Event.objects.select_related("parent", "parent__location") \
+                        .prefetch_related("parent__lector")
+    e_qs = e_qs.filter(date__lt=today).order_by("-date") if show_past else e_qs.filter(date__gte=today).order_by("date")
+
+    # ---- Workshopy ----
+    w_qs = Workshop.objects.select_related("location").prefetch_related("lector")
+    w_qs = w_qs.filter(end__lt=today).order_by("-start") if show_past else w_qs.filter(start__gte=today).order_by("start")
+
+    # respektuj přepínač typu
+    if selected_filter == "EVENT":
+        w_qs = Workshop.objects.none()
+    elif selected_filter == "WORKSHOP":
+        e_qs = Event.objects.none()
+
+    # Pythoní fulltext přes všechny relevantní atributy (case-insensitive)
+    events_list = [e for e in e_qs if contains_casefold(event_haystack(e), query)]
+    workshops_list = [w for w in w_qs if contains_casefold(workshop_haystack(w), query)]
+
+    # smíchat + seřadit jako na hlavní stránce
+    combined = events_list + workshops_list
+    combined.sort(key=get_start_dt, reverse=show_past)
+
+    return render(request, "events.html", {
+        "is_search": True,
+        "query": query,
+        "combined": combined,
+        "selected_filter": selected_filter,
+        "show_past": show_past,
+    })
 
 def search_result_lectors(request):
     form = Search_lectors(request.GET)

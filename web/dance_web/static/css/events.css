@@ -7,16 +7,6 @@
 }
 
 /* Menu */
-.filter {
-    margin-top: 120px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #000006;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
 
 .load-more {
     text-align: center;
@@ -53,6 +43,17 @@
     color: #006090;
 }
 
+.filter {
+    margin-bottom: 30px;
+    margin-top: 120px;
+    border-bottom: 1px solid #000006;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .filter button {
     padding: 10px 20px;
     color: #000006;
@@ -72,6 +73,96 @@
     .filter .button.active {
         color: #006090;
     }
+
+/* === Search bar container === */
+.search-container {
+  display: flex;
+  width: 100%;
+  align-content: flex-end;
+}
+
+/* The form aligns items in a row and shrinks nicely */
+.search-form {
+  display: flex;
+  gap: 0px;
+  width: 100%;
+  max-width: 580px;
+}
+
+/* Input */
+.search-form input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 0;               /* prevents overflow in flex */
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #fff;
+  border: solid 1px rgb(105, 57, 12);
+  transition: box-shadow 0.2s ease;
+}
+
+.search-form input[type="text"]::placeholder {
+  color: rgb(105, 57, 12);
+}
+
+.search-form input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* Button – styled to harmonize with your header buttons */
+.search-form button {
+  font-size: 1rem;
+  font-family: 'Ysabeau SC', sans-serif;
+  color: rgb(105, 57, 12);
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+  transition: scale 0.25s ease;
+  padding: 0px;
+  transform: translateX(-35px);
+}
+
+.search-form button:hover {
+    color: #93b7d3;
+    transform: translateX(-35px);
+}
+
+.search-form button:active {
+}
+
+.search-form button svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* Make it play nicely next to the filter block if you move it there */
+.filter + .search-container,
+.search-container + .filter {
+  margin-top: 8px;
+}
+
+/* --- Responsive tweaks --- */
+@media (max-width: 720px) {
+  .search-container {
+    justify-content: stretch;
+  }
+  .search-form {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .search-form button {
+    width: 100%;
+  }
+}
 
 /* Workshop & Event Cards */
 
