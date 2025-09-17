@@ -259,10 +259,6 @@
         padding-bottom: 10px;
     }
 
-    .filter>form {
-        margin-top: 10px;
-    }
-
     .filter>form:last-of-type {
         padding-top: 10px;
     }
