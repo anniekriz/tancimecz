@@ -3,7 +3,7 @@
 }
 
 .menu-item2 a {
-    color: #67F0FC!important;
+    color: #67F0FC !important;
 }
 
 /* Menu */
@@ -21,7 +21,7 @@
     border: none;
     transition: color 0.3s ease, transform 0.3s ease;
     font-family: 'Ysabeau SC', sans-serif;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     display: inline-block;
 }
 
@@ -62,98 +62,99 @@
     border: none;
     transition: color 0.3s ease, transform 0.3s ease;
     font-family: 'Ysabeau SC', sans-serif;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
-    .filter button:hover {
-        color: #006090;
-        transform: scale(1.05)
-    }
+.filter button:hover {
+    color: #006090;
+    transform: scale(1.05)
+}
 
-    .filter .button.active {
-        color: #006090;
-    }
+.filter .button.active {
+    color: #006090;
+}
 
 /* === Search bar container === */
 .search-container {
-  display: flex;
-  width: 100%;
-  align-content: flex-end;
+    display: flex;
+    width: 100%;
+    align-content: flex-end;
 }
 
 /* The form aligns items in a row and shrinks nicely */
 .search-form {
-  display: flex;
-  gap: 0px;
-  width: 100%;
-  max-width: 580px;
-  position: relative;
+    display: flex;
+    gap: 0px;
+    width: 100%;
+    max-width: 580px;
+    position: relative;
 }
 
 /* Input */
 .search-form input[type="text"] {
-  flex: 1 1 auto;
-  min-width: 0;               /* prevents overflow in flex */
-  padding: 10px 12px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 6px;
-  background: #fff;
-  border: solid 1px rgb(105, 57, 12);
-  transition: box-shadow 0.2s ease;
+    flex: 1 1 auto;
+    min-width: 0;
+    /* prevents overflow in flex */
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: #fff;
+    border: solid 1px rgb(105, 57, 12);
+    transition: box-shadow 0.2s ease;
 }
 
 .search-form input[type="text"]::placeholder {
-  color: rgb(105, 57, 12);
+    color: rgb(105, 57, 12);
 }
 
 .search-form input[type="text"]:focus {
-  outline: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) inset;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) inset;
 }
 
 /* Button – styled to harmonize with your header buttons */
 .search-form button {
-  font-size: 1rem;
-  font-family: 'Ysabeau SC', sans-serif;
-  color: rgb(105, 57, 12);
-  border: none;
-  cursor: pointer;
-  background-color: inherit;
-  transition: scale 0.25s ease;
-  padding: 0px;
-  /* transform: translateX(-35px); */
-  position: absolute;
-  top: 8px;
-  right: 10px;
+    font-size: 1rem;
+    font-family: 'Ysabeau SC', sans-serif;
+    color: rgb(105, 57, 12);
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    transition: scale 0.25s ease;
+    padding: 0px;
+    /* transform: translateX(-35px); */
+    position: absolute;
+    top: 8px;
+    right: 10px;
 }
 
 .search-form button:hover {
     color: #55768F;
 }
 
-.search-form button:active {
-}
+.search-form button:active {}
 
 .search-form button svg {
-  width: 25px;
-  height: 25px;
+    width: 25px;
+    height: 25px;
 }
 
 /* Make it play nicely next to the filter block if you move it there */
-.filter + .search-container,
-.search-container + .filter {
-  margin-top: 8px;
+.filter+.search-container,
+.search-container+.filter {
+    margin-top: 8px;
 }
 
 /* --- Responsive tweaks --- */
 @media (max-width: 720px) {
-  .search-container {
-    justify-content: stretch;
-  }
-  .search-form {
-    max-width: none;
-  }
+    .search-container {
+        justify-content: stretch;
+    }
+
+    .search-form {
+        max-width: none;
+    }
 }
 
 /* Workshop & Event Cards */
@@ -189,19 +190,65 @@
 
 @media (max-width: 1200px) {
     .events-grid {
-        grid-template-columns: repeat(4, 1fr); 
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (max-width: 960px) {
     .events-grid {
-        grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media(max-width: 810px) {
+    .filter {
+        flex-direction: column;
+        align-items: stretch;
+        border-bottom: none;
+        margin-bottom: 5px;
+    }
+
+    .filter>.search-container {
+        order: 1;
+    }
+
+    .filter>form {
+        margin-top: 0px;
+    }
+
+    .filter>form:first-of-type {
+        order: 2;
+        display: flex;
+        align-items: baseline;
+        margin-top: 5px;
+    }
+
+    .filter>form:last-of-type {
+        order: 3;
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+    }
+
+    .filter>form:last-of-type::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 1px;
+        background: #000006;
+    }
+}
+
+@media (max-width:760px) {
+    .filter{
+        margin-top: 100px;
     }
 }
 
 @media (max-width: 720px) {
     .events-grid {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .filter button {
@@ -211,22 +258,26 @@
         padding-left: 10px;
         padding-bottom: 10px;
     }
+
+    .filter>form {
+        margin-top: 10px;
+    }
+
+    .filter>form:last-of-type {
+        padding-top: 10px;
+    }
 }
+
 
 @media (max-width: 500px) {
     .events-grid {
-        grid-template-columns: repeat(1, 1fr); 
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
 @media (max-width: 416px) {
 
-    .filter {
+    .filter>form:first-of-type {
         flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .filter button {
-        display: block; 
     }
 }
